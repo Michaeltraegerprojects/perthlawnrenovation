@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Instant online lawn renovation quotes for Perth — dethatching, aeration and full rejuvenation packages. DIY equipment dry hire also available.">
+<title>Perth Lawn Renovation Services — Free Instant Quote</title>
+<!--
+  ============================================================
+  PERTH LAWN RENOVATION SERVICES — INSTANT QUOTE WIDGET
+  ============================================================
+  TWO CALCULATORS IN ONE:
+    1. Lawn renovation quote  — dethatching / aeration priced
+       per m², rejuvenation package, POA extras.
+    2. Equipment dry hire     — single machines, 3-machine
+       package, or full trailer package by hire duration.
+
+  HOW TO USE
+  1. Edit CONFIG (top of the <script> block): phone, email and
+     every rate. Rates currently match your services doc.
+  2. Host it:
+     a) GitHub Pages — push this repo, enable Pages (see README), or
+     b) Your own site — paste as a page, or iframe it:
+        <iframe src="/quote/" style="width:100%;height:1500px;border:0;"></iframe>
+  3. Leads: default = opens the customer's email app pre-filled
+     to CONFIG.business.email. Paste a Formspree/Getform/your-API
+     URL into CONFIG.leadEndpoint to POST leads as JSON instead.
+  ============================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:      #14392A;
+    --ink-soft: #51645A;
+    --grass:    #6CC24A;
+    --grass-dk: #3E8E2F;
+    --sand:     #F6F4EC;
+    --card:     #FFFFFF;
+    --line:     #E3E0D2;
+    --panel:    #0F2E22;
+    --panel-2:  #143A2B;
+    --radius:   14px;
+    --shadow:   0 10px 30px rgba(20,57,42,.08);
+    --font: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *, *::before, *::after{ animation:none !important; transition:none !important; }
+  }
+  body{
+    font-family:var(--font);
+    background:var(--sand);
+    color:var(--ink);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{ max-width:1080px; margin:0 auto; padding:40px 20px 120px; }
+
+  /* ---------- header ---------- */
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12px; font-weight:800; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--grass-dk);
+    border:1px solid var(--line); background:var(--card);
+    padding:7px 14px; border-radius:999px;
+  }
+  .eyebrow::before{ content:""; width:8px; height:8px; border-radius:50%; background:var(--grass); }
+  h1{
+    font-variation-settings:"wdth" 112;
+    font-weight:850;
+    font-size:clamp(30px, 5vw, 46px);
+    line-height:1.05;
+    letter-spacing:-.015em;
+    margin:18px 0 10px;
+    max-width:680px;
+  }
+  .sub{ color:var(--ink-soft); font-size:17px; max-width:600px; }
+
+  .badges{ display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+  .badge{
+    font-size:12px; font-weight:700; letter-spacing:.02em;
+    color:var(--ink); background:var(--card);
+    border:1px solid var(--line); border-radius:999px;
+    padding:6px 12px;
+    display:inline-flex; align-items:center; gap:6px;
+  }
+  .badge::before{ content:"✓"; color:var(--grass-dk); font-weight:900; }
+
+  /* ---------- mode tabs ---------- */
+  .tabs{
+    display:grid; grid-template-columns:1fr 1fr; gap:8px;
+    background:var(--card); border:1px solid var(--line);
+    padding:6px; border-radius:14px;
+    margin-top:30px; max-width:560px;
+  }
+  .tab{
+    border:0; background:transparent; cursor:pointer;
+    font:inherit; font-weight:800; font-size:15px; color:var(--ink-soft);
+    padding:12px 10px; border-radius:10px;
+    transition:background .15s, color .15s;
+  }
+  .tab[aria-selected="true"]{ background:var(--ink); color:#fff; }
+  .tab:focus-visible{ outline:3px solid var(--grass); outline-offset:2px; }
+
+  /* ---------- layout ---------- */
+  .grid{
+    display:grid;
+    grid-template-columns: minmax(0,1fr) 360px;
+    gap:28px;
+    margin-top:22px;
+    align-items:start;
+  }
+  @media (max-width: 860px){ .grid{ grid-template-columns:1fr; } }
+
+  /* ---------- form card ---------- */
+  .form-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:8px 26px 26px;
+  }
+  fieldset{ border:0; padding:24px 0 22px; border-bottom:1px solid var(--line); }
+  fieldset:last-of-type{ border-bottom:0; padding-bottom:8px; }
+  fieldset[hidden]{ display:none; }
+  legend{
+    display:flex; align-items:baseline; gap:12px;
+    font-weight:800; font-size:18px; letter-spacing:-.01em;
+    padding-top:24px;
+  }
+  .step-no{
+    font-variation-settings:"wdth" 75;
+    font-weight:900; font-size:13px; color:var(--grass-dk);
+    letter-spacing:.08em;
+  }
+  .hint{ font-size:14px; color:var(--ink-soft); margin:4px 0 14px; }
+
+  /* chips */
+  .chips{ display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:10px; }
+  .chip{
+    position:relative; cursor:pointer;
+    border:1.5px solid var(--line); border-radius:12px;
+    background:var(--card);
+    padding:12px 14px;
+    transition:border-color .15s, background .15s;
+  }
+  .chip:hover{ border-color:var(--grass-dk); }
+  .chip input{ position:absolute; opacity:0; inset:0; cursor:pointer; }
+  .chip:has(input:checked){ border-color:var(--grass-dk); background:#F1F8EC; }
+  .chip:has(input:focus-visible){ outline:3px solid var(--grass); outline-offset:2px; }
+  .chip .t{ font-weight:700; font-size:15px; display:block; }
+  .chip .s{ font-size:12.5px; color:var(--ink-soft); display:block; margin-top:2px; }
+  .chip .save{
+    display:inline-block; margin-top:6px;
+    font-size:11px; font-weight:800; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--grass-dk); background:#E4F3DB;
+    padding:2px 8px; border-radius:999px;
+  }
+
+  .custom-size{ margin-top:14px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .custom-size label{ font-size:14px; color:var(--ink-soft); }
+  .custom-size input{
+    width:110px; padding:10px 12px;
+    border:1.5px solid var(--line); border-radius:10px;
+    font:inherit; font-weight:700; color:var(--ink);
+    background:var(--card);
+  }
+  .custom-size input:focus-visible{ outline:3px solid var(--grass); outline-offset:1px; border-color:var(--grass-dk); }
+  .unit{ font-size:14px; font-weight:700; color:var(--ink-soft); }
+
+  /* service / machine rows */
+  .services{ display:grid; gap:10px; }
+  .svc{
+    position:relative; cursor:pointer;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    border:1.5px solid var(--line); border-radius:12px;
+    padding:13px 16px;
+    transition:border-color .15s, background .15s, opacity .15s;
+  }
+  .svc:hover{ border-color:var(--grass-dk); }
+  .svc input{ position:absolute; opacity:0; inset:0; cursor:pointer; }
+  .svc:has(input:checked){ border-color:var(--grass-dk); background:#F1F8EC; }
+  .svc:has(input:focus-visible){ outline:3px solid var(--grass); outline-offset:2px; }
+  .svc:has(input:disabled){ opacity:.45; cursor:not-allowed; }
+  .svc:has(input:disabled) input{ cursor:not-allowed; }
+  .svc .left{ display:flex; align-items:center; gap:12px; }
+  .box{
+    width:22px; height:22px; flex:0 0 22px;
+    border:2px solid var(--line); border-radius:6px;
+    display:grid; place-items:center;
+    transition:background .12s, border-color .12s;
+  }
+  .svc:has(input:checked) .box{ background:var(--grass-dk); border-color:var(--grass-dk); }
+  .box svg{ opacity:0; transform:scale(.6); transition:opacity .12s, transform .12s; }
+  .svc:has(input:checked) .box svg{ opacity:1; transform:scale(1); }
+  .svc .name{ font-weight:700; font-size:15px; }
+  .svc .desc{ font-size:12.5px; color:var(--ink-soft); display:block; font-weight:500; }
+  .svc .price{ font-size:13px; color:var(--ink-soft); font-variant-numeric:tabular-nums; white-space:nowrap; text-align:right; }
+
+  .callout{
+    margin-top:14px;
+    background:#F1F8EC; border:1px solid #CDE7BE; border-radius:10px;
+    padding:11px 14px; font-size:13px; color:var(--ink);
+  }
+  .callout strong{ color:var(--grass-dk); }
+
+  /* contact fields */
+  .fields{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media (max-width:560px){ .fields{ grid-template-columns:1fr; } }
+  .field{ display:flex; flex-direction:column; gap:6px; }
+  .field label{ font-size:13.5px; font-weight:700; }
+  .field label .opt{ font-weight:500; color:var(--ink-soft); }
+  .field input{
+    padding:12px 14px;
+    border:1.5px solid var(--line); border-radius:10px;
+    font:inherit; color:var(--ink); background:var(--card);
+  }
+  .field input:focus-visible{ outline:3px solid var(--grass); outline-offset:1px; border-color:var(--grass-dk); }
+  .field input.error{ border-color:#C6472E; }
+  .err-msg{ font-size:12.5px; color:#B03A22; display:none; }
+  .field.show-err .err-msg{ display:block; }
+
+  .submit{
+    margin-top:20px; width:100%;
+    background:var(--grass-dk); color:#fff;
+    border:0; border-radius:12px;
+    font:inherit; font-weight:800; font-size:17px;
+    padding:16px 20px; cursor:pointer;
+    transition:background .15s, transform .1s;
+  }
+  .submit:hover{ background:#357A28; }
+  .submit:active{ transform:translateY(1px); }
+  .submit:focus-visible{ outline:3px solid var(--ink); outline-offset:2px; }
+  .privacy{ font-size:12.5px; color:var(--ink-soft); text-align:center; margin-top:10px; }
+
+  /* ---------- quote board ---------- */
+  .board{
+    position:sticky; top:20px;
+    background:linear-gradient(170deg, var(--panel-2), var(--panel));
+    color:#EDF5EA;
+    border-radius:var(--radius);
+    box-shadow:0 18px 44px rgba(15,46,34,.35);
+    overflow:hidden;
+  }
+  .board::after{
+    content:"";
+    display:block; height:10px;
+    background:repeating-linear-gradient(90deg, var(--grass) 0 26px, #58A83B 26px 52px);
+  }
+  .board-inner{ padding:24px 24px 22px; }
+  .board .label{
+    font-size:11.5px; font-weight:800; letter-spacing:.16em; text-transform:uppercase;
+    color:#9CC79B;
+  }
+  .price-line{ display:flex; align-items:baseline; gap:10px; margin-top:8px; flex-wrap:wrap; }
+  .from{ font-size:14px; color:#B9D3B4; font-weight:700; }
+  .price{
+    font-variation-settings:"wdth" 108;
+    font-weight:900;
+    font-size:clamp(34px, 4.4vw, 44px);
+    line-height:1;
+    letter-spacing:-.02em;
+    color:var(--grass);
+    font-variant-numeric:tabular-nums;
+  }
+  .price.tick{ animation:tick .28s ease-out; }
+  @keyframes tick{
+    0%{ transform:translateY(4px); opacity:.35; }
+    100%{ transform:translateY(0); opacity:1; }
+  }
+  .per{ font-size:14px; color:#B9D3B4; font-weight:600; }
+  .board .empty{ font-size:14.5px; color:#C7DCC2; margin-top:8px; }
+
+  .breakdown{ margin-top:18px; border-top:1px solid rgba(255,255,255,.12); padding-top:14px; display:grid; gap:8px; }
+  .row{ display:flex; justify-content:space-between; gap:12px; font-size:13.5px; }
+  .row .k{ color:#C7DCC2; }
+  .row .v{ font-variant-numeric:tabular-nums; font-weight:700; white-space:nowrap; }
+  .row.note .v{ color:var(--grass); }
+  .fine{ margin-top:16px; font-size:11.5px; color:#8FB48C; line-height:1.5; }
+
+  .board .success{
+    display:none;
+    margin-top:16px; padding:12px 14px;
+    background:rgba(108,194,74,.14);
+    border:1px solid rgba(108,194,74,.45);
+    border-radius:10px;
+    font-size:13.5px; color:#DFF2D6;
+  }
+  .board.sent .success{ display:block; }
+
+  /* ---------- mobile sticky bar ---------- */
+  .mobile-bar{
+    display:none;
+    position:fixed; left:0; right:0; bottom:0; z-index:50;
+    background:var(--panel);
+    color:#EDF5EA;
+    padding:12px 18px calc(12px + env(safe-area-inset-bottom));
+    box-shadow:0 -8px 24px rgba(15,46,34,.3);
+    align-items:center; justify-content:space-between; gap:14px;
+  }
+  .mobile-bar .m-price{
+    font-weight:900; font-size:22px; color:var(--grass);
+    font-variant-numeric:tabular-nums; line-height:1;
+  }
+  .mobile-bar .m-label{ font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#9CC79B; }
+  .mobile-bar a{
+    background:var(--grass-dk); color:#fff; text-decoration:none;
+    font-weight:800; font-size:14px;
+    padding:11px 16px; border-radius:10px; white-space:nowrap;
+  }
+  @media (max-width:860px){
+    .mobile-bar{ display:flex; }
+    .board{ position:static; }
+    .wrap{ padding-bottom:150px; }
+  }
+
+  .foot{ margin-top:26px; font-size:13px; color:var(--ink-soft); text-align:center; }
+  .foot a{ color:var(--grass-dk); font-weight:700; text-decoration:none; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <span class="eyebrow">Perth Lawn Renovation Services</span>
+  <h1>Your lawn renovation, priced online in 30&nbsp;seconds. No site visit needed.</h1>
+  <p class="sub">Specialists in lawn renovations with 15+ years in the turf maintenance industry, bringing professional lawn care to residential lawns across Perth.</p>
+  <div class="badges">
+    <span class="badge">15+ years turf industry experience</span>
+    <span class="badge">Member of LMCAWA</span>
+    <span class="badge">Licensed weed technician</span>
+    <span class="badge">Eftpos available</span>
+  </div>
+
+  <!-- mode switch -->
+  <div class="tabs" role="tablist" aria-label="Quote type">
+    <button class="tab" id="tab-reno" role="tab" aria-selected="true"  aria-controls="quoteForm">Lawn renovation quote</button>
+    <button class="tab" id="tab-hire" role="tab" aria-selected="false" aria-controls="quoteForm">DIY equipment hire</button>
+  </div>
+
+  <div class="grid">
+    <!-- ================= FORM ================= -->
+    <form class="form-card" id="quoteForm" novalidate>
+
+      <!-- ===== RENOVATION MODE ===== -->
+      <fieldset data-mode="reno">
+        <legend><span class="step-no">STEP 1</span> How big is your lawn?</legend>
+        <p class="hint">Rough guess is fine — or enter the exact area for a sharper price.</p>
+        <div class="chips" id="sizeChips" role="radiogroup" aria-label="Lawn size"></div>
+        <div class="custom-size">
+          <label for="customSqm">Know the exact size?</label>
+          <input type="number" id="customSqm" min="10" max="5000" step="5" inputmode="numeric" placeholder="e.g. 150">
+          <span class="unit">m²</span>
+        </div>
+      </fieldset>
+
+      <fieldset data-mode="reno">
+        <legend><span class="step-no">STEP 2</span> What does your lawn need?</legend>
+        <p class="hint">Dethatching and aeration are quoted instantly online. Everything else is priced at your free lawn health assessment.</p>
+        <div class="services" id="renoServices"></div>
+        <div class="callout"><strong>Not sure what it needs?</strong> Book a free lawn health assessment — we'll inspect on site and recommend the right treatment, no obligation.</div>
+      </fieldset>
+
+      <fieldset data-mode="reno">
+        <legend><span class="step-no">STEP 3</span> When do you want it done?</legend>
+        <p class="hint">Renovations get the best results in the growing season — we'll advise the ideal window for your turf type.</p>
+        <div class="chips" id="timingChips" role="radiogroup" aria-label="Timing"></div>
+      </fieldset>
+
+      <!-- ===== HIRE MODE ===== -->
+      <fieldset data-mode="hire" hidden>
+        <legend><span class="step-no">STEP 1</span> What gear do you need?</legend>
+        <p class="hint">Pick individual machines, or take the full click-and-collect package with trailer.</p>
+        <div class="chips" id="hireKindChips" role="radiogroup" aria-label="Hire type" style="grid-template-columns:1fr 1fr;"></div>
+        <div class="services" id="machineList" style="margin-top:14px;"></div>
+        <div class="callout" id="trailerDesc" hidden>
+          <strong>Complete DIY renovation package:</strong> scarifier, vertimower, lawn aerator, trailer, whipper snipper, fertiliser &amp; spreader, wetting agent, knapsack, fuel and all associated tools — insurances included. Disposal of green waste is at hirer's discretion.
+        </div>
+        <div class="callout" id="pkgNudge" hidden></div>
+      </fieldset>
+
+      <fieldset data-mode="hire" hidden>
+        <legend><span class="step-no">STEP 2</span> How long for?</legend>
+        <p class="hint">Longer hires get a cheaper day rate.</p>
+        <div class="chips" id="durationChips" role="radiogroup" aria-label="Hire duration"></div>
+        <div class="callout"><strong>Valid driver's licence required for all hire</strong> — a copy will be taken at time of pickup.</div>
+      </fieldset>
+
+      <!-- ===== SHARED: CONTACT ===== -->
+      <fieldset>
+        <legend><span class="step-no" id="contactStepNo">STEP 4</span> Lock it in</legend>
+        <p class="hint" id="contactHint">We'll confirm your quote and booking by text or call — usually same day.</p>
+        <div class="fields">
+          <div class="field" id="f-name">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" autocomplete="name" required>
+            <span class="err-msg">Please enter your name.</span>
+          </div>
+          <div class="field" id="f-phone">
+            <label for="phone">Mobile</label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="04xx xxx xxx" required>
+            <span class="err-msg">Please enter a valid Australian mobile.</span>
+          </div>
+          <div class="field" id="f-suburb">
+            <label for="suburb">Suburb</label>
+            <input type="text" id="suburb" name="suburb" autocomplete="address-level2" placeholder="e.g. Clarkson" required>
+            <span class="err-msg">Please enter your suburb.</span>
+          </div>
+          <div class="field">
+            <label for="email">Email <span class="opt">(optional)</span></label>
+            <input type="email" id="email" name="email" autocomplete="email">
+          </div>
+        </div>
+        <button class="submit" type="submit" id="submitBtn">Get my free quote</button>
+        <p class="privacy">No spam, no lock-in. We only use your details to confirm this quote.</p>
+      </fieldset>
+    </form>
+
+    <!-- ================= QUOTE BOARD ================= -->
+    <aside class="board" id="board" aria-live="polite">
+      <div class="board-inner">
+        <div class="label" id="boardLabel">Your renovation estimate</div>
+        <div class="price-line">
+          <span class="from" id="fromTag">from</span>
+          <span class="price" id="priceOut">—</span>
+          <span class="per" id="perOut"></span>
+        </div>
+        <p class="empty" id="emptyMsg">Select at least one service to see a price.</p>
+        <div class="breakdown" id="breakdown"></div>
+        <div class="success" id="successMsg"></div>
+        <p class="fine" id="fineText"></p>
+      </div>
+    </aside>
+  </div>
+
+  <p class="foot" id="footLine"></p>
+</div>
+
+<!-- Mobile sticky price bar -->
+<div class="mobile-bar" id="mobileBar">
+  <div>
+    <div class="m-label" id="mLabel">Your estimate</div>
+    <div class="m-price" id="mPrice">—</div>
+  </div>
+  <a href="#quoteForm">Get quote</a>
+</div>
+
+<script>
+/* ============================================================
+   CONFIG — every rate below matches the services doc.
+   Change numbers here; no other code edits needed.
+   ============================================================ */
+const CONFIG = {
+  business: {
+    name:  "Perth Lawn Renovation Services",
+    phone: "0427 206 246",
+    email: "perthlawnrenovationservices@outlook.com",
+  },
+
+  // Optional: paste a form endpoint (Formspree / Getform / your API)
+  // and leads POST there as JSON instead of opening the email app.
+  leadEndpoint: "",
+
+  /* ---------- RENOVATION ---------- */
+  reno: {
+    dethatchPerSqm: 8.00,   // "Rates from $8 sq/m"
+    aerationPerSqm: 1.50,   // "Rates from $1.50 sq/m"
+    minJob: 400,            // minimum job charge — applied if the calculated total falls below this
+
+    sizes: [
+      { id:"under50", label:"Under 50 m²",  sub:"Small courtyard / pocket lawn", sqm:40  },
+      { id:"small",   label:"Small",        sub:"Up to 80 m² · courtyard",       sqm:60  },
+      { id:"medium",  label:"Medium",       sub:"80–180 m² · typical Perth",     sqm:130 },
+      { id:"large",   label:"Large",        sub:"180–350 m² · big backyard",     sqm:260 },
+      { id:"xl",      label:"Extra large",  sub:"350 m²+ · corner block",        sqm:450 },
+    ],
+
+    // type "sqm"     = priced instantly per m² online
+    // type "package" = full rejuvenation (from dethatch+aeration rate; rest at assessment)
+    // type "poa"     = priced at the free on-site assessment
+    services: [
+      { id:"dethatch", type:"sqm", rate:8.00, label:"Lawn dethatching",
+        desc:"Removes thatch build-up so water & nutrients reach the roots", priceNote:"from $8 / m²" },
+      { id:"aeration", type:"sqm", rate:1.50, label:"Lawn aeration",
+        desc:"Relieves compaction — better water penetration & root growth", priceNote:"from $1.50 / m²" },
+      { id:"package",  type:"package", label:"Complete lawn rejuvenation package",
+        desc:"Dethatch + aeration + topdress + fertiliser & wetting agent + reticulation assessment", priceNote:"best value" },
+      { id:"fert",     type:"poa", label:"Fertiliser / herbicide application",
+        desc:"Applied by our licensed weed technician", priceNote:"priced at assessment" },
+      { id:"retic",    type:"poa", label:"Reticulation installation & repairs",
+        desc:"Fix coverage issues before they cook your new lawn", priceNote:"priced at assessment" },
+    ],
+
+    timing: [
+      { id:"asap",   label:"ASAP",        sub:"Get me booked in"  },
+      { id:"spring", label:"This spring", sub:"Peak growth window" },
+      { id:"autumn", label:"This autumn", sub:"Beat winter dormancy" },
+      { id:"flex",   label:"Flexible",    sub:"Advise best timing" },
+    ],
+  },
+
+  /* ---------- EQUIPMENT DRY HIRE ---------- */
+  hire: {
+    machines: [
+      { id:"scarifier",  label:"Scarifier" },
+      { id:"vertimower", label:"Vertimower" },
+      { id:"aerator",    label:"Lawn aerator" },
+    ],
+    // Day rates by duration tier (per the doc)
+    rates: {
+      single:   { d1:125, d3:115, d5:100 },  // per machine, per day
+      package3: { d1:350, d3:300, d5:250 },  // all 3 machines, per day
+      trailer:  { d1:550, d3:450, d5:350 },  // full package with trailer, per day
+    },
+    durations: [
+      { id:"d1", label:"1 day",         sub:"Single day rate", days:1 },
+      { id:"d3", label:"3 days",        sub:"Cheaper day rate", days:3, save:"Better rate" },
+      { id:"d5", label:"Week (5 days)", sub:"Best day rate",    days:5, save:"Best rate" },
+    ],
+  },
+};
+
+/* ============================================================
+   WIDGET LOGIC — no changes needed below this line.
+   ============================================================ */
+const $ = (id) => document.getElementById(id);
+const fmt = (n) => "$" + Math.round(n).toLocaleString("en-AU");
+
+const state = {
+  mode: "reno",
+  reno: {
+    size: "medium",
+    customSqm: null,
+    services: new Set(["dethatch", "aeration"]),
+    timing: "flex",
+  },
+  hire: {
+    kind: "machines",              // "machines" | "trailer"
+    machines: new Set(["scarifier"]),
+    duration: "d1",
+  },
+};
+
+/* ---------- build UI from CONFIG ---------- */
+function checkSvg(){
+  return `<svg width="13" height="11" viewBox="0 0 13 11" fill="none" aria-hidden="true">
+    <path d="M1.5 5.5L4.8 8.8L11.5 1.8" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>`;
+}
+
+function build(){
+  const R = CONFIG.reno, H = CONFIG.hire;
+
+  $("sizeChips").innerHTML = R.sizes.map(s => `
+    <label class="chip">
+      <input type="radio" name="size" value="${s.id}" ${s.id === state.reno.size ? "checked" : ""}>
+      <span class="t">${s.label}</span><span class="s">${s.sub}</span>
+    </label>`).join("");
+
+  $("renoServices").innerHTML = R.services.map(s => `
+    <label class="svc">
+      <input type="checkbox" name="rsvc" value="${s.id}" ${state.reno.services.has(s.id) ? "checked" : ""}>
+      <span class="left">
+        <span class="box">${checkSvg()}</span>
+        <span><span class="name">${s.label}</span><span class="desc">${s.desc}</span></span>
+      </span>
+      <span class="price">${s.priceNote}</span>
+    </label>`).join("");
+
+  $("timingChips").innerHTML = R.timing.map(t => `
+    <label class="chip">
+      <input type="radio" name="timing" value="${t.id}" ${t.id === state.reno.timing ? "checked" : ""}>
+      <span class="t">${t.label}</span><span class="s">${t.sub}</span>
+    </label>`).join("");
+
+  $("hireKindChips").innerHTML = `
+    <label class="chip">
+      <input type="radio" name="hkind" value="machines" ${state.hire.kind === "machines" ? "checked" : ""}>
+      <span class="t">Individual machines</span><span class="s">Pick what you need</span>
+    </label>
+    <label class="chip">
+      <input type="radio" name="hkind" value="trailer" ${state.hire.kind === "trailer" ? "checked" : ""}>
+      <span class="t">Full package + trailer</span><span class="s">Everything, click &amp; collect</span>
+    </label>`;
+
+  $("machineList").innerHTML = H.machines.map(m => `
+    <label class="svc">
+      <input type="checkbox" name="machine" value="${m.id}" ${state.hire.machines.has(m.id) ? "checked" : ""}>
+      <span class="left">
+        <span class="box">${checkSvg()}</span>
+        <span class="name">${m.label}</span>
+      </span>
+      <span class="price">$${H.rates.single.d1}/day · all 3 for $${H.rates.package3.d1}/day</span>
+    </label>`).join("");
+
+  $("durationChips").innerHTML = H.durations.map(d => `
+    <label class="chip">
+      <input type="radio" name="duration" value="${d.id}" ${d.id === state.hire.duration ? "checked" : ""}>
+      <span class="t">${d.label}</span><span class="s">${d.sub}</span>
+      ${d.save ? `<span class="save">${d.save}</span>` : ""}
+    </label>`).join("");
+
+  $("footLine").innerHTML =
+    `Prefer to talk it through? Call <a href="tel:${CONFIG.business.phone.replace(/\s/g,"")}">${CONFIG.business.phone}</a> — ${CONFIG.business.name}, Perth WA. Free lawn health assessments available (site visit).`;
+}
+
+/* ---------- mode switching ---------- */
+function setMode(mode){
+  state.mode = mode;
+  $("tab-reno").setAttribute("aria-selected", mode === "reno");
+  $("tab-hire").setAttribute("aria-selected", mode === "hire");
+  document.querySelectorAll("fieldset[data-mode]").forEach(fs => {
+    fs.hidden = fs.dataset.mode !== mode;
+  });
+  $("contactStepNo").textContent = mode === "reno" ? "STEP 4" : "STEP 3";
+  $("boardLabel").textContent = mode === "reno" ? "Your renovation estimate" : "Your hire total";
+  $("mLabel").textContent = $("boardLabel").textContent;
+  $("contactHint").textContent = mode === "reno"
+    ? "We'll confirm your quote and booking by text or call — usually same day."
+    : "We'll confirm availability and pickup by text or call — usually same day.";
+  syncHireKind();
+  render();
+}
+
+function syncHireKind(){
+  const machines = state.hire.kind === "machines";
+  $("machineList").style.display = machines ? "grid" : "none";
+  $("trailerDesc").hidden = machines;
+}
+
+/* ---------- pricing ---------- */
+function effectiveSqm(){
+  const r = state.reno;
+  if (r.customSqm && r.customSqm >= 10) return r.customSqm;
+  const preset = CONFIG.reno.sizes.find(s => s.id === r.size);
+  return preset ? preset.sqm : 130;
+}
+
+function calcReno(){
+  const R = CONFIG.reno, sel = state.reno.services;
+  if (sel.size === 0) return null;
+
+  const sqm = effectiveSqm();
+  let total = 0;
+  const lines = [];
+  let hasPOA = false, hasPackage = false;
+
+  for (const svc of R.services){
+    if (!sel.has(svc.id)) continue;
+    if (svc.type === "sqm"){
+      const p = sqm * svc.rate;
+      total += p;
+      lines.push({ k:`${svc.label} (~${sqm} m²)`, v:"from " + fmt(p) });
+    } else if (svc.type === "package"){
+      hasPackage = true;
+      const p = sqm * (R.dethatchPerSqm + R.aerationPerSqm);
+      total += p;
+      lines.push({ k:`Rejuvenation package (~${sqm} m²)`, v:"from " + fmt(p) });
+    } else { // poa
+      hasPOA = true;
+      lines.push({ k:svc.label, v:"at assessment" });
+    }
+  }
+
+  if (total > 0 && R.minJob > 0 && total < R.minJob){
+    lines.push({ k:"Minimum job charge", v:fmt(R.minJob) });
+    total = R.minJob;
+  }
+
+  const timing = R.timing.find(t => t.id === state.reno.timing);
+  return { total, lines, hasPOA, hasPackage, timing,
+    headline: total > 0 ? fmt(total) : "POA",
+    from: total > 0,
+    per: total > 0 ? "quoted online — no site visit" : "free assessment" };
+}
+
+function calcHire(){
+  const H = CONFIG.hire, h = state.hire;
+  const dur = H.durations.find(d => d.id === h.duration);
+  const lines = [];
+  let perDay = 0, nudge = "";
+
+  if (h.kind === "trailer"){
+    perDay = H.rates.trailer[dur.id];
+    lines.push({ k:"Full package with trailer", v:fmt(perDay) + "/day" });
+  } else {
+    const n = h.machines.size;
+    if (n === 0) return null;
+    if (n === H.machines.length){
+      perDay = H.rates.package3[dur.id];
+      lines.push({ k:"3-machine package rate", v:fmt(perDay) + "/day" });
+    } else {
+      perDay = n * H.rates.single[dur.id];
+      for (const m of H.machines){
+        if (h.machines.has(m.id)) lines.push({ k:m.label, v:fmt(H.rates.single[dur.id]) + "/day" });
+      }
+      if (n === H.machines.length - 1){
+        const solo = H.machines.length * H.rates.single[dur.id];
+        const pkg  = H.rates.package3[dur.id];
+        nudge = `Add the third machine and the package rate kicks in — all 3 for ${fmt(pkg)}/day instead of ${fmt(solo)}/day.`;
+      }
+    }
+  }
+
+  const total = perDay * dur.days;
+  lines.push({ k:`Hire period`, v:`${dur.days} day${dur.days > 1 ? "s" : ""}` });
+
+  return { total, lines, dur, nudge,
+    headline: fmt(total),
+    from: false,
+    per: "total · " + dur.label.toLowerCase() };
+}
+
+/* ---------- render ---------- */
+function render(){
+  const q = state.mode === "reno" ? calcReno() : calcHire();
+  const price = $("priceOut"), per = $("perOut"), fromTag = $("fromTag"),
+        empty = $("emptyMsg"), bd = $("breakdown"), mp = $("mPrice"),
+        fine = $("fineText"), nudgeBox = $("pkgNudge");
+
+  // fine print per mode
+  fine.textContent = state.mode === "reno"
+    ? "Online rates: dethatching from $7/m², aeration from $1.50/m². Final price confirmed at booking. Items marked \u201Cat assessment\u201D are priced at your free lawn health assessment (site visit). Eftpos available."
+    : "Valid driver's licence required for all hire — a copy is taken at pickup. Trailer package includes insurances; green waste disposal is at hirer's discretion. Eftpos available.";
+
+  // hire nudge callout
+  if (state.mode === "hire" && q && q.nudge){
+    nudgeBox.innerHTML = "<strong>Tip:</strong> " + q.nudge;
+    nudgeBox.hidden = false;
+  } else {
+    nudgeBox.hidden = true;
+  }
+
+  if (!q){
+    price.textContent = "—"; per.textContent = ""; fromTag.style.display = "none";
+    empty.style.display = "block";
+    empty.textContent = state.mode === "reno"
+      ? "Select at least one service to see a price."
+      : "Pick at least one machine to see a price.";
+    bd.innerHTML = ""; mp.textContent = "—";
+    return;
+  }
+
+  empty.style.display = "none";
+  fromTag.style.display = q.from ? "inline" : "none";
+  price.textContent = q.headline;
+  per.textContent = q.per;
+  mp.textContent = (q.from ? "from " : "") + q.headline;
+
+  bd.innerHTML = q.lines.map(l =>
+    `<div class="row"><span class="k">${l.k}</span><span class="v">${l.v}</span></div>`).join("");
+  if (state.mode === "reno" && q.hasPOA){
+    bd.innerHTML += `<div class="row note"><span class="k">Assessment items</span><span class="v">priced on site — free visit</span></div>`;
+  }
+
+  price.classList.remove("tick");
+  void price.offsetWidth;
+  price.classList.add("tick");
+}
+
+/* ---------- events ---------- */
+$("tab-reno").addEventListener("click", () => setMode("reno"));
+$("tab-hire").addEventListener("click", () => setMode("hire"));
+
+document.addEventListener("change", (e) => {
+  const t = e.target;
+
+  if (t.name === "size"){ state.reno.size = t.value; $("customSqm").value = ""; state.reno.customSqm = null; }
+  if (t.name === "timing"){ state.reno.timing = t.value; }
+
+  if (t.name === "rsvc"){
+    const svc = CONFIG.reno.services.find(s => s.id === t.value);
+    if (t.checked){
+      state.reno.services.add(t.value);
+      // package replaces individual per-m² services (they're included in it)
+      if (svc.type === "package"){
+        for (const s of CONFIG.reno.services){
+          if (s.type === "sqm"){
+            state.reno.services.delete(s.id);
+            const el = document.querySelector(`input[name="rsvc"][value="${s.id}"]`);
+            if (el) el.checked = false;
+          }
+        }
+      } else if (svc.type === "sqm"){
+        state.reno.services.delete("package");
+        const el = document.querySelector('input[name="rsvc"][value="package"]');
+        if (el) el.checked = false;
+      }
+    } else {
+      state.reno.services.delete(t.value);
+    }
+  }
+
+  if (t.name === "hkind"){ state.hire.kind = t.value; syncHireKind(); }
+  if (t.name === "machine"){ t.checked ? state.hire.machines.add(t.value) : state.hire.machines.delete(t.value); }
+  if (t.name === "duration"){ state.hire.duration = t.value; }
+
+  render();
+});
+
+$("customSqm").addEventListener("input", (e) => {
+  const v = parseInt(e.target.value, 10);
+  state.reno.customSqm = Number.isFinite(v) ? v : null;
+  render();
+});
+
+/* ---------- validation + lead submit ---------- */
+function validate(){
+  let ok = true;
+  const checks = [
+    { f:"f-name",   el:$("name"),   test:(v) => v.trim().length >= 2 },
+    { f:"f-phone",  el:$("phone"),  test:(v) => /^(\+?61|0)4\d{8}$/.test(v.replace(/[\s-]/g,"")) },
+    { f:"f-suburb", el:$("suburb"), test:(v) => v.trim().length >= 2 },
+  ];
+  for (const c of checks){
+    const pass = c.test(c.el.value);
+    $(c.f).classList.toggle("show-err", !pass);
+    c.el.classList.toggle("error", !pass);
+    if (!pass) ok = false;
+  }
+  return ok;
+}
+
+function leadPayload(q){
+  const base = {
+    name:   $("name").value.trim(),
+    phone:  $("phone").value.trim(),
+    suburb: $("suburb").value.trim(),
+    email:  $("email").value.trim(),
+    submittedAt: new Date().toLocaleString("en-AU", { timeZone:"Australia/Perth" }),
+  };
+
+  if (state.mode === "reno"){
+    return { ...base,
+      enquiryType: "Lawn renovation",
+      lawnSize: state.reno.customSqm ? state.reno.customSqm + " m² (exact)" :
+                CONFIG.reno.sizes.find(s => s.id === state.reno.size).label + " (~" + effectiveSqm() + " m²)",
+      services: [...state.reno.services].map(id => CONFIG.reno.services.find(s => s.id === id).label),
+      timing: CONFIG.reno.timing.find(t => t.id === state.reno.timing).label,
+      estimate: q ? (q.from ? "from " : "") + q.headline : "n/a",
+    };
+  }
+  return { ...base,
+    enquiryType: "Equipment dry hire",
+    hire: state.hire.kind === "trailer" ? "Full package with trailer"
+          : [...state.hire.machines].map(id => CONFIG.hire.machines.find(m => m.id === id).label).join(", "),
+    duration: CONFIG.hire.durations.find(d => d.id === state.hire.duration).label,
+    estimate: q ? q.headline + " total" : "n/a",
+  };
+}
+
+$("quoteForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const q = state.mode === "reno" ? calcReno() : calcHire();
+  if (!q){
+    alert(state.mode === "reno" ? "Pick at least one service first." : "Pick at least one machine first.");
+    return;
+  }
+  if (!validate()) return;
+
+  const lead = leadPayload(q);
+  const btn = $("submitBtn");
+
+  if (CONFIG.leadEndpoint){
+    btn.disabled = true; btn.textContent = "Sending…";
+    try{
+      await fetch(CONFIG.leadEndpoint, {
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body: JSON.stringify(lead),
+      });
+      showSuccess(lead);
+    }catch(err){
+      alert("Couldn't send just now — please call " + CONFIG.business.phone + " and we'll sort it.");
+    }finally{
+      btn.disabled = false; btn.textContent = "Get my free quote";
+    }
+  } else {
+    const rows = Object.entries(lead).map(([k, v]) =>
+      k.replace(/([A-Z])/g, " $1").replace(/^./, c => c.toUpperCase()) + ": " +
+      (Array.isArray(v) ? v.join(", ") : (v || "not provided")));
+    const body = ["New quote request — " + CONFIG.business.name, "", ...rows].join("\n");
+    location.href = "mailto:" + CONFIG.business.email
+      + "?subject=" + encodeURIComponent(lead.enquiryType + " enquiry — " + lead.suburb)
+      + "&body=" + encodeURIComponent(body);
+    showSuccess(lead);
+  }
+});
+
+function showSuccess(lead){
+  $("successMsg").textContent =
+    `Thanks ${lead.name.split(" ")[0]} — locked in at ${lead.estimate}. We'll confirm on ${lead.phone} shortly.`;
+  $("board").classList.add("sent");
+  $("board").scrollIntoView({ behavior:"smooth", block:"nearest" });
+}
+
+/* ---------- go ---------- */
+build();
+setMode("reno");
+</script>
+</body>
+</html>
