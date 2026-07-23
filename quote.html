@@ -3,24 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Instant online lawn renovation quotes for Perth — dethatching, aeration and full rejuvenation packages. DIY equipment dry hire also available.">
-<title>Perth Lawn Renovation Services — Free Instant Quote</title>
+<meta name="description" content="Instant online lawn renovation quotes for Perth: dethatching, aeration and full rejuvenation packages. DIY equipment dry hire also available.">
+<title>Perth Lawn Renovation Services: Free Instant Quote</title>
 <!--
   ============================================================
-  PERTH LAWN RENOVATION SERVICES — INSTANT QUOTE WIDGET
+  PERTH LAWN RENOVATION SERVICES: INSTANT QUOTE WIDGET
   ============================================================
   TWO CALCULATORS IN ONE:
-    1. Lawn renovation quote  — dethatching / aeration priced
+    1. Lawn renovation quote: dethatching / aeration priced
        per m², rejuvenation package, POA extras.
-    2. Equipment dry hire     — single machines, 3-machine
+    2. Equipment dry hire: single machines, 3-machine
        package, or full trailer package by hire duration.
 
   HOW TO USE
   1. Edit CONFIG (top of the <script> block): phone, email and
      every rate. Rates currently match your services doc.
   2. Host it:
-     a) GitHub Pages — push this repo, enable Pages (see README), or
-     b) Your own site — paste as a page, or iframe it:
+     a) GitHub Pages: push this repo, enable Pages (see README), or
+     b) Your own site: paste as a page, or iframe it:
         <iframe src="/quote/" style="width:100%;height:1500px;border:0;"></iframe>
   3. Leads: default = opens the customer's email app pre-filled
      to CONFIG.business.email. Paste a Formspree/Getform/your-API
@@ -349,7 +349,7 @@
       <!-- ===== RENOVATION MODE ===== -->
       <fieldset data-mode="reno">
         <legend><span class="step-no">STEP 1</span> How big is your lawn?</legend>
-        <p class="hint">Rough guess is fine — or enter the exact area for a sharper price.</p>
+        <p class="hint">Rough guess is fine, or enter the exact area for a sharper price.</p>
         <div class="chips" id="sizeChips" role="radiogroup" aria-label="Lawn size"></div>
         <div class="custom-size">
           <label for="customSqm">Know the exact size?</label>
@@ -362,12 +362,12 @@
         <legend><span class="step-no">STEP 2</span> What does your lawn need?</legend>
         <p class="hint">Dethatching and aeration are quoted instantly online. Everything else is priced at your free lawn health assessment.</p>
         <div class="services" id="renoServices"></div>
-        <div class="callout"><strong>Not sure what it needs?</strong> Book a free lawn health assessment — we'll inspect on site and recommend the right treatment, no obligation.</div>
+        <div class="callout"><strong>Not sure what it needs?</strong> Book a free lawn health assessment. We'll inspect on site and recommend the right treatment, no obligation.</div>
       </fieldset>
 
       <fieldset data-mode="reno">
         <legend><span class="step-no">STEP 3</span> When do you want it done?</legend>
-        <p class="hint">Renovations get the best results in the growing season — we'll advise the ideal window for your turf type.</p>
+        <p class="hint">Renovations get the best results in the growing season. We'll advise the ideal window for your turf type.</p>
         <div class="chips" id="timingChips" role="radiogroup" aria-label="Timing"></div>
       </fieldset>
 
@@ -378,7 +378,7 @@
         <div class="chips" id="hireKindChips" role="radiogroup" aria-label="Hire type" style="grid-template-columns:1fr 1fr;"></div>
         <div class="services" id="machineList" style="margin-top:14px;"></div>
         <div class="callout" id="trailerDesc" hidden>
-          <strong>Complete DIY renovation package:</strong> scarifier, vertimower, lawn aerator, trailer, whipper snipper, fertiliser &amp; spreader, wetting agent, knapsack, fuel and all associated tools — insurances included. Disposal of green waste is at hirer's discretion.
+          <strong>Complete DIY renovation package:</strong> scarifier, vertimower, lawn aerator, trailer, whipper snipper, fertiliser &amp; spreader, wetting agent, knapsack, fuel and all associated tools, insurances included. Disposal of green waste is at hirer's discretion.
         </div>
         <div class="callout" id="pkgNudge" hidden></div>
       </fieldset>
@@ -387,13 +387,13 @@
         <legend><span class="step-no">STEP 2</span> How long for?</legend>
         <p class="hint">Longer hires get a cheaper day rate.</p>
         <div class="chips" id="durationChips" role="radiogroup" aria-label="Hire duration"></div>
-        <div class="callout"><strong>Valid driver's licence required for all hire</strong> — a copy will be taken at time of pickup.</div>
+        <div class="callout"><strong>Valid driver's licence required for all hire</strong>. A copy will be taken at time of pickup.</div>
       </fieldset>
 
       <!-- ===== SHARED: CONTACT ===== -->
       <fieldset>
         <legend><span class="step-no" id="contactStepNo">STEP 4</span> Lock it in</legend>
-        <p class="hint" id="contactHint">We'll confirm your quote and booking by text or call — usually same day.</p>
+        <p class="hint" id="contactHint">We'll confirm your quote and booking by text or call, usually same day.</p>
         <div class="fields">
           <div class="field" id="f-name">
             <label for="name">Name</label>
@@ -451,7 +451,7 @@
 
 <script>
 /* ============================================================
-   CONFIG — every rate below matches the services doc.
+   CONFIG: every rate below matches the services doc.
    Change numbers here; no other code edits needed.
    ============================================================ */
 const CONFIG = {
@@ -469,7 +469,7 @@ const CONFIG = {
   reno: {
     dethatchPerSqm: 8.00,   // "Rates from $8 sq/m"
     aerationPerSqm: 1.50,   // "Rates from $1.50 sq/m"
-    minJob: 0,              // combined-job floor (0 = disabled — per-service minimums used instead)
+    minJob: 0,              // combined-job floor (0 = disabled: per-service minimums used instead)
 
     sizes: [
       { id:"under50", label:"Under 50 m²",  sub:"Small courtyard / pocket lawn", sqm:40  },
@@ -486,7 +486,7 @@ const CONFIG = {
       { id:"dethatch", type:"sqm", rate:8.00, minPrice:400, label:"Lawn dethatching",
         desc:"Removes thatch build-up so water & nutrients reach the roots", priceNote:"from $8 / m² · $400 min" },
       { id:"aeration", type:"sqm", rate:1.50, minPrice:130, label:"Lawn aeration",
-        desc:"Relieves compaction — better water penetration & root growth", priceNote:"from $1.50 / m² · $130 min" },
+        desc:"Relieves compaction, better water penetration & root growth", priceNote:"from $1.50 / m² · $130 min" },
       { id:"topdress", type:"sqm", rate:5.00, minPrice:150, label:"Top dressing",
         desc:"Levels the surface and boosts soil quality after dethatching", priceNote:"from $5 / m² · $150 min" },
       { id:"package",  type:"package", label:"Complete lawn rejuvenation package",
@@ -531,7 +531,7 @@ const CONFIG = {
 };
 
 /* ============================================================
-   WIDGET LOGIC — no changes needed below this line.
+   WIDGET LOGIC: no changes needed below this line.
    ============================================================ */
 const $ = (id) => document.getElementById(id);
 const fmt = (n) => "$" + Math.round(n).toLocaleString("en-AU");
@@ -611,7 +611,7 @@ function build(){
     </label>`).join("");
 
   $("footLine").innerHTML =
-    `Prefer to talk it through? Call <a href="tel:${CONFIG.business.phone.replace(/\s/g,"")}">${CONFIG.business.phone}</a> — ${CONFIG.business.name}, Perth WA. Free lawn health assessments available (site visit).`;
+    `Prefer to talk it through? Call <a href="tel:${CONFIG.business.phone.replace(/\s/g,"")}">${CONFIG.business.phone}</a> · ${CONFIG.business.name}, Perth WA. Free lawn health assessments available (site visit).`;
 }
 
 /* ---------- mode switching ---------- */
@@ -626,8 +626,8 @@ function setMode(mode){
   $("boardLabel").textContent = mode === "reno" ? "Your renovation estimate" : "Your hire total";
   $("mLabel").textContent = $("boardLabel").textContent;
   $("contactHint").textContent = mode === "reno"
-    ? "We'll confirm your quote and booking by text or call — usually same day."
-    : "We'll confirm availability and pickup by text or call — usually same day.";
+    ? "We'll confirm your quote and booking by text or call, usually same day."
+    : "We'll confirm availability and pickup by text or call, usually same day.";
   syncHireKind();
   render();
 }
@@ -662,7 +662,7 @@ function calcReno(){
       const minApplied = svc.minPrice && p < svc.minPrice;
       if (minApplied) p = svc.minPrice;
       total += p;
-      lines.push({ k:`${svc.label} (~${sqm} m²)${minApplied ? " — min. charge" : ""}`, v:"from " + fmt(p) });
+      lines.push({ k:`${svc.label} (~${sqm} m²)${minApplied ? ", min. charge" : ""}`, v:"from " + fmt(p) });
     } else if (svc.type === "package"){
       hasPackage = true;
       const p = sqm * (R.dethatchPerSqm + R.aerationPerSqm);
@@ -686,7 +686,7 @@ function calcReno(){
   return { total, lines, hasPOA, hasPackage, timing,
     headline: total > 0 ? fmt(total) : "POA",
     from: total > 0,
-    per: total > 0 ? "quoted online — no site visit" : "free assessment" };
+    per: total > 0 ? "quoted online, no site visit" : "free assessment" };
 }
 
 function calcHire(){
@@ -712,7 +712,7 @@ function calcHire(){
       if (n === H.machines.length - 1){
         const solo = H.machines.length * H.rates.single[dur.id];
         const pkg  = H.rates.package3[dur.id];
-        nudge = `Add the third machine and the package rate kicks in — all 3 for ${fmt(pkg)}/day instead of ${fmt(solo)}/day.`;
+        nudge = `Add the third machine and the package rate kicks in: all 3 for ${fmt(pkg)}/day instead of ${fmt(solo)}/day.`;
       }
     }
   }
@@ -736,7 +736,7 @@ function render(){
   // fine print per mode
   fine.textContent = state.mode === "reno"
     ? `Online rates: dethatching from $${CONFIG.reno.dethatchPerSqm.toFixed(2).replace(/\.00$/,"")}/m², aeration from $${CONFIG.reno.aerationPerSqm.toFixed(2).replace(/\.00$/,"")}/m². Final price confirmed at booking. Items marked \u201Cat assessment\u201D are priced at your free lawn health assessment (site visit). Eftpos available.`
-    : "Valid driver's licence required for all hire — a copy is taken at pickup. Trailer package includes insurances; green waste disposal is at hirer's discretion. Eftpos available.";
+    : "Valid driver's licence required for all hire. A copy is taken at pickup. Trailer package includes insurances; green waste disposal is at hirer's discretion. Eftpos available.";
 
   // hire nudge callout
   if (state.mode === "hire" && q && q.nudge){
@@ -765,7 +765,7 @@ function render(){
   bd.innerHTML = q.lines.map(l =>
     `<div class="row"><span class="k">${l.k}</span><span class="v">${l.v}</span></div>`).join("");
   if (state.mode === "reno" && q.hasPOA){
-    bd.innerHTML += `<div class="row note"><span class="k">Assessment items</span><span class="v">priced on site — free visit</span></div>`;
+    bd.innerHTML += `<div class="row note"><span class="k">Assessment items</span><span class="v">priced on site, free visit</span></div>`;
   }
 
   price.classList.remove("tick");
@@ -886,7 +886,7 @@ $("quoteForm").addEventListener("submit", async (e) => {
       });
       showSuccess(lead);
     }catch(err){
-      alert("Couldn't send just now — please call " + CONFIG.business.phone + " and we'll sort it.");
+      alert("Couldn't send just now, please call " + CONFIG.business.phone + " and we'll sort it.");
     }finally{
       btn.disabled = false; btn.textContent = "Get my free quote";
     }
@@ -894,9 +894,9 @@ $("quoteForm").addEventListener("submit", async (e) => {
     const rows = Object.entries(lead).map(([k, v]) =>
       k.replace(/([A-Z])/g, " $1").replace(/^./, c => c.toUpperCase()) + ": " +
       (Array.isArray(v) ? v.join(", ") : (v || "not provided")));
-    const body = ["New quote request — " + CONFIG.business.name, "", ...rows].join("\n");
+    const body = ["New quote request: " + CONFIG.business.name, "", ...rows].join("\n");
     location.href = "mailto:" + CONFIG.business.email
-      + "?subject=" + encodeURIComponent(lead.enquiryType + " enquiry — " + lead.suburb)
+      + "?subject=" + encodeURIComponent(lead.enquiryType + " enquiry: " + lead.suburb)
       + "&body=" + encodeURIComponent(body);
     showSuccess(lead);
   }
@@ -904,7 +904,7 @@ $("quoteForm").addEventListener("submit", async (e) => {
 
 function showSuccess(lead){
   $("successMsg").textContent =
-    `Thanks ${lead.name.split(" ")[0]} — locked in at ${lead.estimate}. We'll confirm on ${lead.phone} shortly.`;
+    `Thanks ${lead.name.split(" ")[0]}, locked in at ${lead.estimate}. We'll confirm on ${lead.phone} shortly.`;
   $("board").classList.add("sent");
   $("board").scrollIntoView({ behavior:"smooth", block:"nearest" });
 }
