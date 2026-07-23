@@ -469,7 +469,7 @@ const CONFIG = {
   reno: {
     dethatchPerSqm: 8.00,   // "Rates from $8 sq/m"
     aerationPerSqm: 1.50,   // "Rates from $1.50 sq/m"
-    minJob: 400,            // minimum job charge — applied if the calculated total falls below this
+    minJob: 0,              // combined-job floor (0 = disabled — per-service minimums used instead)
 
     sizes: [
       { id:"under50", label:"Under 50 m²",  sub:"Small courtyard / pocket lawn", sqm:40  },
@@ -483,14 +483,20 @@ const CONFIG = {
     // type "package" = full rejuvenation (from dethatch+aeration rate; rest at assessment)
     // type "poa"     = priced at the free on-site assessment
     services: [
-      { id:"dethatch", type:"sqm", rate:8.00, label:"Lawn dethatching",
-        desc:"Removes thatch build-up so water & nutrients reach the roots", priceNote:"from $8 / m²" },
-      { id:"aeration", type:"sqm", rate:1.50, label:"Lawn aeration",
-        desc:"Relieves compaction — better water penetration & root growth", priceNote:"from $1.50 / m²" },
+      { id:"dethatch", type:"sqm", rate:8.00, minPrice:400, label:"Lawn dethatching",
+        desc:"Removes thatch build-up so water & nutrients reach the roots", priceNote:"from $8 / m² · $400 min" },
+      { id:"aeration", type:"sqm", rate:1.50, minPrice:130, label:"Lawn aeration",
+        desc:"Relieves compaction — better water penetration & root growth", priceNote:"from $1.50 / m² · $130 min" },
+      { id:"topdress", type:"sqm", rate:5.00, minPrice:150, label:"Top dressing",
+        desc:"Levels the surface and boosts soil quality after dethatching", priceNote:"from $5 / m² · $150 min" },
       { id:"package",  type:"package", label:"Complete lawn rejuvenation package",
         desc:"Dethatch + aeration + topdress + fertiliser & wetting agent + reticulation assessment", priceNote:"best value" },
-      { id:"fert",     type:"poa", label:"Fertiliser / herbicide application",
-        desc:"Applied by our licensed weed technician", priceNote:"priced at assessment" },
+      { id:"weedspray", type:"flat", price:75, category:"Herbicide", label:"Weed spraying",
+        desc:"Broadleaf & general weed control by our licensed technician", priceNote:"from $75" },
+      { id:"insecticide", type:"poa", category:"Insecticide", label:"Insecticide treatment",
+        desc:"Lawn beetle, webworm & other pest control", priceNote:"priced at assessment" },
+      { id:"wetting",  type:"poa", category:"Wetting agent / soil additives", label:"Wetting agent & soil additives",
+        desc:"Helps water penetrate hydrophobic sandy soils", priceNote:"priced at assessment" },
       { id:"retic",    type:"poa", label:"Reticulation installation & repairs",
         desc:"Fix coverage issues before they cook your new lawn", priceNote:"priced at assessment" },
     ],
@@ -652,17 +658,22 @@ function calcReno(){
   for (const svc of R.services){
     if (!sel.has(svc.id)) continue;
     if (svc.type === "sqm"){
-      const p = sqm * svc.rate;
+      let p = sqm * svc.rate;
+      const minApplied = svc.minPrice && p < svc.minPrice;
+      if (minApplied) p = svc.minPrice;
       total += p;
-      lines.push({ k:`${svc.label} (~${sqm} m²)`, v:"from " + fmt(p) });
+      lines.push({ k:`${svc.label} (~${sqm} m²)${minApplied ? " — min. charge" : ""}`, v:"from " + fmt(p) });
     } else if (svc.type === "package"){
       hasPackage = true;
       const p = sqm * (R.dethatchPerSqm + R.aerationPerSqm);
       total += p;
       lines.push({ k:`Rejuvenation package (~${sqm} m²)`, v:"from " + fmt(p) });
+    } else if (svc.type === "flat"){
+      total += svc.price;
+      lines.push({ k:svc.category ? `${svc.label} (${svc.category})` : svc.label, v:"from " + fmt(svc.price) });
     } else { // poa
       hasPOA = true;
-      lines.push({ k:svc.label, v:"at assessment" });
+      lines.push({ k:svc.category ? `${svc.label} (${svc.category})` : svc.label, v:"at assessment" });
     }
   }
 
@@ -724,7 +735,7 @@ function render(){
 
   // fine print per mode
   fine.textContent = state.mode === "reno"
-    ? "Online rates: dethatching from $7/m², aeration from $1.50/m². Final price confirmed at booking. Items marked \u201Cat assessment\u201D are priced at your free lawn health assessment (site visit). Eftpos available."
+    ? `Online rates: dethatching from $${CONFIG.reno.dethatchPerSqm.toFixed(2).replace(/\.00$/,"")}/m², aeration from $${CONFIG.reno.aerationPerSqm.toFixed(2).replace(/\.00$/,"")}/m². Final price confirmed at booking. Items marked \u201Cat assessment\u201D are priced at your free lawn health assessment (site visit). Eftpos available.`
     : "Valid driver's licence required for all hire — a copy is taken at pickup. Trailer package includes insurances; green waste disposal is at hirer's discretion. Eftpos available.";
 
   // hire nudge callout
