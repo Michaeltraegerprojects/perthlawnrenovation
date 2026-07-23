@@ -289,9 +289,18 @@
     background:rgba(108,194,74,.14);
     border:1px solid rgba(108,194,74,.45);
     border-radius:10px;
-    font-size:13.5px; color:#DFF2D6;
+    font-size:13.5px; color:#DFF2D6; line-height:1.5;
   }
   .board.sent .success{ display:block; }
+  .success .mailto-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    margin-top:12px; width:100%; justify-content:center;
+    background:var(--grass); color:#0F2E22;
+    font-weight:800; font-size:14.5px;
+    padding:12px 16px; border-radius:10px;
+    text-decoration:none;
+  }
+  .success .mailto-btn:hover{ background:#7FD457; }
 
   /* ---------- mobile sticky bar ---------- */
   .mobile-bar{
@@ -895,16 +904,24 @@ $("quoteForm").addEventListener("submit", async (e) => {
       k.replace(/([A-Z])/g, " $1").replace(/^./, c => c.toUpperCase()) + ": " +
       (Array.isArray(v) ? v.join(", ") : (v || "not provided")));
     const body = ["New quote request: " + CONFIG.business.name, "", ...rows].join("\n");
-    location.href = "mailto:" + CONFIG.business.email
+    const mailtoHref = "mailto:" + CONFIG.business.email
       + "?subject=" + encodeURIComponent(lead.enquiryType + " enquiry: " + lead.suburb)
       + "&body=" + encodeURIComponent(body);
-    showSuccess(lead);
+    showSuccess(lead, mailtoHref);
   }
 });
 
-function showSuccess(lead){
-  $("successMsg").textContent =
-    `Thanks ${lead.name.split(" ")[0]}, locked in at ${lead.estimate}. We'll confirm on ${lead.phone} shortly.`;
+function showSuccess(lead, mailtoHref){
+  const successEl = $("successMsg");
+  const firstName = lead.name.split(" ")[0];
+  if (mailtoHref){
+    successEl.innerHTML =
+      `Thanks ${firstName}, locked in at ${lead.estimate}. Click below to open this quote in your email app and send it to us — we'll confirm on ${lead.phone} shortly.` +
+      `<a class="mailto-btn" href="${mailtoHref}">Open in your email app →</a>`;
+  } else {
+    successEl.textContent =
+      `Thanks ${firstName}, locked in at ${lead.estimate}. We'll confirm on ${lead.phone} shortly.`;
+  }
   $("board").classList.add("sent");
   $("board").scrollIntoView({ behavior:"smooth", block:"nearest" });
 }
