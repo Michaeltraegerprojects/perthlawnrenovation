@@ -56,18 +56,31 @@
   @keyframes bounceY { 0%,100% { transform:translateY(0); } 50% { transform:translateY(10px); } }
   @keyframes floatY { from { transform:translateY(0) rotate(-2deg); } to { transform:translateY(-14px) rotate(-2deg); } }
   @keyframes pulseRing { 0% { box-shadow:0 0 0 0 rgba(163,230,53,.5); } 100% { box-shadow:0 0 0 18px rgba(163,230,53,0); } }
+  /* Mobile header: shrink the banner so it stays one line, and tighten the
+     brand tagline so "Services · Est. 15+ Yrs" fits beside the Call button.
+     !important because the template styles these elements inline.
+     The nav offset and hero padding are measured in JS — see syncHeaderOffsets. */
+  @media (max-width:700px) {
+    #topBanner { font-size:10.5px !important; letter-spacing:.05em !important; padding:7px 10px !important; }
+    #navBrand { font-size:14.5px !important; }
+    #navTagline { font-size:9px !important; letter-spacing:.08em !important; margin-top:3px !important; }
+  }
+  @media (max-width:360px) {
+    #topBanner { font-size:9.5px !important; }
+    #navTagline { font-size:8px !important; letter-spacing:.05em !important; }
+  }
 </style>
 </helmet>
 
 <!-- ══════════ NAV ══════════ -->
-<a href="#quote" style="position:fixed; top:0; left:0; right:0; z-index:101; display:block; background:#A3E635; color:#0f2515; text-align:center; padding:9px 18px; font-family:'Hanken Grotesk',sans-serif; font-weight:800; font-size:13.5px; letter-spacing:.14em; text-transform:uppercase; text-decoration:none;">Spring Bookings Open · Limited Slots Across Perth Metro →</a>
-<div ref="{{ navRef }}" style="position:fixed; top:37px; left:0; right:0; z-index:100; display:flex; align-items:center; gap:14px; padding:14px clamp(16px,4vw,34px); background:rgba(10,26,14,.72); backdrop-filter:blur(10px); transition:background .35s ease, box-shadow .35s ease; font-family:'Hanken Grotesk',sans-serif;">
+<a id="topBanner" ref="{{ bannerRef }}" href="#quote" style="position:fixed; top:0; left:0; right:0; z-index:101; display:block; background:#A3E635; color:#0f2515; text-align:center; padding:9px 18px; font-family:'Hanken Grotesk',sans-serif; font-weight:800; font-size:13.5px; letter-spacing:.14em; text-transform:uppercase; text-decoration:none;">Spring Bookings Open · Limited Slots Across Perth Metro →</a>
+<div id="siteNav" ref="{{ navRef }}" style="position:fixed; top:37px; left:0; right:0; z-index:100; display:flex; align-items:center; gap:14px; padding:14px clamp(16px,4vw,34px); background:rgba(10,26,14,.72); backdrop-filter:blur(10px); transition:background .35s ease, box-shadow .35s ease; font-family:'Hanken Grotesk',sans-serif;">
   <div style="width:44px; height:44px; border-radius:50%; background:rgba(10,26,14,.72); border:2px solid rgba(163,230,53,.45); display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 2px 12px rgba(0,0,0,.35);">
     <img src="assets/sprout-transparent.png" alt="Perth Lawn Renovation Services sprout logo" style="width:72%; height:72%; object-fit:contain;">
   </div>
   <div style="display:flex; flex-direction:column; line-height:1; min-width:0;">
-    <span style="font-family:'Anton',sans-serif; font-size:clamp(15px,3.6vw,19px); letter-spacing:.06em; color:#F6F2E7; text-transform:uppercase; white-space:nowrap;">Perth Lawn Renovation</span>
-    <span style="font-size:11.5px; font-weight:800; letter-spacing:.3em; color:#A3E635; text-transform:uppercase; margin-top:4px;" data-hide-mobile="1">Services · Est. 15+ Yrs</span>
+    <span id="navBrand" style="font-family:'Anton',sans-serif; font-size:clamp(15px,3.6vw,19px); letter-spacing:.06em; color:#F6F2E7; text-transform:uppercase; white-space:nowrap;">Perth Lawn Renovation</span>
+    <span id="navTagline" style="font-size:11.5px; font-weight:800; letter-spacing:.3em; color:#A3E635; text-transform:uppercase; margin-top:4px; white-space:nowrap;" data-hide-mobile="1">Services · Est. 15+ Yrs</span>
   </div>
   <div style="flex:1;"></div>
   <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
@@ -86,7 +99,7 @@
   </sc-if>
 </div>
 <sc-if value="{{ showMobileMenu }}" hint-placeholder-val="{{ false }}">
-  <div style="position:fixed; top:90px; left:16px; right:16px; z-index:99; background:#0f2515; border:2px solid rgba(163,230,53,.3); border-radius:16px; padding:10px; display:flex; flex-direction:column; gap:2px; box-shadow:0 20px 50px rgba(0,0,0,.5);">
+  <div id="mobileMenu" style="position:fixed; top:90px; left:16px; right:16px; z-index:99; background:#0f2515; border:2px solid rgba(163,230,53,.3); border-radius:16px; padding:10px; display:flex; flex-direction:column; gap:2px; box-shadow:0 20px 50px rgba(0,0,0,.5);">
     <a onClick="{{ closeMobileMenu }}" href="#story" style="color:#F6F2E7; text-decoration:none; font-weight:700; font-size:17px; padding:14px 12px; border-radius:10px;">Our Story</a>
     <a onClick="{{ closeMobileMenu }}" href="#results" style="color:#F6F2E7; text-decoration:none; font-weight:700; font-size:17px; padding:14px 12px; border-radius:10px;">Results</a>
     <a onClick="{{ closeMobileMenu }}" href="#services" style="color:#F6F2E7; text-decoration:none; font-weight:700; font-size:17px; padding:14px 12px; border-radius:10px;">Services</a>
@@ -96,7 +109,7 @@
 </sc-if>
 
 <!-- ══════════ HERO ══════════ -->
-<div data-screen-label="Hero" style="position:relative; min-height:calc(100vh - 106px); padding-top:106px; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-end; font-family:'Hanken Grotesk',sans-serif; box-sizing:border-box;">
+<div data-screen-label="Hero" ref="{{ heroRef }}" style="position:relative; min-height:calc(100vh - 106px); padding-top:106px; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-end; font-family:'Hanken Grotesk',sans-serif; box-sizing:border-box;">
   <div style="position:absolute; inset:0; overflow:hidden;">
     <img src="assets/suburb-after-opt.jpg" alt="Lush green renovated lawn in a Perth suburb" style="width:100%; height:100%; object-fit:cover; object-position:center 55%; animation:kenburns 24s ease-in-out infinite alternate;">
     <div style="position:absolute; inset:0; background:linear-gradient(to bottom, rgba(8,18,11,.62) 0%, rgba(8,18,11,.18) 34%, rgba(8,18,11,.28) 58%, rgba(8,18,11,.94) 88%, #0a1a0e 100%);"></div>
@@ -645,6 +658,26 @@ class Component extends DCLogic {
   navRef = React.createRef();
   sliderRef = React.createRef();
   emailBodyRef = React.createRef();
+  bannerRef = React.createRef();
+  heroRef = React.createRef();
+
+  // The banner wraps to two lines on narrow screens, so its height can't be
+  // hard-coded — measure it and push the nav and hero down by the real amount.
+  syncHeaderOffsets = () => {
+    const banner = this.bannerRef.current;
+    const nav = this.navRef.current;
+    if (!banner || !nav) return;
+    const bannerH = banner.offsetHeight;
+    nav.style.top = bannerH + 'px';
+    const total = bannerH + nav.offsetHeight;
+    const hero = this.heroRef.current;
+    if (hero) {
+      hero.style.paddingTop = total + 'px';
+      hero.style.minHeight = 'calc(100vh - ' + total + 'px)';
+    }
+    const menu = document.getElementById('mobileMenu');
+    if (menu) menu.style.top = (total + 8) + 'px';
+  };
 
   updateSlider = (clientX) => {
     const el = this.sliderRef.current;
@@ -671,9 +704,18 @@ class Component extends DCLogic {
     this.onResize = () => {
       const mobile = window.innerWidth < 1180;
       this.setState(s => s.isMobile === mobile ? null : { isMobile: mobile, mobileMenuOpen: mobile ? s.mobileMenuOpen : false });
+      this.syncHeaderOffsets();
     };
     window.addEventListener('resize', this.onResize, { passive: true });
     this.onResize();
+    // The banner re-wraps at narrow widths and when the webfonts swap in, and a
+    // resize listener alone measures it too early — watch the element itself.
+    if ('ResizeObserver' in window) {
+      this.ro = new ResizeObserver(this.syncHeaderOffsets);
+      if (this.bannerRef.current) this.ro.observe(this.bannerRef.current);
+      if (this.navRef.current) this.ro.observe(this.navRef.current);
+    }
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(this.syncHeaderOffsets);
 
     // Nav darkens on scroll
     this.onScroll = () => {
@@ -736,10 +778,17 @@ class Component extends DCLogic {
     counters.forEach(el => this.cio.observe(el));
   }
 
+  // The nav swaps between the mobile and desktop layouts, which changes its
+  // height, so re-measure after any render that may have switched them.
+  componentDidUpdate() {
+    this.syncHeaderOffsets();
+  }
+
   componentWillUnmount() {
     window.removeEventListener('resize', this.onResize);
     window.removeEventListener('scroll', this.onScroll);
     clearTimeout(this.copyTimer);
+    if (this.ro) this.ro.disconnect();
     if (this.io) this.io.disconnect();
     if (this.cio) this.cio.disconnect();
   }
@@ -750,6 +799,8 @@ class Component extends DCLogic {
       onSliderDown: this.onSliderDown,
       navRef: this.navRef,
       sliderRef: this.sliderRef,
+      bannerRef: this.bannerRef,
+      heroRef: this.heroRef,
       showPrices: this.props.showPrices ?? true,
       isMobile: this.state.isMobile,
       notMobile: !this.state.isMobile,
