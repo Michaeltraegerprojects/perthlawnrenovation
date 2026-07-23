@@ -365,6 +365,14 @@
           </div>
           <div style="font-family:'Anton',sans-serif; font-size:24px; color:#A3E635;">{{ aSub }}</div>
         </div>
+        <div onClick="{{ toggleTopdress }}" style="display:flex; align-items:center; gap:16px; border:2px solid {{ tBorder }}; background:{{ tBg }}; border-radius:14px; padding:18px 22px; cursor:pointer; transition:border-color .25s ease, background .25s ease;">
+          <span style="width:30px; height:30px; border-radius:50%; background:{{ tCheckBg }}; color:#0f2515; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:17px; flex-shrink:0; transition:background .25s ease;">✓</span>
+          <div style="flex:1;">
+            <div style="font-size:19px; font-weight:800; color:#F6F2E7;">Top Dressing</div>
+            <div style="font-size:14.5px; font-weight:600; color:rgba(246,242,231,.55); margin-top:2px;">From ${{ tRate }}/m²</div>
+          </div>
+          <div style="font-family:'Anton',sans-serif; font-size:24px; color:#A3E635;">{{ tSub }}</div>
+        </div>
       </div>
 
       <div style="margin-top:26px; padding-top:22px; border-top:2px solid rgba(163,230,53,.2); display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap;">
@@ -583,9 +591,9 @@
   </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;showPrices&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;dethatchRate&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:8,&quot;min&quot;:1,&quot;max&quot;:30,&quot;step&quot;:0.5,&quot;unit&quot;:&quot;$/m²&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Quote Rates&quot;},&quot;aerateRate&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:1.5,&quot;min&quot;:0.5,&quot;max&quot;:15,&quot;step&quot;:0.25,&quot;unit&quot;:&quot;$/m²&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Quote Rates&quot;},&quot;minJob&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:400,&quot;min&quot;:0,&quot;max&quot;:2000,&quot;step&quot;:50,&quot;unit&quot;:&quot;$&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Quote Rates&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;showPrices&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;dethatchRate&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:8,&quot;min&quot;:1,&quot;max&quot;:30,&quot;step&quot;:0.5,&quot;unit&quot;:&quot;$/m²&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Quote Rates&quot;},&quot;aerateRate&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:1.5,&quot;min&quot;:0.5,&quot;max&quot;:15,&quot;step&quot;:0.25,&quot;unit&quot;:&quot;$/m²&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Quote Rates&quot;},&quot;topdressRate&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:5,&quot;min&quot;:0.5,&quot;max&quot;:30,&quot;step&quot;:0.25,&quot;unit&quot;:&quot;$/m²&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Quote Rates&quot;},&quot;minJob&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:400,&quot;min&quot;:0,&quot;max&quot;:2000,&quot;step&quot;:50,&quot;unit&quot;:&quot;$&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Quote Rates&quot;}}">
 class Component extends DCLogic {
-  state = { sliderPct: 58, openFaq: 0, area: 150, dethatch: true, aerate: false, isMobile: false, mobileMenuOpen: false, showEmailPanel: false, copyState: '' };
+  state = { sliderPct: 58, openFaq: 0, area: 150, dethatch: true, aerate: false, topdress: false, isMobile: false, mobileMenuOpen: false, showEmailPanel: false, copyState: '' };
 
   toggleMobileMenu = () => this.setState(s => ({ mobileMenuOpen: !s.mobileMenuOpen }));
   closeMobileMenu = () => this.setState({ mobileMenuOpen: false });
@@ -642,6 +650,7 @@ class Component extends DCLogic {
 
   toggleDethatch = () => this.setState(s => ({ dethatch: !s.dethatch }));
   toggleAerate = () => this.setState(s => ({ aerate: !s.aerate }));
+  toggleTopdress = () => this.setState(s => ({ topdress: !s.topdress }));
   onAreaRange = (e) => this.setState({ area: parseInt(e.target.value, 10) });
   onAreaNum = (e) => {
     const v = parseInt(e.target.value, 10);
@@ -818,7 +827,7 @@ class Component extends DCLogic {
       emailBodyRef: this.emailBodyRef,
       businessEmail: 'perthlawnrenovationservices@outlook.com',
       faqT0: this.faqT0, faqT1: this.faqT1, faqT2: this.faqT2, faqT3: this.faqT3, faqT4: this.faqT4,
-      toggleDethatch: this.toggleDethatch, toggleAerate: this.toggleAerate,
+      toggleDethatch: this.toggleDethatch, toggleAerate: this.toggleAerate, toggleTopdress: this.toggleTopdress,
       onAreaRange: this.onAreaRange, onAreaNum: this.onAreaNum,
       faqMax0: this.state.openFaq === 0 ? '360px' : '0px',
       faqMax1: this.state.openFaq === 1 ? '360px' : '0px',
@@ -834,8 +843,16 @@ class Component extends DCLogic {
     };
   }
 
-  buildMailto(area, dethatch, aerate, total, fmt) {
-    const services = [dethatch ? 'Verti-Mowing / Dethatching' : null, aerate ? 'Lawn Aeration' : null].filter(Boolean).join(' + ') || 'Lawn renovation (not sure yet)';
+  serviceList(fallback) {
+    const { dethatch, aerate, topdress } = this.state;
+    return [
+      dethatch ? 'Verti-Mowing / Dethatching' : null,
+      aerate ? 'Lawn Aeration' : null,
+      topdress ? 'Top Dressing' : null,
+    ].filter(Boolean).join(' + ') || fallback;
+  }
+
+  buildMailto(area, services, total, fmt) {
     const subject = encodeURIComponent('Free quote request: ' + services);
     const body = encodeURIComponent(
       'Hi Perth Lawn Renovation,\n\nI used the instant quote tool on your website.\n\n' +
@@ -846,16 +863,14 @@ class Component extends DCLogic {
     return 'mailto:perthlawnrenovationservices@outlook.com?subject=' + subject + '&body=' + body;
   }
 
-  buildPlainText(area, dethatch, aerate, total, fmt) {
-    const services = [dethatch ? 'Verti-Mowing / Dethatching' : null, aerate ? 'Lawn Aeration' : null].filter(Boolean).join(' + ') || 'Lawn renovation (not sure yet)';
+  buildPlainText(area, services, total, fmt) {
     return 'Lawn size: ' + area + ' m2\n' +
       'Services: ' + services + '\n' +
       'Indicative estimate: ' + (total > 0 ? 'From ' + fmt(total) : 'n/a') + '\n\n' +
       'My suburb: \nBest contact number: ';
   }
 
-  buildWhatsApp(area, dethatch, aerate, total, fmt) {
-    const services = [dethatch ? 'Verti-Mowing / Dethatching' : null, aerate ? 'Lawn Aeration' : null].filter(Boolean).join(' + ') || 'Lawn renovation';
+  buildWhatsApp(area, services, total, fmt) {
     const msg = "Hi, I'd like to book a lawn renovation. From your website quote tool: " + services + ', ' + area + ' m2, estimate ' + (total > 0 ? 'from ' + fmt(total) : 'TBC') + '. Can you confirm availability?';
     return 'https://wa.me/61427206246?text=' + encodeURIComponent(msg);
   }
@@ -863,11 +878,13 @@ class Component extends DCLogic {
   quoteVals() {
     const dRate = this.props.dethatchRate ?? 8;
     const aRate = this.props.aerateRate ?? 1.5;
+    const tRate = this.props.topdressRate ?? 5;
     const minJob = this.props.minJob ?? 400;
-    const { area, dethatch, aerate } = this.state;
+    const { area, dethatch, aerate, topdress } = this.state;
     const dCost = Math.round(dRate * area);
     const aCost = Math.round(aRate * area);
-    const rawTotal = (dethatch ? dCost : 0) + (aerate ? aCost : 0);
+    const tCost = Math.round(tRate * area);
+    const rawTotal = (dethatch ? dCost : 0) + (aerate ? aCost : 0) + (topdress ? tCost : 0);
     const isMinJob = rawTotal > 0 && rawTotal < minJob;
     const total = isMinJob ? minJob : rawTotal;
     const fmt = (n) => '$' + n.toLocaleString('en-AU');
@@ -875,6 +892,7 @@ class Component extends DCLogic {
     const off = { border: 'rgba(163,230,53,.18)', bg: 'transparent', check: 'rgba(246,242,231,.16)' };
     const d = dethatch ? on : off;
     const a = aerate ? on : off;
+    const t = topdress ? on : off;
     const noteText = total === 0
       ? 'Select at least one service above.'
       : isMinJob
@@ -884,15 +902,18 @@ class Component extends DCLogic {
       area: this.state.area,
       dRate: String(dRate),
       aRate: aRate % 1 === 0 ? String(aRate) : aRate.toFixed(2),
+      tRate: tRate % 1 === 0 ? String(tRate) : tRate.toFixed(2),
       dSub: dethatch ? fmt(dCost) : '—',
       aSub: aerate ? fmt(aCost) : '—',
+      tSub: topdress ? fmt(tCost) : '—',
       dBorder: d.border, dBg: d.bg, dCheckBg: d.check,
       aBorder: a.border, aBg: a.bg, aCheckBg: a.check,
+      tBorder: t.border, tBg: t.bg, tCheckBg: t.check,
       totalLabel: total > 0 ? 'From ' + fmt(total) : '$0',
       noteText: noteText,
-      quoteMailto: this.buildMailto(area, dethatch, aerate, total, fmt),
-      quoteWhatsApp: this.buildWhatsApp(area, dethatch, aerate, total, fmt),
-      quotePlainText: this.buildPlainText(area, dethatch, aerate, total, fmt),
+      quoteMailto: this.buildMailto(area, this.serviceList('Lawn renovation (not sure yet)'), total, fmt),
+      quoteWhatsApp: this.buildWhatsApp(area, this.serviceList('Lawn renovation'), total, fmt),
+      quotePlainText: this.buildPlainText(area, this.serviceList('Lawn renovation (not sure yet)'), total, fmt),
     };
   }
 }
