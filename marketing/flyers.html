@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perth Lawn Renovation — Facebook Ads & Flyers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#0a1a0e; --deep:#0f2515; --lime:#A3E635; --cream:#F6F2E7; --soft:#DCE6D2; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:#141414; color:var(--cream); font-family:'Hanken Grotesk',sans-serif; padding:28px 16px 80px; }
+  .wrap{ max-width:1120px; margin:0 auto; }
+  .lead{ text-align:center; margin-bottom:36px; }
+  .lead h1{ font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase; letter-spacing:.02em; font-size:clamp(28px,5vw,46px); margin:0 0 10px; color:var(--cream); }
+  .lead p{ color:#b9c4b0; font-size:15px; max-width:640px; margin:0 auto; line-height:1.6; }
+  .cap{ display:flex; flex-wrap:wrap; gap:10px 16px; align-items:baseline; margin:40px 0 12px; }
+  .cap b{ font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase; letter-spacing:.04em; font-size:20px; color:var(--lime); }
+  .cap span{ font-size:13px; color:#9aa891; }
+  .note{ background:#1e1e1e; border:1px solid #333; border-radius:12px; padding:14px 18px; font-size:13.5px; color:#c7d0bf; line-height:1.6; margin-bottom:26px; }
+  .note code{ background:#0a1a0e; color:var(--lime); padding:2px 6px; border-radius:5px; }
+
+  /* ── Creative frame ── */
+  .ad{ position:relative; overflow:hidden; border-radius:8px; color:var(--cream); display:flex; flex-direction:column; box-shadow:0 10px 40px rgba(0,0,0,.5); }
+  .square{ aspect-ratio:1/1; width:100%; max-width:600px; }
+  .story{ aspect-ratio:9/16; width:100%; max-width:360px; }
+  .ad img.bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+  .ad .shade{ position:absolute; inset:0; z-index:1; }
+  .ad .content{ position:relative; z-index:2; display:flex; flex-direction:column; height:100%; }
+
+  .eyebrow{ font-weight:800; text-transform:uppercase; letter-spacing:.22em; color:var(--lime); }
+  .headline{ font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase; line-height:.9; color:var(--cream); text-shadow:0 3px 22px rgba(0,0,0,.5); }
+  .pill{ display:inline-block; background:var(--lime); color:var(--ink); font-weight:800; border-radius:999px; text-transform:uppercase; letter-spacing:.04em; }
+  .phone{ font-family:'Anton',sans-serif; letter-spacing:.03em; }
+
+  /* two-panel before/after */
+  .ba{ position:absolute; inset:0; display:grid; grid-template-columns:1fr 1fr; z-index:0; }
+  .ba figure{ position:relative; margin:0; overflow:hidden; }
+  .ba img{ width:100%; height:100%; object-fit:cover; }
+  .ba .tag{ position:absolute; top:14px; left:14px; font-weight:800; text-transform:uppercase; letter-spacing:.14em; font-size:13px; padding:6px 12px; border-radius:999px; }
+
+  .grid{ display:flex; flex-wrap:wrap; gap:26px; align-items:flex-start; }
+
+  /* ── A5 print flyer ── */
+  .flyer{ width:100%; max-width:520px; aspect-ratio:1/1.414; background:var(--ink); border-radius:10px; overflow:hidden; position:relative; box-shadow:0 10px 40px rgba(0,0,0,.5); }
+  @media print{
+    body{ background:#fff; padding:0; }
+    .wrap>*:not(.printzone){ display:none !important; }
+    .printzone{ display:block !important; }
+    .flyer{ box-shadow:none; border-radius:0; max-width:none; width:100%; height:100vh; aspect-ratio:auto; }
+    @page{ size:A5; margin:0; }
+  }
+  .printzone{ margin-top:30px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="lead">
+    <h1>Facebook Ads & Flyers — ready to use</h1>
+    <p>Each creative below is sized for its platform. To use one: right-click the image and “Save image as…”, or use your browser / phone screenshot tool to grab the panel, then upload to Facebook or Instagram. The matching caption text lives in <b>MARKETING.md</b>. To print the flyer, press Ctrl/Cmd&nbsp;+&nbsp;P.</p>
+  </div>
+
+  <div class="note">
+    <b>Tip:</b> the sharpest export is your browser's built-in screenshot. In Chrome: open DevTools → run <code>Capture node screenshot</code> on the ad, or right-click → “Capture node screenshot”. Facebook feed = square (1080×1080), Stories/Reels = tall (1080×1920).
+  </div>
+
+  <!-- AD 1 — Spring booking, square -->
+  <div class="cap"><b>Ad 1 · Spring booking</b><span>Facebook / Instagram feed — 1080 × 1080</span></div>
+  <div class="ad square">
+    <img class="bg" src="../assets/suburb-after-opt.jpg" alt="Lush renovated Perth lawn">
+    <div class="shade" style="background:linear-gradient(to bottom, rgba(8,18,11,.35) 0%, rgba(8,18,11,.15) 40%, rgba(8,18,11,.92) 100%);"></div>
+    <div class="content" style="padding:7%;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span style="width:34px; height:4px; background:var(--lime); display:inline-block;"></span>
+        <span class="eyebrow" style="font-size:clamp(11px,2.4cqw,15px);">Lawn Renovation · Perth WA</span>
+      </div>
+      <div style="flex:1;"></div>
+      <div class="headline" style="font-size:clamp(34px,10cqw,68px);">Spring is<br>lawn season.</div>
+      <p style="font-size:clamp(14px,3cqw,19px); font-weight:600; color:var(--soft); line-height:1.5; margin:14px 0 18px; max-width:88%;">Vertimow · Aerate · Topdress · Full rejuvenation — done properly in one visit. 200+ Perth lawns brought back to life over 15 years.</p>
+      <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+        <span class="pill" style="font-size:clamp(13px,2.8cqw,17px); padding:11px 20px;">Free instant quote</span>
+        <span class="phone" style="font-size:clamp(20px,5cqw,34px); color:var(--cream);">0427 206 246</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- AD 2 — Before / After, square -->
+  <div class="cap"><b>Ad 2 · Before &amp; After</b><span>Highest scroll-stopping power — 1080 × 1080</span></div>
+  <div class="ad square">
+    <div class="ba">
+      <figure><img src="../assets/suburb-before-opt.jpg" alt="Tired lawn before renovation"><span class="tag" style="background:rgba(10,26,14,.8); color:var(--cream);">Before</span></figure>
+      <figure><img src="../assets/suburb-after-opt.jpg" alt="Thick green lawn after renovation"><span class="tag" style="background:var(--lime); color:var(--ink); left:auto; right:14px;">After</span></figure>
+    </div>
+    <div class="shade" style="background:linear-gradient(to bottom, rgba(8,18,11,0) 45%, rgba(8,18,11,.5) 68%, rgba(8,18,11,.96) 100%);"></div>
+    <div class="content" style="padding:7%; justify-content:flex-end;">
+      <div class="headline" style="font-size:clamp(30px,9cqw,58px);">Same yard.<br>One spring.</div>
+      <p style="font-size:clamp(13px,2.8cqw,18px); font-weight:600; color:var(--soft); margin:12px 0 16px;">Vertimowing from $8/m² · Aeration from $1.50/m². Free quote — you don't even need to be home.</p>
+      <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+        <span class="pill" style="font-size:clamp(12px,2.6cqw,16px); padding:10px 18px;">perthlawnrenovationservices.com.au</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Story + Equipment side by side -->
+  <div class="cap"><b>Ad 3 · Instant quote (Story)</b><span>Facebook / Instagram Stories &amp; Reels — 1080 × 1920</span></div>
+  <div class="grid">
+    <div class="ad story">
+      <img class="bg" src="../assets/yard-after-green-opt.jpg" alt="Green Perth lawn">
+      <div class="shade" style="background:linear-gradient(to bottom, rgba(8,18,11,.55) 0%, rgba(8,18,11,.2) 38%, rgba(8,18,11,.95) 100%);"></div>
+      <div class="content" style="padding:9% 8%;">
+        <div class="eyebrow" style="font-size:clamp(11px,3.4cqw,15px);">Perth Lawn Renovation</div>
+        <div style="flex:1;"></div>
+        <div class="headline" style="font-size:clamp(36px,12cqw,60px);">How much to fix my lawn?</div>
+        <p style="font-size:clamp(14px,4cqw,20px); font-weight:600; color:var(--soft); line-height:1.5; margin:16px 0 20px;">Find out in 10 seconds with our free instant quote tool. No waiting. No pressure.</p>
+        <span class="pill" style="font-size:clamp(14px,4cqw,18px); padding:13px 22px; align-self:flex-start;">Swipe up → free quote</span>
+        <div class="phone" style="font-size:clamp(24px,7cqw,38px); margin-top:16px;">0427 206 246</div>
+      </div>
+    </div>
+
+    <!-- AD 4 — Equipment hire, square-ish -->
+    <div style="flex:1; min-width:300px;">
+      <div class="cap" style="margin-top:0;"><b>Ad 4 · DIY hire</b><span>Different audience — 1080 × 1080</span></div>
+      <div class="ad square" style="max-width:none;">
+        <img class="bg" src="../assets/gear-lineup-opt.jpg" alt="Lawn renovation equipment for hire">
+        <div class="shade" style="background:linear-gradient(120deg, rgba(8,18,11,.9) 0%, rgba(8,18,11,.45) 55%, rgba(8,18,11,.2) 100%);"></div>
+        <div class="content" style="padding:8%;">
+          <div class="eyebrow" style="font-size:clamp(11px,2.6cqw,15px);">DIY Equipment Dry Hire</div>
+          <div style="flex:1;"></div>
+          <div class="headline" style="font-size:clamp(30px,9cqw,56px);">Rather do it<br>yourself?</div>
+          <p style="font-size:clamp(13px,2.8cqw,18px); font-weight:600; color:var(--soft); margin:12px 0 16px; max-width:80%;">Scarifier, vertimower &amp; aerator — by the day, 3 days or the week. Pro gear, Perth metro pickup.</p>
+          <span class="pill" style="font-size:clamp(12px,2.6cqw,16px); padding:10px 18px; align-self:flex-start;">Book online</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── A5 PRINT FLYER ── -->
+  <div class="cap"><b>Letterbox flyer · A5</b><span>Press Ctrl/Cmd + P → Save as PDF → print</span></div>
+  <div class="note printzone-hint">Drop this in letterboxes on the street where you just finished a job — neighbours can see your work. The print button below outputs a clean A5 with no background.</div>
+
+  <div class="printzone">
+  <div class="flyer">
+    <div style="position:relative; height:44%; overflow:hidden;">
+      <img src="../assets/action-shot-opt.jpg" alt="Perth Lawn Renovation at work" style="width:100%; height:100%; object-fit:cover;">
+      <div style="position:absolute; inset:0; background:linear-gradient(to bottom, rgba(8,18,11,.15), rgba(10,26,14,.95));"></div>
+      <div style="position:absolute; left:8%; bottom:7%;">
+        <div class="eyebrow" style="font-size:13px;">Est. 15+ Years · All Perth Metro</div>
+        <div class="headline" style="font-size:44px; margin-top:8px;">Bring your lawn<br>back to life.</div>
+      </div>
+    </div>
+    <div style="height:56%; background:var(--ink); padding:7% 8%; display:flex; flex-direction:column;">
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;">
+        <span class="pill" style="font-size:13px; padding:8px 15px;">Vertimowing</span>
+        <span class="pill" style="font-size:13px; padding:8px 15px;">Aeration</span>
+        <span class="pill" style="font-size:13px; padding:8px 15px;">Topdressing</span>
+        <span class="pill" style="font-size:13px; padding:8px 15px;">Full Rejuvenation</span>
+      </div>
+      <p style="font-size:16px; font-weight:600; color:var(--soft); line-height:1.55; margin:0 0 auto;">Dethatch, aerate, topdress, fertilise — the complete reset, done properly in one visit. Vertimowing from <b style="color:var(--lime);">$8/m²</b>, aeration from <b style="color:var(--lime);">$1.50/m²</b>. Free quotes, EFTPOS on the day.</p>
+      <div style="border-top:2px solid rgba(163,230,53,.3); margin-top:18px; padding-top:16px; display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+        <div>
+          <div class="phone" style="font-size:30px; color:var(--lime);">0427 206 246</div>
+          <div style="font-size:13px; color:var(--soft); margin-top:4px;">perthlawnrenovationservices.com.au</div>
+        </div>
+        <div style="text-align:right; font-size:12px; color:#8a9880; line-height:1.5;">Free instant online quote<br>Facebook: Perth Lawn Renovation<br>ABN 29 942 711 312</div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+</div>
+</body>
+</html>
