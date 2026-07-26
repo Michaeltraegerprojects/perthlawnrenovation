@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#0a1a0e; --deep:#0f2515; --lime:#A3E635; --gold:#FFB020; --cream:#F6F2E7; }
+  *{ margin:0; box-sizing:border-box; }
+  body{ background:#1a1a1a; }
+  .stage{ width:1000px; height:1000px; }
+  .logo{ width:1000px; height:1000px; border-radius:50%; position:relative; overflow:hidden;
+         display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:'Hanken Grotesk',sans-serif; }
+  .ring{ position:absolute; border-radius:50%; }
+  .sprout{ display:block; object-fit:contain; }
+  .word{ text-align:center; text-transform:uppercase; }
+</style>
+</head>
+<body>
+
+<!-- A: pure mark, lime ring -->
+<div class="stage"><div class="logo" id="A" style="background:radial-gradient(circle at 50% 40%, #14351c, #0a1a0e 74%);">
+  <div class="ring" style="inset:30px; border:8px solid var(--lime); opacity:.92;"></div>
+  <img class="sprout" src="../assets/sprout-transparent.png" style="width:50%; margin-top:-10px;">
+</div></div>
+
+<!-- B: mark + clean stacked wordmark -->
+<div class="stage"><div class="logo" id="B" style="background:#0f2515;">
+  <div class="ring" style="inset:34px; border:5px solid rgba(163,230,53,.45);"></div>
+  <img class="sprout" src="../assets/sprout-transparent.png" style="width:38%; margin-top:20px;">
+  <div class="word" style="margin-top:26px; color:var(--cream); font-weight:800; font-size:78px; line-height:1.06; letter-spacing:.1em;">Perth Lawn<br>Renovation</div>
+  <div class="word" style="margin-top:16px; color:var(--lime); font-weight:800; font-size:34px; letter-spacing:.42em;">Services</div>
+</div></div>
+
+<!-- C: subtle gold ring + minimal location -->
+<div class="stage"><div class="logo" id="C" style="background:radial-gradient(circle at 50% 42%, #12301a, #0a1a0e 76%);">
+  <div class="ring" style="inset:30px; border:6px solid var(--gold); opacity:.9;"></div>
+  <div class="ring" style="inset:46px; border:2px solid rgba(255,176,32,.35);"></div>
+  <img class="sprout" src="../assets/sprout-transparent.png" style="width:44%; margin-top:-30px;">
+  <div class="word" style="position:absolute; bottom:150px; color:var(--gold); font-weight:800; font-size:40px; letter-spacing:.4em;">Perth · WA</div>
+</div></div>
+
+</body>
+</html>
