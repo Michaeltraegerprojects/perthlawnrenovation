@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Full Calculator button — design options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#0a1a0e; --deep:#0f2515; --lime:#A3E635; --lime2:#c6f75a; --cream:#F6F2E7; --soft:#DCE6D2; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--ink); color:var(--cream); font-family:'Hanken Grotesk',sans-serif; padding:34px 18px 90px; }
+  .wrap{ max-width:1080px; margin:0 auto; }
+  .eyebrow{ display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+  .eyebrow span{ width:34px; height:4px; background:var(--lime); }
+  .eyebrow b{ font-size:13px; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:var(--lime); }
+  h1{ font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase; letter-spacing:.02em; font-size:clamp(30px,5vw,48px); margin:0 0 8px; line-height:.95; }
+  .intro{ color:#9fb096; font-size:15px; max-width:620px; line-height:1.6; margin:0 0 40px; }
+  .sect{ font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase; letter-spacing:.03em; font-size:22px; color:var(--cream); margin:44px 0 6px; }
+  .sect-sub{ color:#8fa086; font-size:14px; margin:0 0 24px; }
+
+  .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; }
+  .card{ background:var(--deep); border:1px solid rgba(163,230,53,.18); border-radius:18px; padding:34px 24px 26px; display:flex; flex-direction:column; align-items:center; gap:22px; min-height:210px; justify-content:space-between; }
+  .card .label{ text-align:center; }
+  .card .label .n{ font-family:'Anton',sans-serif; color:var(--lime); font-size:15px; letter-spacing:.12em; }
+  .card .label .d{ color:#9fb096; font-size:12.5px; margin-top:3px; }
+  .stage{ flex:1; display:flex; align-items:center; justify-content:center; width:100%; }
+
+  /* ---- shared button base ---- */
+  .btn{ position:relative; display:inline-flex; align-items:center; gap:11px; background:var(--lime); color:var(--ink);
+        font-family:'Hanken Grotesk',sans-serif; font-weight:800; font-size:16px; letter-spacing:.02em;
+        padding:15px 26px; border-radius:999px; text-decoration:none; border:none; cursor:pointer; white-space:nowrap; }
+  .btn .arrow{ font-family:'Anton',sans-serif; font-size:18px; }
+  .btn small{ display:block; font-weight:700; font-size:11px; letter-spacing:.06em; color:rgba(15,37,21,.72); text-transform:uppercase; margin-top:1px; }
+  .btn .stack{ display:flex; flex-direction:column; line-height:1.05; text-align:left; }
+
+  /* 1 — Pulse glow ring */
+  .b-pulse::after{ content:""; position:absolute; inset:0; border-radius:999px; animation:pulseRing 2.1s ease-out infinite; }
+  @keyframes pulseRing{ 0%{ box-shadow:0 0 0 0 rgba(163,230,53,.55);} 100%{ box-shadow:0 0 0 20px rgba(163,230,53,0);} }
+
+  /* 2 — Shine sweep */
+  .b-shine{ overflow:hidden; }
+  .b-shine::before{ content:""; position:absolute; top:0; left:-60%; width:45%; height:100%;
+        background:linear-gradient(100deg, transparent, rgba(255,255,255,.75), transparent); transform:skewX(-18deg);
+        animation:sweep 3.2s ease-in-out infinite; }
+  @keyframes sweep{ 0%{ left:-60%;} 32%,100%{ left:130%;} }
+
+  /* 3 — Breathing + arrow nudge */
+  .b-breathe{ background:linear-gradient(100deg,var(--lime),var(--lime2)); animation:breathe 2.6s ease-in-out infinite;
+        box-shadow:0 8px 26px rgba(163,230,53,.28); }
+  .b-breathe .arrow{ animation:nudge 1.4s ease-in-out infinite; }
+  @keyframes breathe{ 0%,100%{ transform:scale(1);} 50%{ transform:scale(1.045);} }
+  @keyframes nudge{ 0%,100%{ transform:translate(0,0);} 50%{ transform:translate(3px,-3px);} }
+
+  /* 4 — Float dock (shown in a mini phone) */
+  .phone{ width:190px; height:300px; border-radius:26px; background:linear-gradient(180deg,#0d2413,#0a1a0e);
+        border:6px solid #05100a; position:relative; overflow:hidden; box-shadow:0 16px 40px rgba(0,0,0,.5); }
+  .phone .pnav{ height:34px; background:rgba(10,26,14,.9); border-bottom:1px solid rgba(163,230,53,.15);
+        display:flex; align-items:center; padding:0 12px; }
+  .phone .pnav i{ width:22px; height:22px; border-radius:50%; border:1.5px solid rgba(163,230,53,.5); }
+  .phone .pnav b{ font-family:'Anton',sans-serif; font-size:9px; letter-spacing:.06em; color:var(--cream); margin-left:8px; }
+  .phone .body{ padding:12px; }
+  .phone .ln{ height:8px; border-radius:4px; background:rgba(246,242,231,.1); margin-bottom:8px; }
+  .phone .ln.s{ width:60%; } .phone .ln.m{ width:85%; } .phone .ln.big{ height:26px; width:70%; background:rgba(163,230,53,.14); }
+  .dock{ position:absolute; right:12px; bottom:14px; display:inline-flex; align-items:center; gap:7px; background:var(--lime);
+        color:var(--ink); font-weight:800; font-size:11px; padding:10px 14px; border-radius:999px; box-shadow:0 6px 18px rgba(0,0,0,.4); }
+  .dock::after{ content:""; position:absolute; inset:0; border-radius:999px; animation:pulseRing 2.1s ease-out infinite; }
+  .dock .arrow{ font-family:'Anton',sans-serif; }
+
+  /* ---- placement mock ---- */
+  .mock{ background:var(--deep); border:1px solid rgba(163,230,53,.18); border-radius:20px; overflow:hidden; }
+  .mock .bar{ background:var(--lime); color:var(--ink); text-align:center; font-weight:800; font-size:11px; letter-spacing:.14em; text-transform:uppercase; padding:7px; }
+  .mnav{ display:flex; align-items:center; gap:12px; padding:14px 20px; background:rgba(10,26,14,.75); }
+  .mnav .logo{ width:34px; height:34px; border-radius:50%; border:2px solid rgba(163,230,53,.45); flex-shrink:0; }
+  .mnav .brand{ font-family:'Anton',sans-serif; font-size:15px; letter-spacing:.05em; color:var(--cream); text-transform:uppercase; }
+  .mnav .spacer{ flex:1; }
+  .mnav .navbtn{ background:var(--lime); color:var(--ink); font-weight:800; font-size:12.5px; padding:8px 15px; border-radius:999px; position:relative; }
+  .mnav .navbtn::after{ content:""; position:absolute; inset:0; border-radius:999px; animation:pulseRing 2.1s ease-out infinite; }
+  .hero{ position:relative; padding:40px 24px 48px; background:
+        linear-gradient(180deg, rgba(10,26,14,.2), var(--deep)), radial-gradient(circle at 30% 20%, rgba(163,230,53,.10), transparent 60%); }
+  .hero .kick{ font-size:11px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:var(--lime); }
+  .hero h3{ font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase; font-size:34px; line-height:.92; margin:10px 0 18px; color:var(--cream); }
+  .hero .ctas{ display:flex; gap:12px; flex-wrap:wrap; }
+  .hero .ghost{ display:inline-flex; align-items:center; gap:8px; background:transparent; border:2px solid rgba(163,230,53,.5); color:var(--cream); font-weight:800; font-size:14px; padding:12px 20px; border-radius:999px; }
+  .callout{ display:flex; gap:10px; align-items:flex-start; margin-top:14px; font-size:13px; color:#a9b8a0; }
+  .callout .pin{ color:var(--lime); font-weight:800; }
+  .tag{ position:absolute; background:var(--lime); color:var(--ink); font-weight:800; font-size:10px; letter-spacing:.08em; text-transform:uppercase; padding:4px 9px; border-radius:6px; }
+
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; } }
+  .rec{ background:rgba(163,230,53,.1); border:1px solid rgba(163,230,53,.35); border-radius:14px; padding:16px 20px; margin-top:26px; font-size:14.5px; line-height:1.6; color:var(--soft); }
+  .rec b{ color:var(--lime); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow"><span></span><b>Design Options · Perth Lawn Renovation</b></div>
+  <h1>Make the Full Calculator impossible to miss</h1>
+  <p class="intro">Four animated button treatments and where to place them — all built in your existing brand (lime pill, dark green, Anton headings). Pick a <b style="color:#c6f75a">style</b> and a <b style="color:#c6f75a">placement</b> and I'll wire it into the live site.</p>
+
+  <div class="sect">1 · Pick a button style</div>
+  <p class="sect-sub">Hover any button to see the click state. Motion is subtle by design — it draws the eye without looking spammy.</p>
+  <div class="grid">
+    <div class="card">
+      <div class="stage">
+        <a class="btn b-pulse" href="#"><span class="stack">Full Calculator<small>Hire + renovation pricing</small></span><span class="arrow">↗</span></a>
+      </div>
+      <div class="label"><div class="n">A · PULSE GLOW</div><div class="d">Calm ring pulse. Understated, premium.</div></div>
+    </div>
+    <div class="card">
+      <div class="stage">
+        <a class="btn b-shine" href="#"><span class="stack">Full Calculator<small>Hire + renovation pricing</small></span><span class="arrow">↗</span></a>
+      </div>
+      <div class="label"><div class="n">B · SHINE SWEEP</div><div class="d">A shine crosses every few seconds.</div></div>
+    </div>
+    <div class="card">
+      <div class="stage">
+        <a class="btn b-breathe" href="#"><span class="stack">Full Calculator<small>Hire + renovation pricing</small></span><span class="arrow">↗</span></a>
+      </div>
+      <div class="label"><div class="n">C · BREATHING</div><div class="d">Gentle scale + arrow nudge. Most eye-catching.</div></div>
+    </div>
+    <div class="card">
+      <div class="stage">
+        <div class="phone">
+          <div class="pnav"><i></i><b>PERTH LAWN RENO</b></div>
+          <div class="body">
+            <div class="ln big"></div><div class="ln m"></div><div class="ln s"></div><div class="ln m"></div><div class="ln s"></div>
+          </div>
+          <div class="dock">Full Calculator <span class="arrow">↗</span></div>
+        </div>
+      </div>
+      <div class="label"><div class="n">D · FLOATING DOCK</div><div class="d">Sticks to the corner as you scroll — always on screen.</div></div>
+    </div>
+  </div>
+
+  <div class="sect">2 · Pick where it goes</div>
+  <p class="sect-sub">This is your real homepage layout. The highlighted spots are the three placements you mentioned — top, middle-ish (hero), and a floating button.</p>
+  <div class="mock">
+    <div class="bar">Spring Bookings Open · Limited Slots Across Perth Metro →</div>
+    <div class="mnav">
+      <div class="logo"></div>
+      <div class="brand">Perth Lawn Renovation</div>
+      <div class="spacer"></div>
+      <div class="navbtn" style="position:relative;">Full Calculator ↗
+        <div class="tag" style="top:-20px; right:0;">Top · nav</div>
+      </div>
+    </div>
+    <div class="hero">
+      <div class="kick">Lawn Renovation Specialists · Perth WA</div>
+      <h3>Bring your lawn<br>back to life.</h3>
+      <div class="ctas">
+        <a class="btn b-breathe" href="#" style="position:relative;">Get my instant quote <span class="arrow">↗</span></a>
+        <a class="ghost" href="#" style="position:relative;">Full Calculator ↗
+          <div class="tag" style="top:-20px; left:0;">Hero · secondary</div>
+        </a>
+      </div>
+      <div class="callout"><span class="pin">◆</span><span>Floating dock button (style D) rides the bottom-right corner the whole way down the page — that's the "always visible" option.</span></div>
+    </div>
+  </div>
+
+  <div class="rec">
+    <b>My recommendation:</b> Style <b>C (Breathing)</b> for the button, used in <b>two spots</b> — upgrade the plain nav link into the lime pill (top), and add the <b>Floating Dock (D)</b> so it follows people as they scroll. That covers "top" and "always on screen" without cluttering the hero, where your instant-quote CTA should stay the star. Tell me your pick and I'll build it.
+  </div>
+</div>
+</body>
+</html>
