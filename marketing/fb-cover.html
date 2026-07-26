@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#0a1a0e; --gold:#FFB020; --lime:#A3E635; --cream:#F6F2E7; }
+  *{ margin:0; box-sizing:border-box; }
+  html,body{ width:1640px; height:624px; overflow:hidden; }
+  .cover{ position:relative; width:1640px; height:624px; font-family:'Hanken Grotesk',sans-serif; overflow:hidden; background:var(--ink); }
+  .cover img.bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 60%; }
+  .shade{ position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(8,18,11,.78) 0%, rgba(8,18,11,.32) 34%, rgba(8,18,11,.55) 72%, rgba(8,18,11,.94) 100%); }
+  /* mobile-safe zone: keep the lockup centred so FB's mobile crop keeps it */
+  .content{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:22px; padding:0 200px; }
+  .brandrow{ display:flex; align-items:center; gap:20px; }
+  .logo{ width:78px; height:78px; border-radius:50%; background:rgba(10,26,14,.55); border:3px solid rgba(163,230,53,.55); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .logo img{ width:70%; height:70%; object-fit:contain; }
+  .eyebrow{ font-size:20px; font-weight:800; letter-spacing:.32em; text-transform:uppercase; color:var(--gold); }
+  h1{ font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase; color:var(--cream); font-size:82px; line-height:.9; letter-spacing:.01em; text-shadow:0 4px 30px rgba(0,0,0,.5); }
+  .tag{ font-size:24px; font-weight:800; color:var(--cream); letter-spacing:.02em; }
+  .tag b{ color:var(--lime); }
+  .cta{ display:flex; align-items:center; gap:22px; margin-top:6px; }
+  .pill{ background:var(--gold); color:#241100; font-weight:800; font-size:22px; text-transform:uppercase; letter-spacing:.03em; padding:14px 30px; border-radius:999px; box-shadow:0 10px 30px rgba(255,176,32,.3); }
+  .phone{ font-family:'Anton',sans-serif; font-size:40px; color:var(--cream); letter-spacing:.03em; }
+</style>
+</head>
+<body>
+<div class="cover">
+  <img class="bg" src="../assets/yard-after-green-opt.jpg" alt="">
+  <div class="shade"></div>
+  <div class="content">
+    <div class="brandrow">
+      <span class="logo"><img src="../assets/sprout-transparent.png" alt=""></span>
+      <span class="eyebrow">Est. 15+ Years · All Perth Metro</span>
+    </div>
+    <h1>Perth Lawn Renovation Services</h1>
+    <div class="tag">Vertimowing · Aeration · Topdressing · <b>Full Rejuvenation</b></div>
+    <div class="cta">
+      <span class="pill">Free Instant Online Quote</span>
+      <span class="phone">0427 206 246</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>
