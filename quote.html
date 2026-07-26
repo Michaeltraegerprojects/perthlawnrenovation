@@ -369,7 +369,7 @@
 
       <fieldset data-mode="reno">
         <legend><span class="step-no">STEP 2</span> What does your lawn need?</legend>
-        <p class="hint">Dethatching and aeration are quoted instantly online. Everything else is priced at your free lawn health assessment.</p>
+        <p class="hint">Dethatching, aeration and top dressing are quoted instantly online, and if you pick all three you save 10%. Reticulation is priced at your free lawn health assessment.</p>
         <div class="services" id="renoServices"></div>
         <div class="callout"><strong>Not sure what it needs?</strong> Book a free lawn health assessment. We'll inspect on site and recommend the right treatment, no obligation.</div>
       </fieldset>
@@ -661,6 +661,7 @@ function calcReno(){
 
   const sqm = effectiveSqm();
   let total = 0;
+  let bundleSub = 0;
   const lines = [];
   let hasPOA = false, hasPackage = false;
 
@@ -671,6 +672,7 @@ function calcReno(){
       const minApplied = svc.minPrice && p < svc.minPrice;
       if (minApplied) p = svc.minPrice;
       total += p;
+      if (svc.id === "dethatch" || svc.id === "aeration" || svc.id === "topdress") bundleSub += p;
       lines.push({ k:`${svc.label} (~${sqm} m²)${minApplied ? ", min. charge" : ""}`, v:"from " + fmt(p) });
     } else if (svc.type === "package"){
       hasPackage = true;
@@ -684,6 +686,12 @@ function calcReno(){
       hasPOA = true;
       lines.push({ k:svc.category ? `${svc.label} (${svc.category})` : svc.label, v:"at assessment" });
     }
+  }
+
+  if (sel.has("dethatch") && sel.has("aeration") && sel.has("topdress")){
+    const disc = Math.round(bundleSub * 0.10);
+    total -= disc;
+    lines.push({ k:"3-service bundle (10% off)", v:"-" + fmt(disc) });
   }
 
   if (total > 0 && R.minJob > 0 && total < R.minJob){
