@@ -65,7 +65,7 @@
   "@type": "FAQPage",
   "mainEntity": [
     { "@type": "Question", "name": "When's the best time to verti-mow in Perth?", "acceptedAnswer": { "@type": "Answer", "text": "Vertimowing season runs from September through to mid-April, while your lawn is growing strongly through the warmer months. Spring is the sweet spot: the soil is warming up, your lawn is actively growing, and it has the whole season to recover and thicken up before the summer heat arrives." } },
-    { "@type": "Question", "name": "How long will my lawn take to recover?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on the weather and the health of your lawn, so recovery time will vary. Dethatching is aggressive by design, and that short, scalped look straight after is completely normal — with water and a feed behind it, most lawns come back noticeably thicker and greener. As a rule of thumb, you'll be mowing again within 2–3 weeks." } },
+    { "@type": "Question", "name": "How long will my lawn take to recover?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on the weather and the health of your lawn, so recovery time will vary. Dethatching is aggressive by design, and that short, scalped look straight after is completely normal. With water and a feed behind it, most lawns come back noticeably thicker and greener. As a rule of thumb, you'll be mowing again within 2-3 weeks." } },
     { "@type": "Question", "name": "What's in the Complete Rejuvenation Package?", "acceptedAnswer": { "@type": "Answer", "text": "Dethatching, aeration, topdressing, fertilising, wetting agent and a reticulation check: the full reset, done in one booking." } },
     { "@type": "Question", "name": "How do quotes work?", "acceptedAnswer": { "@type": "Answer", "text": "They're free, and you don't need to be home. Send your details and a few photos online or via Facebook and we'll price it up. Prefer an on-site assessment? We do those too. EFTPOS available on the day." } },
     { "@type": "Question", "name": "Is vertimowing safe for buffalo grass?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, but the depth matters. Buffalo (Sir Walter, Palmetto, Sapphire) is a surface-runner and doesn't tolerate being cut right to the soil, so we set the blades shallower than we do for couch, removing the thatch without scalping the runners. Couch handles a much deeper cut and actually responds better to it. Not sure what grass you have? Send a photo with your quote and we'll tell you." } }
@@ -85,31 +85,24 @@
   @keyframes bounceY { 0%,100% { transform:translateY(0); } 50% { transform:translateY(10px); } }
   @keyframes floatY { from { transform:translateY(0) rotate(-2deg); } to { transform:translateY(-14px) rotate(-2deg); } }
   @keyframes pulseRing { 0% { box-shadow:0 0 0 0 rgba(163,230,53,.5); } 100% { box-shadow:0 0 0 18px rgba(163,230,53,0); } }
-  /* Mobile header: shrink the banner so it stays one line, and tighten the
-     brand tagline so "Services · Est. 15+ Yrs" fits beside the Call button.
-     !important because the template styles these elements inline.
-     The nav offset and hero padding are measured in JS — see syncHeaderOffsets. */
-  @media (max-width:700px) {
-    #topBanner { font-size:10.5px !important; letter-spacing:.05em !important; padding:7px 10px !important; }
-    #navBrand { font-size:14.5px !important; }
-    #navTagline { font-size:9px !important; letter-spacing:.08em !important; margin-top:3px !important; }
-  }
-  @media (max-width:360px) {
-    #topBanner { font-size:9.5px !important; }
-    #navTagline { font-size:8px !important; letter-spacing:.05em !important; }
-  }
+  @keyframes pulseRingAmber { 0% { box-shadow:0 0 0 0 rgba(255,59,48,.55); } 100% { box-shadow:0 0 0 20px rgba(255,59,48,0); } }
+  @keyframes amberGlow { 0%,100% { box-shadow:0 0 0 0 rgba(255,59,48,0), 0 10px 30px rgba(0,0,0,.35); } 50% { box-shadow:0 0 30px 3px rgba(255,59,48,.55), 0 10px 30px rgba(0,0,0,.35); } }
+  @keyframes shimmerSweep { 0% { transform:translateX(-130%) skewX(-18deg); } 55%,100% { transform:translateX(320%) skewX(-18deg); } }
+  @keyframes limeGlow { 0%,100% { box-shadow:0 0 0 0 rgba(163,230,53,0), 0 10px 30px rgba(0,0,0,.35); border-color:rgba(163,230,53,.55); } 50% { box-shadow:0 0 26px 2px rgba(163,230,53,.45), 0 10px 30px rgba(0,0,0,.35); border-color:#A3E635; } }
+  @keyframes nudgeX { 0%,100% { transform:translateX(0); } 50% { transform:translateX(7px); } }
+  @keyframes tiltPop { 0%,100% { transform:rotate(-1.2deg) scale(1); } 50% { transform:rotate(-1.2deg) scale(1.015); } }
 </style>
 </helmet>
 
 <!-- ══════════ NAV ══════════ -->
-<a id="topBanner" ref="{{ bannerRef }}" href="#quote" style="position:fixed; top:0; left:0; right:0; z-index:101; display:block; background:#A3E635; color:#0f2515; text-align:center; padding:9px 18px; font-family:'Hanken Grotesk',sans-serif; font-weight:800; font-size:13.5px; letter-spacing:.14em; text-transform:uppercase; text-decoration:none;">Spring Bookings Open · Limited Slots Across Perth Metro →</a>
-<div id="siteNav" ref="{{ navRef }}" style="position:fixed; top:37px; left:0; right:0; z-index:100; display:flex; align-items:center; gap:14px; padding:14px clamp(16px,4vw,34px); background:rgba(10,26,14,.72); backdrop-filter:blur(10px); transition:background .35s ease, box-shadow .35s ease; font-family:'Hanken Grotesk',sans-serif;">
+<a href="#quote" style="position:fixed; top:0; left:0; right:0; z-index:101; display:block; background:#A3E635; color:#0f2515; text-align:center; padding:9px 18px; font-family:'Hanken Grotesk',sans-serif; font-weight:800; font-size:13.5px; letter-spacing:.14em; text-transform:uppercase; text-decoration:none;">Spring Bookings Open · Limited Slots Across Perth Metro →</a>
+<div ref="{{ navRef }}" style="position:fixed; top:37px; left:0; right:0; z-index:100; display:flex; align-items:center; gap:14px; padding:14px clamp(16px,4vw,34px); background:rgba(10,26,14,.72); backdrop-filter:blur(10px); transition:background .35s ease, box-shadow .35s ease; font-family:'Hanken Grotesk',sans-serif;">
   <div style="width:44px; height:44px; border-radius:50%; background:rgba(10,26,14,.72); border:2px solid rgba(163,230,53,.45); display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 2px 12px rgba(0,0,0,.35);">
     <img src="assets/sprout-transparent.png" alt="Perth Lawn Renovation Services sprout logo" style="width:72%; height:72%; object-fit:contain;">
   </div>
   <div style="display:flex; flex-direction:column; line-height:1; min-width:0;">
-    <span id="navBrand" style="font-family:'Anton',sans-serif; font-size:clamp(15px,3.6vw,19px); letter-spacing:.06em; color:#F6F2E7; text-transform:uppercase; white-space:nowrap;">Perth Lawn Renovation</span>
-    <span id="navTagline" style="font-size:11.5px; font-weight:800; letter-spacing:.3em; color:#A3E635; text-transform:uppercase; margin-top:4px; white-space:nowrap;" data-hide-mobile="1">Services · Est. 15+ Yrs</span>
+    <span style="font-family:'Anton',sans-serif; font-size:clamp(15px,3.6vw,19px); letter-spacing:.06em; color:#F6F2E7; text-transform:uppercase; white-space:nowrap;">Perth Lawn Renovation</span>
+    <span style="font-size:11.5px; font-weight:800; letter-spacing:.3em; color:#A3E635; text-transform:uppercase; margin-top:4px;" data-hide-mobile="1">Services · Est. 15+ Yrs</span>
   </div>
   <div style="flex:1;"></div>
   <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
@@ -122,23 +115,23 @@
       <a href="#results" style="color:#DCE6D2; text-decoration:none; font-weight:700; font-size:15px; letter-spacing:.04em;">Results</a>
       <a href="#services" style="color:#DCE6D2; text-decoration:none; font-weight:700; font-size:15px; letter-spacing:.04em;">Services</a>
       <a href="#quote" style="color:#A3E635; text-decoration:none; font-weight:800; font-size:15px; letter-spacing:.04em;">Instant Quote</a>
-      <a href="quote.html" style="color:#DCE6D2; text-decoration:none; font-weight:700; font-size:15px; letter-spacing:.04em;">Full Calculator ↗</a>
+      <a href="quote.html" style="color:#FF3B30; text-decoration:none; font-weight:800; font-size:15px; letter-spacing:.04em;">Full Calculator ↗</a>
       <a href="#contact" style="display:inline-flex; align-items:center; gap:9px; background:#A3E635; color:#0f2515; font-weight:800; font-size:15px; padding:11px 22px; border-radius:999px; text-decoration:none; letter-spacing:.02em;" style-hover="background:#b8f045;">0427 206 246</a>
     </div>
   </sc-if>
 </div>
 <sc-if value="{{ showMobileMenu }}" hint-placeholder-val="{{ false }}">
-  <div id="mobileMenu" style="position:fixed; top:90px; left:16px; right:16px; z-index:99; background:#0f2515; border:2px solid rgba(163,230,53,.3); border-radius:16px; padding:10px; display:flex; flex-direction:column; gap:2px; box-shadow:0 20px 50px rgba(0,0,0,.5);">
+  <div style="position:fixed; top:90px; left:16px; right:16px; z-index:99; background:#0f2515; border:2px solid rgba(163,230,53,.3); border-radius:16px; padding:10px; display:flex; flex-direction:column; gap:2px; box-shadow:0 20px 50px rgba(0,0,0,.5);">
     <a onClick="{{ closeMobileMenu }}" href="#story" style="color:#F6F2E7; text-decoration:none; font-weight:700; font-size:17px; padding:14px 12px; border-radius:10px;">Our Story</a>
     <a onClick="{{ closeMobileMenu }}" href="#results" style="color:#F6F2E7; text-decoration:none; font-weight:700; font-size:17px; padding:14px 12px; border-radius:10px;">Results</a>
     <a onClick="{{ closeMobileMenu }}" href="#services" style="color:#F6F2E7; text-decoration:none; font-weight:700; font-size:17px; padding:14px 12px; border-radius:10px;">Services</a>
     <a onClick="{{ closeMobileMenu }}" href="#quote" style="color:#A3E635; text-decoration:none; font-weight:800; font-size:17px; padding:14px 12px; border-radius:10px;">Instant Quote</a>
-    <a onClick="{{ closeMobileMenu }}" href="quote.html" style="color:#F6F2E7; text-decoration:none; font-weight:700; font-size:17px; padding:14px 12px; border-radius:10px;">Full Calculator ↗</a>
+    <a onClick="{{ closeMobileMenu }}" href="quote.html" style="color:#FF3B30; text-decoration:none; font-weight:800; font-size:17px; padding:14px 12px; border-radius:10px;">Full Calculator ↗</a>
   </div>
 </sc-if>
 
 <!-- ══════════ HERO ══════════ -->
-<div data-screen-label="Hero" ref="{{ heroRef }}" style="position:relative; min-height:calc(100vh - 106px); padding-top:106px; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-end; font-family:'Hanken Grotesk',sans-serif; box-sizing:border-box;">
+<div data-screen-label="Hero" style="position:relative; min-height:calc(100vh - 106px); padding-top:106px; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-end; font-family:'Hanken Grotesk',sans-serif; box-sizing:border-box;">
   <div style="position:absolute; inset:0; overflow:hidden;">
     <img src="assets/suburb-after-opt.jpg" alt="Lush green renovated lawn in a Perth suburb" style="width:100%; height:100%; object-fit:cover; object-position:center 55%; animation:kenburns 24s ease-in-out infinite alternate;">
     <div style="position:absolute; inset:0; background:linear-gradient(to bottom, rgba(8,18,11,.62) 0%, rgba(8,18,11,.18) 34%, rgba(8,18,11,.28) 58%, rgba(8,18,11,.94) 88%, #0a1a0e 100%);"></div>
@@ -156,7 +149,16 @@
     <div style="margin-top:30px; max-width:720px; font-size:clamp(17px,1.6vw,23px); font-weight:600; color:#DCE6D2; line-height:1.5; animation:riseUp .9s cubic-bezier(.16,1,.3,1) .7s both;">Perth's sandy soils choke out roots every winter. We strip the thatch, open the soil and set your lawn up to come back thick and green before the summer heat arrives.</div>
     <div style="margin-top:36px; display:flex; align-items:center; gap:18px; flex-wrap:wrap; animation:riseUp .9s cubic-bezier(.16,1,.3,1) .84s both;">
       <a href="#quote" style="display:inline-flex; align-items:center; gap:12px; background:#A3E635; color:#0f2515; font-weight:800; font-size:clamp(17px,1.5vw,21px); padding:19px 38px; border-radius:999px; text-decoration:none; text-transform:uppercase; letter-spacing:.02em; animation:pulseRing 2.6s ease-out infinite;" style-hover="background:#b8f045;">Get an Instant Quote →</a>
+      <a href="quote.html" style="position:relative; overflow:hidden; display:inline-flex; align-items:center; gap:12px; border:2px solid #FF3B30; background:#FF3B30; color:#FFFFFF; font-weight:800; font-size:clamp(16px,1.4vw,19px); padding:17px 32px; border-radius:999px; text-decoration:none; text-transform:uppercase; letter-spacing:.02em; animation:amberGlow 2.8s ease-in-out infinite;" style-hover="background:#FF5C52; border-color:#FF5C52;">
+        Full Calculator
+        <span style="display:inline-block; animation:nudgeX 1.6s ease-in-out infinite;">↗</span>
+        <span style="position:absolute; top:0; bottom:0; left:0; width:38%; background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.4), rgba(255,255,255,0)); animation:shimmerSweep 3.4s ease-in-out infinite; pointer-events:none;"></span>
+      </a>
       <a href="#results" style="display:inline-flex; align-items:center; gap:12px; border:2px solid rgba(246,242,231,.5); color:#F6F2E7; font-weight:800; font-size:clamp(16px,1.4vw,19px); padding:17px 34px; border-radius:999px; text-decoration:none; text-transform:uppercase; letter-spacing:.02em;" style-hover="border-color:#A3E635; color:#A3E635;">See the Results</a>
+    </div>
+    <div style="margin-top:22px; display:inline-flex; align-items:center; gap:12px; padding:12px 22px 12px 14px; border-radius:999px; background:rgba(10,26,14,.55); border:1px solid rgba(163,230,53,.32); animation:riseUp .9s cubic-bezier(.16,1,.3,1) .96s both;">
+      <span style="display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%; background:#A3E635; color:#0f2515; font-size:14px; font-weight:800; flex-shrink:0; animation:pulseRing 2.6s ease-out infinite;">✓</span>
+      <span style="font-size:clamp(14px,1.25vw,18px); font-weight:700; color:#F6F2E7; line-height:1.4;">We offer something no one else does: <span style="color:#A3E635;">an estimated price right now.</span></span>
     </div>
   </div>
   <div style="position:absolute; bottom:26px; left:50%; transform:translateX(-50%); color:rgba(246,242,231,.55); font-size:26px; animation:bounceY 1.8s ease-in-out infinite;">↓</div>
@@ -351,6 +353,21 @@
   </div>
 </div>
 
+<!-- ══════════ CALCULATOR BAND (mid page) ══════════ -->
+<div data-screen-label="Calculator Band" style="background:#0a1a0e; padding:0 clamp(24px,5vw,84px) clamp(16px,3vw,40px); font-family:'Hanken Grotesk',sans-serif;">
+  <a href="quote.html" data-reveal="1" style="position:relative; overflow:hidden; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px; max-width:1400px; margin:0 auto; background:#FF3B30; color:#FFFFFF; text-decoration:none; padding:clamp(26px,3.4vw,44px) clamp(26px,3.6vw,54px); border-radius:22px; animation:tiltPop 3.6s ease-in-out infinite; box-shadow:0 24px 70px rgba(255,59,48,.22);" style-hover="background:#FF5C52;">
+    <div style="position:relative; z-index:1;">
+      <div style="font-size:13px; font-weight:800; letter-spacing:.24em; text-transform:uppercase; opacity:.7;">Build your own package</div>
+      <div style="font-family:'Anton',sans-serif; text-transform:uppercase; font-size:clamp(30px,4vw,60px); line-height:.95; margin-top:10px;">Open the full calculator</div>
+      <div style="font-size:clamp(15px,1.3vw,18px); font-weight:600; margin-top:12px; max-width:640px; opacity:.82;">Step-by-step pricing for every service, package discounts and DIY equipment dry hire, all in one place.</div>
+    </div>
+    <div style="position:relative; z-index:1; display:inline-flex; align-items:center; gap:12px; background:#2b0705; color:#FFFFFF; font-weight:800; font-size:clamp(16px,1.5vw,20px); text-transform:uppercase; letter-spacing:.03em; padding:18px 34px; border-radius:999px; white-space:nowrap;">
+      Start Calculating <span style="display:inline-block; animation:nudgeX 1.5s ease-in-out infinite;">→</span>
+    </div>
+    <span style="position:absolute; top:0; bottom:0; left:0; width:26%; background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.42), rgba(255,255,255,0)); animation:shimmerSweep 4.2s ease-in-out infinite; pointer-events:none;"></span>
+  </a>
+</div>
+
 <!-- ══════════ QUOTE CALCULATOR ══════════ -->
 <div id="quote" data-screen-label="Quote Calculator" style="background:#0a1a0e; padding:clamp(70px,9vw,130px) clamp(24px,5vw,84px); font-family:'Hanken Grotesk',sans-serif;">
   <div style="max-width:1400px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr)); gap:clamp(36px,4vw,80px); align-items:center;">
@@ -362,7 +379,7 @@
       <h2 data-reveal="2" style="margin:0; font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase; color:#F6F2E7; font-size:clamp(40px,4.6vw,72px); line-height:.94;">Price your lawn in ten seconds.</h2>
       <p data-reveal="3" style="margin:24px 0 0; font-size:clamp(16px,1.4vw,20px); font-weight:500; color:#DCE6D2; line-height:1.65; max-width:620px;">Slide to your lawn size, pick your services, and see our from-rate estimate instantly. It's indicative: access, turf condition and thatch depth can shift the price, but <strong style="color:#fff;">every final quote is free and confirmed online, no site visit needed.</strong></p>
       <p data-reveal="3b" style="margin:14px 0 0; font-size:16px; font-weight:600; color:rgba(246,242,231,.6);">Prefer a full step-by-step quote, or need DIY equipment dry hire pricing? <a href="quote.html" style="color:#A3E635; font-weight:800;">Use our full calculator →</a></p>
-      <p data-reveal="4" style="margin:18px 0 0; font-size:16px; font-weight:600; color:rgba(246,242,231,.55); line-height:1.6;">Not sure of your lawn size? A typical Perth front yard is 80–150 m². After the Complete Rejuvenation Package instead? That's priced per lawn, message us.</p>
+      <p data-reveal="4" style="margin:18px 0 0; font-size:16px; font-weight:600; color:rgba(246,242,231,.55); line-height:1.6;">Not sure of your lawn size? A typical Perth front yard is 80-150 m². After the Complete Rejuvenation Package instead? That's priced per lawn, message us.</p>
     </div>
     <div data-reveal="3" style="background:#0f2515; border:2px solid rgba(163,230,53,.3); border-radius:24px; padding:clamp(28px,3vw,44px); box-shadow:0 30px 80px rgba(0,0,0,.45);">
       <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:10px;">
@@ -394,14 +411,6 @@
           </div>
           <div style="font-family:'Anton',sans-serif; font-size:24px; color:#A3E635;">{{ aSub }}</div>
         </div>
-        <div onClick="{{ toggleTopdress }}" style="display:flex; align-items:center; gap:16px; border:2px solid {{ tBorder }}; background:{{ tBg }}; border-radius:14px; padding:18px 22px; cursor:pointer; transition:border-color .25s ease, background .25s ease;">
-          <span style="width:30px; height:30px; border-radius:50%; background:{{ tCheckBg }}; color:#0f2515; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:17px; flex-shrink:0; transition:background .25s ease;">✓</span>
-          <div style="flex:1;">
-            <div style="font-size:19px; font-weight:800; color:#F6F2E7;">Top Dressing</div>
-            <div style="font-size:14.5px; font-weight:600; color:rgba(246,242,231,.55); margin-top:2px;">From ${{ tRate }}/m²</div>
-          </div>
-          <div style="font-family:'Anton',sans-serif; font-size:24px; color:#A3E635;">{{ tSub }}</div>
-        </div>
       </div>
 
       <div style="margin-top:26px; padding-top:22px; border-top:2px solid rgba(163,230,53,.2); display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap;">
@@ -410,44 +419,13 @@
           <div style="font-family:'Anton',sans-serif; font-size:clamp(44px,4vw,58px); color:#A3E635; line-height:1.05;">{{ totalLabel }}</div>
           <div style="font-size:13.5px; font-weight:600; color:rgba(246,242,231,.45); margin-top:4px;">{{ noteText }}</div>
         </div>
-        <a href="{{ quoteMailto }}" onClick="{{ onEmailQuote }}" style="display:inline-flex; align-items:center; gap:10px; background:#A3E635; color:#0f2515; font-weight:800; font-size:18px; padding:16px 30px; border-radius:999px; text-decoration:none; text-transform:uppercase; letter-spacing:.02em;" style-hover="background:#b8f045;">Email Us This Quote →</a>
+        <a href="{{ quoteMailto }}" style="display:inline-flex; align-items:center; gap:10px; background:#A3E635; color:#0f2515; font-weight:800; font-size:18px; padding:16px 30px; border-radius:999px; text-decoration:none; text-transform:uppercase; letter-spacing:.02em;" style-hover="background:#b8f045;">Email Us This Quote →</a>
         <a href="quote.html" style="display:inline-flex; align-items:center; gap:10px; border:2px solid rgba(163,230,53,.5); color:#A3E635; font-weight:800; font-size:16px; padding:14px 26px; border-radius:999px; text-decoration:none; text-transform:uppercase; letter-spacing:.02em;" style-hover="border-color:#A3E635; background:rgba(163,230,53,.08);">Need Equipment Hire Pricing? →</a>
         <a href="{{ quoteWhatsApp }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:10px; background:#25D366; color:#fff; font-weight:800; font-size:18px; padding:16px 30px; border-radius:999px; text-decoration:none; text-transform:uppercase; letter-spacing:.02em;" style-hover="background:#1ebe5d;"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg> WhatsApp</a>
       </div>
     </div>
   </div>
 </div>
-
-<!-- ══════════ EMAIL FALLBACK PANEL ══════════ -->
-<!-- Shown after the mailto: fires. If the visitor has no mail app set up the
-     link does nothing at all, so this panel always gives them the details. -->
-<sc-if value="{{ showEmailPanel }}" hint-placeholder-val="{{ false }}">
-  <div onClick="{{ closeEmailPanel }}" style="position:fixed; inset:0; z-index:200; background:rgba(5,12,7,.84); display:flex; align-items:center; justify-content:center; padding:20px; font-family:'Hanken Grotesk',sans-serif;">
-    <div onClick="{{ stopPanelClose }}" style="background:#0f2515; border:2px solid rgba(163,230,53,.4); border-radius:20px; padding:clamp(24px,3vw,36px); width:min(560px,100%); max-height:86vh; overflow-y:auto; box-shadow:0 30px 80px rgba(0,0,0,.6);">
-      <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:16px;">
-        <h3 style="margin:0; font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase; color:#F6F2E7; font-size:clamp(26px,3vw,34px); line-height:1;">Send us this quote</h3>
-        <button onClick="{{ closeEmailPanel }}" aria-label="Close" style="background:transparent; border:2px solid rgba(163,230,53,.35); color:#F6F2E7; width:38px; height:38px; border-radius:10px; font-size:17px; flex-shrink:0; cursor:pointer;">✕</button>
-      </div>
-      <p style="margin:16px 0 0; font-size:16px; font-weight:500; color:#DCE6D2; line-height:1.6;">Your email app should have just opened with all of this filled in. <strong style="color:#fff;">If nothing happened</strong>, this device has no email app set up, so copy the details below and send them to us however suits you.</p>
-
-      <div style="margin-top:22px; font-size:13px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:#A3E635;">Email us at</div>
-      <div style="margin-top:6px; font-size:clamp(15px,2vw,18px); font-weight:800; color:#F6F2E7; word-break:break-all; user-select:all;">{{ businessEmail }}</div>
-
-      <div style="margin-top:20px; font-size:13px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:#A3E635;">Your quote details</div>
-      <div ref="{{ emailBodyRef }}" style="margin-top:8px; background:rgba(163,230,53,.06); border:1px solid rgba(163,230,53,.25); border-radius:12px; padding:16px 18px; font-size:15px; font-weight:500; color:#DCE6D2; line-height:1.6; white-space:pre-wrap; user-select:all;">{{ quotePlainText }}</div>
-
-      <sc-if value="{{ showCopyHint }}" hint-placeholder-val="{{ false }}">
-        <p style="margin:12px 0 0; font-size:14.5px; font-weight:700; color:#A3E635; line-height:1.5;">Your browser blocked the copy. We've selected the text above for you — press Ctrl+C (or ⌘+C on Mac) to copy it.</p>
-      </sc-if>
-
-      <div style="margin-top:22px; display:flex; gap:12px; flex-wrap:wrap;">
-        <button onClick="{{ copyQuoteDetails }}" style="flex:1 1 auto; background:#A3E635; color:#0f2515; border:0; font-family:'Hanken Grotesk',sans-serif; font-weight:800; font-size:16px; padding:15px 24px; border-radius:999px; cursor:pointer; text-transform:uppercase; letter-spacing:.02em;">{{ copyLabel }}</button>
-        <a href="{{ quoteWhatsApp }}" target="_blank" rel="noopener" style="flex:1 1 auto; display:inline-flex; align-items:center; justify-content:center; gap:10px; background:#25D366; color:#fff; font-weight:800; font-size:16px; padding:15px 24px; border-radius:999px; text-decoration:none; text-transform:uppercase; letter-spacing:.02em;">Send on WhatsApp</a>
-      </div>
-      <a href="tel:0427206246" style="display:inline-flex; align-items:center; justify-content:center; gap:10px; margin-top:12px; width:100%; box-sizing:border-box; border:2px solid rgba(163,230,53,.5); color:#A3E635; font-weight:800; font-size:16px; padding:14px 24px; border-radius:999px; text-decoration:none; text-transform:uppercase; letter-spacing:.02em;">Or call 0427 206 246</a>
-    </div>
-  </div>
-</sc-if>
 
 <!-- ══════════ DRY HIRE ══════════ -->
 <div id="hire" data-screen-label="Equipment Hire" style="background:#A3E635; padding:clamp(60px,7vw,100px) clamp(24px,5vw,84px); font-family:'Hanken Grotesk',sans-serif;">
@@ -563,7 +541,7 @@
           <span style="font-family:'Anton',sans-serif; font-size:26px; color:#A3E635; flex-shrink:0;">{{ faqIcon1 }}</span>
         </div>
         <div style="max-height:{{ faqMax1 }}; overflow:hidden; transition:max-height .45s cubic-bezier(.16,1,.3,1);">
-          <p style="margin:0; padding:0 28px 26px; font-size:17px; font-weight:500; color:#DCE6D2; line-height:1.65;">It depends on the weather and the health of your lawn, so recovery time will vary. Dethatching is aggressive by design, and that short, scalped look straight after is completely normal — with water and a feed behind it, most lawns come back noticeably thicker and greener. As a rule of thumb, you'll be mowing again within 2–3 weeks.</p>
+          <p style="margin:0; padding:0 28px 26px; font-size:17px; font-weight:500; color:#DCE6D2; line-height:1.65;">It depends on the weather and the health of your lawn, so recovery time will vary. Dethatching is aggressive by design, and that short, scalped look straight after is completely normal. With water and a feed behind it, most lawns come back noticeably thicker and greener. As a rule of thumb, you'll be mowing again within 2-3 weeks.</p>
         </div>
       </div>
       <div data-reveal="5" style="border:2px solid rgba(163,230,53,.22); border-radius:16px; background:#0f2515; overflow:hidden;">
@@ -619,67 +597,22 @@
     </div>
   </div>
 </div>
+
+<!-- ══════════ FLOATING CALCULATOR DOCK ══════════ -->
+<a ref="{{ dockRef }}" href="quote.html" style="position:fixed; right:clamp(14px,2.4vw,30px); bottom:clamp(14px,2.4vw,30px); z-index:99; display:inline-flex; align-items:center; gap:12px; background:#FF3B30; color:#FFFFFF; font-family:'Hanken Grotesk',sans-serif; font-weight:800; font-size:clamp(14px,1.2vw,17px); text-transform:uppercase; letter-spacing:.03em; text-decoration:none; padding:15px 26px; border-radius:999px; box-shadow:0 14px 40px rgba(0,0,0,.45); opacity:0; transform:translateY(26px); pointer-events:none; transition:opacity .45s ease, transform .45s cubic-bezier(.16,1,.3,1); animation:pulseRingAmber 2.8s ease-out infinite;" style-hover="background:#FF5C52;">
+  Full Calculator
+  <span style="display:inline-block; animation:nudgeX 1.6s ease-in-out infinite;">↗</span>
+</a>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;showPrices&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;dethatchRate&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:8,&quot;min&quot;:1,&quot;max&quot;:30,&quot;step&quot;:0.5,&quot;unit&quot;:&quot;$/m²&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Quote Rates&quot;},&quot;aerateRate&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:1.5,&quot;min&quot;:0.5,&quot;max&quot;:15,&quot;step&quot;:0.25,&quot;unit&quot;:&quot;$/m²&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Quote Rates&quot;},&quot;topdressRate&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:5,&quot;min&quot;:0.5,&quot;max&quot;:30,&quot;step&quot;:0.25,&quot;unit&quot;:&quot;$/m²&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Quote Rates&quot;},&quot;minJob&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:400,&quot;min&quot;:0,&quot;max&quot;:2000,&quot;step&quot;:50,&quot;unit&quot;:&quot;$&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Quote Rates&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;showPrices&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;dethatchRate&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:8,&quot;min&quot;:1,&quot;max&quot;:30,&quot;step&quot;:0.5,&quot;unit&quot;:&quot;$/m²&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Quote Rates&quot;},&quot;aerateRate&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:1.5,&quot;min&quot;:0.5,&quot;max&quot;:15,&quot;step&quot;:0.25,&quot;unit&quot;:&quot;$/m²&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Quote Rates&quot;},&quot;minJob&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:400,&quot;min&quot;:0,&quot;max&quot;:2000,&quot;step&quot;:50,&quot;unit&quot;:&quot;$&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Quote Rates&quot;}}">
 class Component extends DCLogic {
-  state = { sliderPct: 58, openFaq: 0, area: 150, dethatch: true, aerate: false, topdress: false, isMobile: false, mobileMenuOpen: false, showEmailPanel: false, copyState: '' };
+  state = { sliderPct: 58, openFaq: 0, area: 150, dethatch: true, aerate: false, isMobile: false, mobileMenuOpen: false };
 
   toggleMobileMenu = () => this.setState(s => ({ mobileMenuOpen: !s.mobileMenuOpen }));
   closeMobileMenu = () => this.setState({ mobileMenuOpen: false });
 
-  // The mailto: link still fires normally — but a device with no mail app set up
-  // does nothing at all and silently loses the lead, so always show the fallback.
-  onEmailQuote = () => this.setState({ showEmailPanel: true, copyState: '' });
-  closeEmailPanel = () => this.setState({ showEmailPanel: false });
-  stopPanelClose = (e) => e.stopPropagation();
-
-  copyQuoteDetails = () => {
-    const el = this.emailBodyRef.current;
-    if (!el) return;
-    const text = el.textContent;
-    const settle = (result) => {
-      // 'manual' means every copy route was blocked — never leave the button silent.
-      if (result === 'manual') this.selectDetails(el);
-      this.setState({ copyState: result });
-      clearTimeout(this.copyTimer);
-      if (result === 'ok') this.copyTimer = setTimeout(() => this.setState({ copyState: '' }), 2500);
-    };
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(text).then(
-        () => settle('ok'),
-        () => settle(this.execCopy(text) ? 'ok' : 'manual')
-      );
-    } else {
-      settle(this.execCopy(text) ? 'ok' : 'manual');
-    }
-  };
-
-  execCopy = (text) => {
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    ta.setAttribute('readonly', '');
-    ta.style.cssText = 'position:fixed; top:0; left:0; opacity:0;';
-    document.body.appendChild(ta);
-    ta.select();
-    let ok = false;
-    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
-    document.body.removeChild(ta);
-    return ok;
-  };
-
-  selectDetails = (el) => {
-    try {
-      const range = document.createRange();
-      range.selectNodeContents(el);
-      const sel = window.getSelection();
-      sel.removeAllRanges();
-      sel.addRange(range);
-    } catch (e) { /* the block is user-select:all, so tapping it still selects */ }
-  };
-
   toggleDethatch = () => this.setState(s => ({ dethatch: !s.dethatch }));
   toggleAerate = () => this.setState(s => ({ aerate: !s.aerate }));
-  toggleTopdress = () => this.setState(s => ({ topdress: !s.topdress }));
   onAreaRange = (e) => this.setState({ area: parseInt(e.target.value, 10) });
   onAreaNum = (e) => {
     const v = parseInt(e.target.value, 10);
@@ -695,27 +628,7 @@ class Component extends DCLogic {
 
   navRef = React.createRef();
   sliderRef = React.createRef();
-  emailBodyRef = React.createRef();
-  bannerRef = React.createRef();
-  heroRef = React.createRef();
-
-  // The banner wraps to two lines on narrow screens, so its height can't be
-  // hard-coded — measure it and push the nav and hero down by the real amount.
-  syncHeaderOffsets = () => {
-    const banner = this.bannerRef.current;
-    const nav = this.navRef.current;
-    if (!banner || !nav) return;
-    const bannerH = banner.offsetHeight;
-    nav.style.top = bannerH + 'px';
-    const total = bannerH + nav.offsetHeight;
-    const hero = this.heroRef.current;
-    if (hero) {
-      hero.style.paddingTop = total + 'px';
-      hero.style.minHeight = 'calc(100vh - ' + total + 'px)';
-    }
-    const menu = document.getElementById('mobileMenu');
-    if (menu) menu.style.top = (total + 8) + 'px';
-  };
+  dockRef = React.createRef();
 
   updateSlider = (clientX) => {
     const el = this.sliderRef.current;
@@ -742,21 +655,20 @@ class Component extends DCLogic {
     this.onResize = () => {
       const mobile = window.innerWidth < 1180;
       this.setState(s => s.isMobile === mobile ? null : { isMobile: mobile, mobileMenuOpen: mobile ? s.mobileMenuOpen : false });
-      this.syncHeaderOffsets();
     };
     window.addEventListener('resize', this.onResize, { passive: true });
     this.onResize();
-    // The banner re-wraps at narrow widths and when the webfonts swap in, and a
-    // resize listener alone measures it too early — watch the element itself.
-    if ('ResizeObserver' in window) {
-      this.ro = new ResizeObserver(this.syncHeaderOffsets);
-      if (this.bannerRef.current) this.ro.observe(this.bannerRef.current);
-      if (this.navRef.current) this.ro.observe(this.navRef.current);
-    }
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(this.syncHeaderOffsets);
 
     // Nav darkens on scroll
     this.onScroll = () => {
+      const dock = this.dockRef.current;
+      if (dock) {
+        const nearFooter = (window.innerHeight + window.scrollY) > (document.body.scrollHeight - 420);
+        const show = window.scrollY > 640 && !nearFooter;
+        dock.style.opacity = show ? '1' : '0';
+        dock.style.transform = show ? 'none' : 'translateY(26px)';
+        dock.style.pointerEvents = show ? 'auto' : 'none';
+      }
       const nav = this.navRef.current;
       if (!nav) return;
       if (window.scrollY > 40) {
@@ -816,17 +728,9 @@ class Component extends DCLogic {
     counters.forEach(el => this.cio.observe(el));
   }
 
-  // The nav swaps between the mobile and desktop layouts, which changes its
-  // height, so re-measure after any render that may have switched them.
-  componentDidUpdate() {
-    this.syncHeaderOffsets();
-  }
-
   componentWillUnmount() {
     window.removeEventListener('resize', this.onResize);
     window.removeEventListener('scroll', this.onScroll);
-    clearTimeout(this.copyTimer);
-    if (this.ro) this.ro.disconnect();
     if (this.io) this.io.disconnect();
     if (this.cio) this.cio.disconnect();
   }
@@ -836,9 +740,8 @@ class Component extends DCLogic {
       sliderPct: this.state.sliderPct,
       onSliderDown: this.onSliderDown,
       navRef: this.navRef,
+      dockRef: this.dockRef,
       sliderRef: this.sliderRef,
-      bannerRef: this.bannerRef,
-      heroRef: this.heroRef,
       showPrices: this.props.showPrices ?? true,
       isMobile: this.state.isMobile,
       notMobile: !this.state.isMobile,
@@ -846,17 +749,8 @@ class Component extends DCLogic {
       menuIcon: this.state.mobileMenuOpen ? '✕' : '☰',
       toggleMobileMenu: this.toggleMobileMenu,
       closeMobileMenu: this.closeMobileMenu,
-      showEmailPanel: this.state.showEmailPanel,
-      onEmailQuote: this.onEmailQuote,
-      closeEmailPanel: this.closeEmailPanel,
-      stopPanelClose: this.stopPanelClose,
-      copyQuoteDetails: this.copyQuoteDetails,
-      copyLabel: this.state.copyState === 'ok' ? 'Copied ✓' : 'Copy details',
-      showCopyHint: this.state.copyState === 'manual',
-      emailBodyRef: this.emailBodyRef,
-      businessEmail: 'perthlawnrenovationservices@outlook.com',
       faqT0: this.faqT0, faqT1: this.faqT1, faqT2: this.faqT2, faqT3: this.faqT3, faqT4: this.faqT4,
-      toggleDethatch: this.toggleDethatch, toggleAerate: this.toggleAerate, toggleTopdress: this.toggleTopdress,
+      toggleDethatch: this.toggleDethatch, toggleAerate: this.toggleAerate,
       onAreaRange: this.onAreaRange, onAreaNum: this.onAreaNum,
       faqMax0: this.state.openFaq === 0 ? '360px' : '0px',
       faqMax1: this.state.openFaq === 1 ? '360px' : '0px',
@@ -872,16 +766,8 @@ class Component extends DCLogic {
     };
   }
 
-  serviceList(fallback) {
-    const { dethatch, aerate, topdress } = this.state;
-    return [
-      dethatch ? 'Verti-Mowing / Dethatching' : null,
-      aerate ? 'Lawn Aeration' : null,
-      topdress ? 'Top Dressing' : null,
-    ].filter(Boolean).join(' + ') || fallback;
-  }
-
-  buildMailto(area, services, total, fmt) {
+  buildMailto(area, dethatch, aerate, total, fmt) {
+    const services = [dethatch ? 'Verti-Mowing / Dethatching' : null, aerate ? 'Lawn Aeration' : null].filter(Boolean).join(' + ') || 'Lawn renovation (not sure yet)';
     const subject = encodeURIComponent('Free quote request: ' + services);
     const body = encodeURIComponent(
       'Hi Perth Lawn Renovation,\n\nI used the instant quote tool on your website.\n\n' +
@@ -892,14 +778,8 @@ class Component extends DCLogic {
     return 'mailto:perthlawnrenovationservices@outlook.com?subject=' + subject + '&body=' + body;
   }
 
-  buildPlainText(area, services, total, fmt) {
-    return 'Lawn size: ' + area + ' m2\n' +
-      'Services: ' + services + '\n' +
-      'Indicative estimate: ' + (total > 0 ? 'From ' + fmt(total) : 'n/a') + '\n\n' +
-      'My suburb: \nBest contact number: ';
-  }
-
-  buildWhatsApp(area, services, total, fmt) {
+  buildWhatsApp(area, dethatch, aerate, total, fmt) {
+    const services = [dethatch ? 'Verti-Mowing / Dethatching' : null, aerate ? 'Lawn Aeration' : null].filter(Boolean).join(' + ') || 'Lawn renovation';
     const msg = "Hi, I'd like to book a lawn renovation. From your website quote tool: " + services + ', ' + area + ' m2, estimate ' + (total > 0 ? 'from ' + fmt(total) : 'TBC') + '. Can you confirm availability?';
     return 'https://wa.me/61427206246?text=' + encodeURIComponent(msg);
   }
@@ -907,13 +787,11 @@ class Component extends DCLogic {
   quoteVals() {
     const dRate = this.props.dethatchRate ?? 8;
     const aRate = this.props.aerateRate ?? 1.5;
-    const tRate = this.props.topdressRate ?? 5;
     const minJob = this.props.minJob ?? 400;
-    const { area, dethatch, aerate, topdress } = this.state;
+    const { area, dethatch, aerate } = this.state;
     const dCost = Math.round(dRate * area);
     const aCost = Math.round(aRate * area);
-    const tCost = Math.round(tRate * area);
-    const rawTotal = (dethatch ? dCost : 0) + (aerate ? aCost : 0) + (topdress ? tCost : 0);
+    const rawTotal = (dethatch ? dCost : 0) + (aerate ? aCost : 0);
     const isMinJob = rawTotal > 0 && rawTotal < minJob;
     const total = isMinJob ? minJob : rawTotal;
     const fmt = (n) => '$' + n.toLocaleString('en-AU');
@@ -921,7 +799,6 @@ class Component extends DCLogic {
     const off = { border: 'rgba(163,230,53,.18)', bg: 'transparent', check: 'rgba(246,242,231,.16)' };
     const d = dethatch ? on : off;
     const a = aerate ? on : off;
-    const t = topdress ? on : off;
     const noteText = total === 0
       ? 'Select at least one service above.'
       : isMinJob
@@ -931,18 +808,14 @@ class Component extends DCLogic {
       area: this.state.area,
       dRate: String(dRate),
       aRate: aRate % 1 === 0 ? String(aRate) : aRate.toFixed(2),
-      tRate: tRate % 1 === 0 ? String(tRate) : tRate.toFixed(2),
-      dSub: dethatch ? fmt(dCost) : '—',
-      aSub: aerate ? fmt(aCost) : '—',
-      tSub: topdress ? fmt(tCost) : '—',
+      dSub: dethatch ? fmt(dCost) : '-',
+      aSub: aerate ? fmt(aCost) : '-',
       dBorder: d.border, dBg: d.bg, dCheckBg: d.check,
       aBorder: a.border, aBg: a.bg, aCheckBg: a.check,
-      tBorder: t.border, tBg: t.bg, tCheckBg: t.check,
       totalLabel: total > 0 ? 'From ' + fmt(total) : '$0',
       noteText: noteText,
-      quoteMailto: this.buildMailto(area, this.serviceList('Lawn renovation (not sure yet)'), total, fmt),
-      quoteWhatsApp: this.buildWhatsApp(area, this.serviceList('Lawn renovation'), total, fmt),
-      quotePlainText: this.buildPlainText(area, this.serviceList('Lawn renovation (not sure yet)'), total, fmt),
+      quoteMailto: this.buildMailto(area, dethatch, aerate, total, fmt),
+      quoteWhatsApp: this.buildWhatsApp(area, dethatch, aerate, total, fmt),
     };
   }
 }

@@ -435,7 +435,7 @@
         <div class="label" id="boardLabel">Your renovation estimate</div>
         <div class="price-line">
           <span class="from" id="fromTag">from</span>
-          <span class="price" id="priceOut">—</span>
+          <span class="price" id="priceOut">-</span>
           <span class="per" id="perOut"></span>
         </div>
         <p class="empty" id="emptyMsg">Select at least one service to see a price.</p>
@@ -453,7 +453,7 @@
 <div class="mobile-bar" id="mobileBar">
   <div>
     <div class="m-label" id="mLabel">Your estimate</div>
-    <div class="m-price" id="mPrice">—</div>
+    <div class="m-price" id="mPrice">-</div>
   </div>
   <a href="#quoteForm">Get quote</a>
 </div>
@@ -483,8 +483,8 @@ const CONFIG = {
     sizes: [
       { id:"under50", label:"Under 50 m²",  sub:"Small courtyard / pocket lawn", sqm:40  },
       { id:"small",   label:"Small",        sub:"Up to 80 m² · courtyard",       sqm:60  },
-      { id:"medium",  label:"Medium",       sub:"80–180 m² · typical Perth",     sqm:130 },
-      { id:"large",   label:"Large",        sub:"180–350 m² · big backyard",     sqm:260 },
+      { id:"medium",  label:"Medium",       sub:"80-180 m² · typical Perth",     sqm:130 },
+      { id:"large",   label:"Large",        sub:"180-350 m² · big backyard",     sqm:260 },
       { id:"xl",      label:"Extra large",  sub:"350 m²+ · corner block",        sqm:450 },
     ],
 
@@ -756,12 +756,12 @@ function render(){
   }
 
   if (!q){
-    price.textContent = "—"; per.textContent = ""; fromTag.style.display = "none";
+    price.textContent = "-"; per.textContent = ""; fromTag.style.display = "none";
     empty.style.display = "block";
     empty.textContent = state.mode === "reno"
       ? "Select at least one service to see a price."
       : "Pick at least one machine to see a price.";
-    bd.innerHTML = ""; mp.textContent = "—";
+    bd.innerHTML = ""; mp.textContent = "-";
     return;
   }
 
@@ -916,7 +916,7 @@ function showSuccess(lead, mailtoHref){
   const firstName = lead.name.split(" ")[0];
   if (mailtoHref){
     successEl.innerHTML =
-      `Thanks ${firstName}, locked in at ${lead.estimate}. Click below to open this quote in your email app and send it to us — we'll confirm on ${lead.phone} shortly.` +
+      `Thanks ${firstName}, locked in at ${lead.estimate}. Click below to open this quote in your email app and send it to us. We'll confirm on ${lead.phone} shortly.` +
       `<a class="mailto-btn" href="${mailtoHref}">Open in your email app →</a>`;
   } else {
     successEl.textContent =
