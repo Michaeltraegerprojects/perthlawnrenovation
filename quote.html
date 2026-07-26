@@ -330,6 +330,20 @@
 
   .foot{ margin-top:26px; font-size:13px; color:var(--ink-soft); text-align:center; }
   .foot a{ color:var(--grass-dk); font-weight:700; text-decoration:none; }
+  .bundle-banner{ width:100%; display:flex; align-items:center; gap:14px; text-align:left; cursor:pointer; border:none; border-radius:14px; padding:14px 18px; margin:0 0 12px; background:linear-gradient(100deg,#FF7A00,#FF9E2C); color:#241100; font:inherit; box-shadow:0 8px 24px rgba(255,122,0,.35); animation:bbPulse 1.9s ease-in-out infinite; transition:transform .15s ease; }
+  .bundle-banner:hover{ transform:translateY(-1px); }
+  .bundle-banner:active{ transform:scale(.99); }
+  .bundle-banner .bb-spark{ font-size:22px; line-height:1; animation:bbShake 1.1s ease-in-out infinite; }
+  .bundle-banner .bb-text{ display:flex; flex-direction:column; line-height:1.25; flex:1; }
+  .bundle-banner .bb-text strong{ font-size:15.5px; font-weight:800; }
+  .bundle-banner .bb-text small{ font-size:12px; font-weight:700; opacity:.82; }
+  .bundle-banner .bb-cta{ font-size:12.5px; font-weight:800; background:#241100; color:#FFB020; padding:8px 14px; border-radius:999px; white-space:nowrap; }
+  @keyframes bbPulse{ 0%,100%{ box-shadow:0 8px 24px rgba(255,122,0,.3); } 50%{ box-shadow:0 10px 34px 5px rgba(255,122,0,.6); } }
+  @keyframes bbShake{ 0%,100%{ transform:rotate(-9deg); } 50%{ transform:rotate(9deg); } }
+  @keyframes bbFlash{ 0%{ filter:brightness(1); } 40%{ filter:brightness(1.4); } 100%{ filter:brightness(1); } }
+  .bundle-banner.bb-flash{ animation:bbFlash .5s ease-out, bbPulse 1.9s ease-in-out infinite; }
+  .bb-confetti{ position:fixed; width:9px; height:14px; border-radius:2px; z-index:9999; pointer-events:none; }
+  @media (prefers-reduced-motion: reduce){ .bundle-banner, .bundle-banner .bb-spark{ animation:none !important; } }
 </style>
 </head>
 <body>
@@ -370,6 +384,11 @@
       <fieldset data-mode="reno">
         <legend><span class="step-no">STEP 2</span> What does your lawn need?</legend>
         <p class="hint">Dethatching, aeration and top dressing are quoted instantly online, and if you pick all three you save 10%. Reticulation is priced at your free lawn health assessment.</p>
+        <button type="button" id="bundleBanner" class="bundle-banner" aria-label="Add all three core services and save 10 percent">
+          <span class="bb-spark">⚡</span>
+          <span class="bb-text"><strong>Complete Lawn Rejuvenation · Save 10%</strong><small>Add all 3 and save 10% instantly</small></span>
+          <span class="bb-cta">Tap to add all 3</span>
+        </button>
         <div class="services" id="renoServices"></div>
         <div class="callout"><strong>Not sure what it needs?</strong> Book a free lawn health assessment. We'll inspect on site and recommend the right treatment, no obligation.</div>
       </fieldset>
@@ -478,6 +497,7 @@ const CONFIG = {
   reno: {
     dethatchPerSqm: 8.00,   // "Rates from $8 sq/m"
     aerationPerSqm: 1.50,   // "Rates from $1.50 sq/m"
+    topdressPerSqm: 5.00,   // "Rates from $5 sq/m"
     minJob: 0,              // combined-job floor (0 = disabled: per-service minimums used instead)
 
     sizes: [
@@ -499,7 +519,7 @@ const CONFIG = {
       { id:"topdress", type:"sqm", rate:5.00, minPrice:150, label:"Top dressing",
         desc:"Levels the surface and boosts soil quality after dethatching", priceNote:"from $5 / m² · $150 min" },
       { id:"package",  type:"package", label:"Complete lawn rejuvenation package",
-        desc:"Dethatch + aeration + topdress + fertiliser & wetting agent + reticulation assessment", priceNote:"best value" },
+        desc:"Dethatch + aeration + topdress + fertiliser & wetting agent + reticulation assessment", priceNote:"best value · save 10%" },
       { id:"weedspray", type:"flat", price:75, category:"Herbicide", label:"Weed spraying",
         desc:"Broadleaf & general weed control by our licensed technician", priceNote:"from $75" },
       { id:"insecticide", type:"flat", price:75, category:"Insecticide", label:"Insecticide treatment",
@@ -550,7 +570,7 @@ const state = {
   reno: {
     size: "medium",
     customSqm: null,
-    services: new Set(["dethatch", "aeration"]),
+    services: new Set(["dethatch", "aeration", "topdress"]),
     timing: "flex",
   },
   hire: {
@@ -676,9 +696,12 @@ function calcReno(){
       lines.push({ k:`${svc.label} (~${sqm} m²)${minApplied ? ", min. charge" : ""}`, v:"from " + fmt(p) });
     } else if (svc.type === "package"){
       hasPackage = true;
-      const p = sqm * (R.dethatchPerSqm + R.aerationPerSqm);
+      const pkgFull = sqm * (R.dethatchPerSqm + R.aerationPerSqm + R.topdressPerSqm);
+      const p = Math.round(pkgFull * 0.90);
+      const pkgSave = Math.round(pkgFull) - p;
       total += p;
-      lines.push({ k:`Rejuvenation package (~${sqm} m²)`, v:"from " + fmt(p) });
+      lines.push({ k:`Rejuvenation package (~${sqm} m²)`, v:`<s style="opacity:.5">${fmt(Math.round(pkgFull))}</s> from ${fmt(p)}` });
+      lines.push({ k:"You save (10% off)", v:`<span style="color:#A3E635;font-weight:800">-${fmt(pkgSave)}</span>` });
     } else if (svc.type === "flat"){
       total += svc.price;
       lines.push({ k:svc.category ? `${svc.label} (${svc.category})` : svc.label, v:"from " + fmt(svc.price) });
@@ -937,6 +960,50 @@ function showSuccess(lead, mailtoHref){
 /* ---------- go ---------- */
 build();
 setMode("reno");
+
+/* ---------- one-tap Complete Rejuvenation bundle ---------- */
+(function(){
+  const banner = document.getElementById("bundleBanner");
+  if (!banner) return;
+  const ids = ["dethatch","aeration","topdress"];
+  const cta = banner.querySelector(".bb-cta");
+  const sub = banner.querySelector(".bb-text small");
+  const box = id => document.querySelector(`input[name="rsvc"][value="${id}"]`);
+  const allOn = () => ids.every(id => { const el = box(id); return el && el.checked; });
+
+  function refresh(){
+    const on = allOn();
+    if (cta) cta.textContent = on ? "All 3 selected \u2713" : "Tap to add all 3";
+    if (sub) sub.textContent = on ? "You're saving 10% on the full bundle" : "Add all 3 and save 10% instantly";
+  }
+  function ding(){
+    try{
+      const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
+      const ac = new AC();
+      [880,1109,1319].forEach((f,i)=>{ const o=ac.createOscillator(), g=ac.createGain(); o.type="sine"; o.frequency.value=f;
+        const t=ac.currentTime + i*0.13; g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(0.16,t+0.02); g.gain.exponentialRampToValueAtTime(0.0001,t+0.12);
+        o.connect(g); g.connect(ac.destination); o.start(t); o.stop(t+0.14); });
+    }catch(e){}
+  }
+  function confetti(){
+    const cols=["#FF7A00","#FFB020","#A3E635","#F6F2E7"]; const r=banner.getBoundingClientRect();
+    for(let i=0;i<26;i++){ const c=document.createElement("div"); c.className="bb-confetti";
+      c.style.left=(r.left+r.width*Math.random())+"px"; c.style.top=(r.top+r.height/2)+"px"; c.style.background=cols[i%cols.length];
+      document.body.appendChild(c);
+      const dx=(Math.random()*2-1)*170, dy=-(70+Math.random()*150);
+      c.animate([{transform:"translate(0,0) rotate(0)",opacity:1},{transform:`translate(${dx}px,${dy}px) rotate(${Math.random()*540}deg)`,opacity:1,offset:.7},{transform:`translate(${dx*1.2}px,${dy+240}px)`,opacity:0}],{duration:1100+Math.random()*500,easing:"cubic-bezier(.2,.6,.4,1)"});
+      setTimeout(()=>c.remove(),1750);
+    }
+  }
+  banner.addEventListener("click", ()=>{
+    ids.forEach(id => { const el=box(id); if (el && !el.checked){ el.checked=true; el.dispatchEvent(new Event("change",{bubbles:true})); } });
+    ding(); confetti();
+    banner.classList.remove("bb-flash"); void banner.offsetWidth; banner.classList.add("bb-flash");
+    refresh();
+  });
+  document.addEventListener("change", e => { if (e.target && e.target.name==="rsvc") refresh(); });
+  refresh();
+})();
 </script>
 </body>
 </html>
