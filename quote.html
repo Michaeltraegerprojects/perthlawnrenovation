@@ -344,6 +344,13 @@
   .bundle-banner.bb-flash{ animation:bbFlash .5s ease-out, bbPulse 1.9s ease-in-out infinite; }
   .bb-confetti{ position:fixed; width:9px; height:14px; border-radius:2px; z-index:9999; pointer-events:none; }
   @media (prefers-reduced-motion: reduce){ .bundle-banner, .bundle-banner .bb-spark{ animation:none !important; } }
+  .svc.bundle-lit{ border-color:#FF7A00 !important; box-shadow:0 0 0 2px rgba(255,122,0,.4), 0 6px 20px rgba(255,122,0,.2); }
+  .svc.bundle-flash{ animation:svcFlash .7s ease-out; }
+  @keyframes svcFlash{ 0%{ box-shadow:0 0 0 0 rgba(255,122,0,.7); } 100%{ box-shadow:0 0 0 15px rgba(255,122,0,0), 0 6px 20px rgba(255,122,0,.2); } }
+  .row.bundle-hit .k, .row.bundle-hit .v{ color:#FF9E2C !important; font-weight:800; }
+  .row.bundle-hit{ border-radius:8px; animation:rowFlash .9s ease-out; }
+  @keyframes rowFlash{ 0%{ background:rgba(255,122,0,.5); } 100%{ background:transparent; } }
+  @media (prefers-reduced-motion: reduce){ .svc.bundle-flash, .row.bundle-hit{ animation:none !important; } }
 </style>
 </head>
 <body>
@@ -714,7 +721,7 @@ function calcReno(){
   if (sel.has("dethatch") && sel.has("aeration") && sel.has("topdress")){
     const disc = Math.round(bundleSub * 0.10);
     total -= disc;
-    lines.push({ k:"3-service bundle (10% off)", v:"-" + fmt(disc) });
+    lines.push({ k:"3-service bundle (10% off)", v:"-" + fmt(disc), cls:"bundle-hit" });
   }
 
   if (total > 0 && R.minJob > 0 && total < R.minJob){
@@ -803,7 +810,7 @@ function render(){
   mp.textContent = (q.from ? "from " : "") + q.headline;
 
   bd.innerHTML = q.lines.map(l =>
-    `<div class="row"><span class="k">${l.k}</span><span class="v">${l.v}</span></div>`).join("");
+    `<div class="row${l.cls ? " " + l.cls : ""}"><span class="k">${l.k}</span><span class="v">${l.v}</span></div>`).join("");
   if (state.mode === "reno" && q.hasPOA){
     bd.innerHTML += `<div class="row note"><span class="k">Assessment items</span><span class="v">priced on site, free visit</span></div>`;
   }
@@ -971,10 +978,17 @@ setMode("reno");
   const box = id => document.querySelector(`input[name="rsvc"][value="${id}"]`);
   const allOn = () => ids.every(id => { const el = box(id); return el && el.checked; });
 
+  let wasOn = false;
   function refresh(){
     const on = allOn();
     if (cta) cta.textContent = on ? "All 3 selected \u2713" : "Tap to add all 3";
     if (sub) sub.textContent = on ? "You're saving 10% on the full bundle" : "Add all 3 and save 10% instantly";
+    ids.forEach(id => { const el = box(id), card = el && el.closest(".svc"); if (!card) return;
+      card.classList.toggle("bundle-lit", on);
+      if (on && !wasOn){ card.classList.remove("bundle-flash"); void card.offsetWidth; card.classList.add("bundle-flash"); }
+      if (!on) card.classList.remove("bundle-flash");
+    });
+    wasOn = on;
   }
   function ding(){
     try{
