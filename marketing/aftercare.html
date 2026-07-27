@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lawn Aftercare Guide - Perth Lawn Renovation Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { size:A4; margin:0; }
+  :root{ --ink:#0a1a0e; --deep:#0f2515; --lime:#A3E635; --gold:#FFB020; --cream:#F6F2E7; --soft:#DCE6D2; --paper:#ffffff; --text:#1a2b1f; --muted:#5d6b60; }
+  *{ margin:0; box-sizing:border-box; }
+  body{ font-family:'Hanken Grotesk',sans-serif; color:var(--text); background:var(--paper); }
+  .page{ width:210mm; height:297mm; overflow:hidden; padding:0 0 14mm; page-break-after:always; position:relative; }
+  .page:last-child{ page-break-after:auto; }
+
+  /* header */
+  .hdr{ background:var(--ink); color:var(--cream); padding:11mm 15mm 9mm; position:relative; overflow:hidden; }
+  .hdr .kick{ font-size:10pt; font-weight:800; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); }
+  .hdr h1{ font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase; font-size:27pt; line-height:.92; margin-top:4mm; }
+  .hdr p{ margin-top:3mm; font-size:10pt; font-weight:600; color:var(--soft); max-width:135mm; line-height:1.5; }
+  .hdr .strip{ position:absolute; left:0; right:0; bottom:0; height:3mm; background:var(--lime); }
+
+  .body{ padding:8mm 15mm 0; }
+  h2{ font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase; font-size:14.5pt; color:var(--deep); margin-bottom:3mm; padding-bottom:2mm; border-bottom:2px solid var(--lime); }
+  h2 .n{ color:var(--lime); margin-right:3mm; }
+  .lead{ font-size:9.5pt; color:var(--muted); line-height:1.55; margin-bottom:4mm; }
+
+  /* timeline */
+  .tl{ display:flex; flex-direction:column; gap:2.5mm; margin-bottom:6mm; }
+  .tl .row{ display:flex; gap:5mm; align-items:flex-start; }
+  .tl .when{ flex:0 0 31mm; background:var(--deep); color:var(--lime); font-weight:800; font-size:9.5pt; text-transform:uppercase; letter-spacing:.08em; padding:2.5mm 4mm; border-radius:3mm; text-align:center; }
+  .tl .what{ flex:1; font-size:9.5pt; line-height:1.5; padding-top:.8mm; }
+  .tl .what b{ color:var(--deep); }
+
+  /* do / dont */
+  .cols{ display:flex; gap:5mm; margin-bottom:5mm; }
+  .card{ flex:1; border-radius:4mm; padding:5mm 6mm; }
+  .card.do{ background:rgba(163,230,53,.14); border:1.5px solid rgba(163,230,53,.7); }
+  .card.dont{ background:rgba(200,60,40,.07); border:1.5px solid rgba(200,60,40,.35); }
+  .card h3{ font-size:11pt; font-weight:800; text-transform:uppercase; letter-spacing:.1em; margin-bottom:3mm; }
+  .card.do h3{ color:#3f7d17; } .card.dont h3{ color:#a33a25; }
+  .card ul{ margin:0; padding-left:5mm; }
+  .card li{ font-size:9pt; line-height:1.45; margin-bottom:1.5mm; }
+
+  /* products */
+  .prod{ display:flex; flex-direction:column; gap:2mm; margin-bottom:5mm; }
+  .prod .p{ display:flex; align-items:center; gap:4mm; border:1.5px solid #dfe6da; border-radius:3mm; padding:3mm 5mm; }
+  .prod .p .tag{ flex:0 0 auto; background:var(--gold); color:#241100; font-weight:800; font-size:9pt; padding:2mm 3.5mm; border-radius:99mm; text-transform:uppercase; letter-spacing:.06em; }
+  .prod .p .txt{ flex:1; font-size:9pt; line-height:1.45; }
+  .prod .p .txt b{ display:block; font-size:10pt; color:var(--deep); }
+
+  .cta{ background:var(--deep); color:var(--cream); border-radius:4mm; padding:6mm 8mm 6mm; text-align:center; margin-bottom:20mm; }
+  .cta .t{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:16pt; line-height:1.02; }
+  .cta p{ font-size:9pt; color:var(--soft); margin-top:2.5mm; line-height:1.5; }
+  .cta .btn{ display:inline-block; margin-top:3mm; background:var(--gold); color:#241100; font-weight:800; font-size:11pt; padding:3.5mm 8mm; border-radius:99mm; text-transform:uppercase; letter-spacing:.04em; }
+  .cta .ph{ font-family:'Anton',sans-serif; font-size:15pt; color:var(--lime); margin-top:3mm; letter-spacing:.03em; }
+
+  .foot{ position:absolute; left:15mm; right:15mm; bottom:7mm; display:flex; justify-content:space-between; font-size:8.5pt; color:var(--muted); border-top:1px solid #e3e9de; padding-top:3mm; }
+  .note{ background:#f4f7f1; border-left:3mm solid var(--lime); border-radius:2mm; padding:4mm 5mm; font-size:9pt; line-height:1.5; margin-bottom:5mm; }
+  .note b{ color:var(--deep); }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 ============ -->
+<div class="page">
+  <div class="hdr">
+    <div class="kick">Perth Lawn Renovation Services</div>
+    <h1>Your lawn<br>aftercare guide</h1>
+    <p>Your lawn has just been renovated. What you do over the next three weeks decides how thick and green it comes back. Follow this guide and you will be mowing a better lawn within two to three weeks.</p>
+    <div class="strip"></div>
+  </div>
+
+  <div class="body">
+    <h2><span class="n">1</span>The first 3 weeks, week by week</h2>
+    <p class="lead">Recovery times vary with the weather and how healthy your lawn was to start with. This is the typical pattern after vertimowing, dethatching or coring.</p>
+
+    <div class="tl">
+      <div class="row">
+        <div class="when">Days 1 to 3</div>
+        <div class="what"><b>Water deeply, twice a day.</b> Short bursts are not enough. Water early morning and late afternoon so the soil stays damp through the root zone. Keep off the lawn where you can.</div>
+      </div>
+      <div class="row">
+        <div class="when">Days 4 to 7</div>
+        <div class="what"><b>Do not panic at the look.</b> Short, scalped and bare is completely normal after dethatching. The runners are alive under the surface and pushing new growth.</div>
+      </div>
+      <div class="row">
+        <div class="when">Week 2</div>
+        <div class="what"><b>Feed it.</b> Apply a quality lawn fertiliser and keep watering. This is when you will see fresh green shoots filling the gaps. Back watering off to once a day if the weather is mild.</div>
+      </div>
+      <div class="row">
+        <div class="when">Weeks 2 to 3</div>
+        <div class="what"><b>First mow.</b> Once the new growth is about 30mm, mow on a high setting and only take the top off. Do not scalp it. Leave the catcher on for the first two cuts.</div>
+      </div>
+      <div class="row">
+        <div class="when">Week 4 onward</div>
+        <div class="what"><b>Back to normal.</b> Return to your usual mowing height and schedule. Keep a wetting agent going through summer so water actually soaks into Perth's sandy soils.</div>
+      </div>
+    </div>
+
+    <h2><span class="n">2</span>Do and do not</h2>
+    <div class="cols">
+      <div class="card do">
+        <h3>Do</h3>
+        <ul>
+          <li>Water deeply and consistently, especially the first week</li>
+          <li>Apply fertiliser around week two</li>
+          <li>Use a wetting agent on sandy or hydrophobic soil</li>
+          <li>Mow high for the first two cuts</li>
+          <li>Check your reticulation is covering evenly</li>
+        </ul>
+      </div>
+      <div class="card dont">
+        <h3>Do not</h3>
+        <ul>
+          <li>Do not let the lawn dry out in the first fortnight</li>
+          <li>Do not scalp it on the first mow</li>
+          <li>Do not apply weed killer for at least three weeks</li>
+          <li>Do not park cars or stack materials on new growth</li>
+          <li>Do not worry about the bare look, it fills in</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note"><b>Watering rule of thumb:</b> damp soil 50mm down is the target. Push a screwdriver into the lawn. If it slides in easily, moisture is getting through. If it stops short, you need a longer run or a wetting agent.</div>
+  </div>
+
+  <div class="foot">
+    <span>Perth Lawn Renovation Services · ABN 29 942 711 312</span>
+    <span>perthlawnrenovationservices.com.au · 0427 206 246</span>
+  </div>
+</div>
+
+<!-- ============ PAGE 2 ============ -->
+<div class="page">
+  <div class="body" style="padding-top:11mm;">
+    <h2><span class="n">3</span>The aftercare program</h2>
+    <p class="lead">A renovation opens the door. Aftercare is what keeps the lawn thick through summer. We supply the same products we use on our own jobs, so you are not guessing in a hardware aisle.</p>
+
+    <div class="prod">
+      <div class="p">
+        <span class="tag">Step 1</span>
+        <span class="txt"><b>Lawn fertiliser</b>Balanced slow release feed for warm season turf. Apply around week two, then every 8 to 10 weeks through the growing season.</span>
+      </div>
+      <div class="p">
+        <span class="tag">Step 2</span>
+        <span class="txt"><b>Wetting agent</b>Breaks down the waxy layer in Perth's sandy soils so water soaks in instead of beading off. The single best value product for a WA lawn.</span>
+      </div>
+      <div class="p">
+        <span class="tag">Step 3</span>
+        <span class="txt"><b>Soil conditioner and additives</b>Improves soil structure and moisture holding after coring, so roots go deeper and the lawn handles heat better.</span>
+      </div>
+      <div class="p">
+        <span class="tag">Step 4</span>
+        <span class="txt"><b>Weed and pest control</b>Selective herbicide and insecticide for broadleaf weeds, wintergrass, lawn beetle and webworm. Apply only after week three.</span>
+      </div>
+      <div class="p">
+        <span class="tag">Optional</span>
+        <span class="txt"><b>Seasonal top up service</b>Prefer we handle it? We can schedule your feed, wetting agent and treatments so you never have to think about it.</span>
+      </div>
+    </div>
+
+    <h2><span class="n">4</span>Your seasonal calendar</h2>
+    <div class="tl" style="margin-bottom:7mm;">
+      <div class="row"><div class="when">Spring</div><div class="what">Renovate, feed, wetting agent. Prime growing window in Perth.</div></div>
+      <div class="row"><div class="when">Summer</div><div class="what">Wetting agent monthly, feed lightly, mow high to shade the soil.</div></div>
+      <div class="row"><div class="when">Autumn</div><div class="what">Feed, treat weeds, last chance renovation before mid April.</div></div>
+      <div class="row"><div class="when">Winter</div><div class="what">Ease off water, treat wintergrass, plan your spring renovation.</div></div>
+    </div>
+
+    <div class="cta">
+      <div class="t">Need the products<br>or a hand?</div>
+      <p>Ask us about the aftercare program and we will put together exactly what your lawn needs, based on the renovation we just did.</p>
+      <span class="btn">perthlawnrenovationservices.com.au</span>
+      <div class="ph">0427 206 246</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Perth Lawn Renovation Services · 15+ years · All Perth metro</span>
+    <span>perthlawnrenovationservices@outlook.com</span>
+  </div>
+</div>
+
+</body>
+</html>
