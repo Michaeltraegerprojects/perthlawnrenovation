@@ -536,14 +536,10 @@ const CONFIG = {
         desc:"Levels the surface and boosts soil quality after dethatching", priceNote:"from $5 / m² · $150 min" },
       { id:"package",  type:"package", label:"Complete lawn rejuvenation package",
         desc:"Dethatch + aeration + topdress + fertiliser & wetting agent + reticulation assessment", priceNote:"best value · save 10%" },
-      { id:"weedspray", type:"flat", price:75, category:"Herbicide", label:"Weed spraying",
-        desc:"Broadleaf & general weed control by our licensed technician", priceNote:"from $75" },
-      { id:"insecticide", type:"flat", price:75, category:"Insecticide", label:"Insecticide treatment",
-        desc:"Lawn beetle, webworm & other pest control", priceNote:"from $75" },
-      { id:"wetting",  type:"flat", price:75, category:"Wetting agent / soil additives", label:"Wetting agent & soil additives",
-        desc:"Helps water penetrate hydrophobic sandy soils", priceNote:"from $75" },
-      { id:"retic",    type:"flat", price:99, label:"Reticulation repairs",
-        desc:"Fix coverage issues before they cook your new lawn", priceNote:"from $99" },
+      { id:"treatments", type:"flat", price:75, alsoPOA:true, category:"Lawn health treatments", label:"Lawn health treatments",
+        desc:"Wetting agent & soil additives from $75. Weed spraying and insecticide added at assessment.", priceNote:"from $75" },
+      { id:"retic",    type:"flat", price:99, label:"Reticulation audit",
+        desc:"Full system check: coverage, pressure and broken heads, with a written report", priceNote:"from $99" },
     ],
 
     timing: [
@@ -719,6 +715,7 @@ function calcReno(){
       lines.push({ k:`Rejuvenation package (~${sqm} m²)`, v:`<s style="opacity:.5">${fmt(Math.round(pkgFull))}</s> from ${fmt(p)}` });
       lines.push({ k:"You save (10% off)", v:`<span style="color:#A3E635;font-weight:800">-${fmt(pkgSave)}</span>` });
     } else if (svc.type === "flat"){
+      if (svc.alsoPOA) hasPOA = true;
       total += svc.price;
       lines.push({ k:svc.category ? `${svc.label} (${svc.category})` : svc.label, v:"from " + fmt(svc.price) });
     } else { // poa
