@@ -111,6 +111,25 @@
   .crumb{ margin-left:auto; font-size:13px; font-weight:700; color:rgba(246,242,231,.55); }
   .crumb a{ color:var(--lime); text-decoration:none; }
 
+  .pnav{ display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-top:18px; padding:7px; background:var(--deep); border:1px solid rgba(163,230,53,.2); border-radius:14px; }
+  .pnav a{ padding:9px 14px; border-radius:9px; font-size:14.5px; font-weight:700; color:var(--soft); text-decoration:none; transition:background .2s ease, color .2s ease; }
+  .pnav a:hover{ background:rgba(163,230,53,.12); color:var(--lime); }
+  .pnav a.on{ background:rgba(163,230,53,.16); color:var(--lime); }
+  .pnav .sp{ margin-left:auto; }
+  .pnav a.q{ background:var(--lime); color:var(--ink); font-weight:800; }
+  .pnav a.q:hover{ background:#b8f045; color:var(--ink); }
+  .pnav a.t{ border:1px solid rgba(163,230,53,.4); color:var(--lime); font-weight:800; }
+  @media (max-width:700px){ .pnav{ gap:5px; } .pnav .sp{ display:none; } .pnav a{ padding:8px 11px; font-size:13.5px; } .pnav a.q, .pnav a.t{ display:none; } }
+
+  .dock{ display:none; }
+  @media (max-width:700px){
+    .dock{ display:flex; position:fixed; left:0; right:0; bottom:0; z-index:90; gap:8px; padding:9px 12px calc(9px + env(safe-area-inset-bottom)); background:rgba(10,26,14,.94); backdrop-filter:blur(10px); border-top:1px solid rgba(163,230,53,.25); }
+    .dock a{ flex:1; text-align:center; padding:14px 10px; border-radius:999px; font-weight:800; font-size:15px; text-decoration:none; }
+    .dock .call{ background:var(--lime); color:var(--ink); }
+    .dock .quote{ background:var(--gold); color:#241100; }
+    body{ padding-bottom:80px; }
+  }
+
   .kick{ display:flex; align-items:center; gap:12px; margin-bottom:20px; }
   .kick i{ width:34px; height:4px; background:var(--gold); display:block; }
   .kick span{ font-size:13px; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); }
@@ -174,6 +193,16 @@
     <span>Perth Lawn Renovation Services</span>
     <div class="crumb"><a href="/">Home</a> &rsaquo; Lawn Aeration</div>
   </div>
+
+  <nav class="pnav">
+    <a href="/">Home</a>
+    <a href="aeration.html" class="on">Lawn Aeration</a>
+    <a href="top-dressing.html">Top Dressing</a>
+    <a href="hire.html">Equipment Hire</a>
+    <span class="sp"></span>
+    <a class="q" href="quote.html">Instant Quote</a>
+    <a class="t" href="tel:0427206246">0427 206 246</a>
+  </nav>
 
   <div class="hero">
     <div>
@@ -305,6 +334,11 @@
     </div>
   </footer>
 
+</div>
+
+<div class="dock">
+  <a class="call" href="tel:0427206246">Call Now</a>
+  <a class="quote" href="quote.html">Free Quote</a>
 </div>
 
 </body>
