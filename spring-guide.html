@@ -13,7 +13,14 @@
 <meta property="og:image" content="https://perthlawnrenovationservices.com.au/assets/plr-banner-opt.jpg">
 <meta name="theme-color" content="#0a1a0e">
 <link rel="icon" type="image/png" href="assets/sprout-transparent.png">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="167x167" href="assets/apple-touch-icon-167.png">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/apple-touch-icon-152.png">
+<link rel="apple-touch-icon" sizes="120x120" href="assets/apple-touch-icon-120.png">
+<meta name="apple-mobile-web-app-title" content="Perth Lawn Reno">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -21,6 +28,10 @@
   :root{ --ink:#0a1a0e; --deep:#0f2515; --lime:#A3E635; --gold:#FFB020; --gold2:#FFC24D; --cream:#F6F2E7; --soft:#DCE6D2; }
   *{ box-sizing:border-box; }
   html{ scroll-behavior:smooth; }
+  html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+  body{ -webkit-tap-highlight-color:rgba(163,230,53,.18); }
+  input,select,textarea{ -webkit-appearance:none; appearance:none; border-radius:0; }
+
   body{ margin:0; background:var(--ink); color:var(--cream); font-family:'Hanken Grotesk',sans-serif; }
   a{ color:inherit; }
   .wrap{ max-width:1100px; margin:0 auto; padding:0 clamp(20px,5vw,60px); }
@@ -49,7 +60,7 @@
   .field{ margin-bottom:16px; }
   input[type=text],input[type=email],input[type=tel]{
     width:100%; background:rgba(163,230,53,.08); border:2px solid rgba(163,230,53,.3); border-radius:11px;
-    color:var(--cream); font-family:'Hanken Grotesk',sans-serif; font-size:15px; font-weight:600; padding:13px 15px; outline:none; transition:border-color .2s ease;
+    color:var(--cream); font-family:'Hanken Grotesk',sans-serif; font-size:16px; font-weight:600; padding:13px 15px; outline:none; transition:border-color .2s ease;
   }
   input:focus{ border-color:var(--gold); }
   .err{ color:#ff8a7a; font-size:12.5px; font-weight:700; margin-top:6px; display:none; }

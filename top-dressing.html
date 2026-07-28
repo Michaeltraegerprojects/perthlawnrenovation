@@ -15,7 +15,14 @@
 <meta property="og:locale" content="en_AU">
 <meta name="theme-color" content="#0a1a0e">
 <link rel="icon" type="image/png" href="assets/sprout-transparent.png">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="167x167" href="assets/apple-touch-icon-167.png">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/apple-touch-icon-152.png">
+<link rel="apple-touch-icon" sizes="120x120" href="assets/apple-touch-icon-120.png">
+<meta name="apple-mobile-web-app-title" content="Perth Lawn Reno">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=yes">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -89,6 +96,10 @@
   :root{ --ink:#0a1a0e; --deep:#0f2515; --lime:#A3E635; --gold:#FFB020; --gold2:#FFC24D; --cream:#F6F2E7; --soft:#DCE6D2; }
   *{ box-sizing:border-box; }
   html{ scroll-behavior:smooth; }
+  html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+  body{ -webkit-tap-highlight-color:rgba(163,230,53,.18); }
+  input,select,textarea{ -webkit-appearance:none; appearance:none; border-radius:0; }
+
   body{ margin:0; background:var(--ink); color:var(--cream); font-family:'Hanken Grotesk',sans-serif; }
   a{ color:inherit; }
   img{ max-width:100%; }
