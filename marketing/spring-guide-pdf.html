@@ -17,6 +17,8 @@
   .hdr h1{ font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase; font-size:23pt; line-height:.94; margin-top:3mm; }
   .hdr h1 em{ font-style:normal; color:var(--gold); }
   .hdr p{ margin-top:2.5mm; font-size:9pt; font-weight:600; color:var(--soft); max-width:140mm; line-height:1.5; }
+  .hdr .logowrap{ width:14mm; height:14mm; border-radius:50%; background:rgba(10,26,14,.6); border:1.2px solid rgba(163,230,53,.55); display:flex; align-items:center; justify-content:center; margin-bottom:3.5mm; }
+  .hdr .logowrap img{ width:62%; height:62%; object-fit:contain; }
   .hdr .strip{ position:absolute; left:0; right:0; bottom:0; height:3mm; background:var(--gold); }
   .stats{ display:flex; gap:8mm; margin-top:4mm; }
   .stats .s b{ display:block; font-family:'Anton',sans-serif; font-size:16pt; color:var(--gold); line-height:1; }
@@ -52,7 +54,7 @@
   .cta{ background:linear-gradient(120deg,#0f2515,#16391f); color:var(--cream); border-radius:5mm; padding:5.5mm 7mm; text-align:center; margin-bottom:18mm; border:1.5px solid rgba(163,230,53,.3); }
   .cta .t{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:14.5pt; line-height:1.03; }
   .cta p{ font-size:8.5pt; color:var(--soft); margin-top:2mm; line-height:1.4; }
-  .cta .btn{ display:inline-block; margin-top:4mm; background:var(--gold); color:#241100; font-weight:800; font-size:11pt; padding:3.5mm 8mm; border-radius:99mm; text-transform:uppercase; letter-spacing:.04em; }
+  .cta .btn{ display:inline-block; margin-top:4mm; background:var(--gold); color:#241100; font-weight:800; font-size:11pt; padding:3.5mm 8mm; border-radius:99mm; text-transform:uppercase; letter-spacing:.04em; text-decoration:none; }
   .cta .ph{ font-family:'Anton',sans-serif; font-size:15pt; color:var(--lime); margin-top:3mm; letter-spacing:.03em; }
   .cta .urgent{ margin-top:3mm; font-size:8.5pt; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:.08em; }
 
@@ -64,6 +66,7 @@
 <!-- ============ PAGE 1 ============ -->
 <div class="page">
   <div class="hdr">
+    <div class="logowrap"><img src="../assets/sprout-transparent.png" alt="Perth Lawn Renovation Services logo"></div>
     <div class="kick">Perth Lawn Renovation Services</div>
     <h1>The complete<br><em>spring rejuvenation</em><br>guide</h1>
     <p>Everything a Perth homeowner needs to know before booking a spring lawn renovation, what it fixes, what it costs, and how to get the best result from the growing season.</p>
@@ -141,7 +144,7 @@
     <div class="cta">
       <div class="t">Spring slots fill fast.<br>Get your price today.</div>
       <p>Free instant online quote, no site visit needed. Confirm the same day and lock in your spot before the season books out.</p>
-      <span class="btn">perthlawnrenovationservices.com.au</span>
+      <a class="btn" href="https://perthlawnrenovationservices.com.au/quote.html">Get My Free Quote &#8594;</a>
       <div class="ph">0427 206 246</div>
       <div class="urgent">Limited spring bookings across Perth metro</div>
     </div>

@@ -17,6 +17,8 @@
   .hdr .kick{ font-size:10pt; font-weight:800; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); }
   .hdr h1{ font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase; font-size:27pt; line-height:.92; margin-top:4mm; }
   .hdr p{ margin-top:3mm; font-size:10pt; font-weight:600; color:var(--soft); max-width:135mm; line-height:1.5; }
+  .hdr .logowrap{ width:14mm; height:14mm; border-radius:50%; background:rgba(10,26,14,.6); border:1.2px solid rgba(163,230,53,.55); display:flex; align-items:center; justify-content:center; margin-bottom:3.5mm; }
+  .hdr .logowrap img{ width:62%; height:62%; object-fit:contain; }
   .hdr .strip{ position:absolute; left:0; right:0; bottom:0; height:3mm; background:var(--lime); }
 
   .body{ padding:8mm 15mm 0; }
@@ -51,7 +53,7 @@
   .cta{ background:var(--deep); color:var(--cream); border-radius:4mm; padding:6mm 8mm 6mm; text-align:center; margin-bottom:20mm; }
   .cta .t{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:16pt; line-height:1.02; }
   .cta p{ font-size:9pt; color:var(--soft); margin-top:2.5mm; line-height:1.5; }
-  .cta .btn{ display:inline-block; margin-top:3mm; background:var(--gold); color:#241100; font-weight:800; font-size:11pt; padding:3.5mm 8mm; border-radius:99mm; text-transform:uppercase; letter-spacing:.04em; }
+  .cta .btn{ display:inline-block; margin-top:3mm; background:var(--gold); color:#241100; font-weight:800; font-size:11pt; padding:3.5mm 8mm; border-radius:99mm; text-transform:uppercase; letter-spacing:.04em; text-decoration:none; }
   .cta .ph{ font-family:'Anton',sans-serif; font-size:15pt; color:var(--lime); margin-top:3mm; letter-spacing:.03em; }
 
   .foot{ position:absolute; left:15mm; right:15mm; bottom:7mm; display:flex; justify-content:space-between; font-size:8.5pt; color:var(--muted); border-top:1px solid #e3e9de; padding-top:3mm; }
@@ -64,6 +66,7 @@
 <!-- ============ PAGE 1 ============ -->
 <div class="page">
   <div class="hdr">
+    <div class="logowrap"><img src="../assets/sprout-transparent.png" alt="Perth Lawn Renovation Services logo"></div>
     <div class="kick">Perth Lawn Renovation Services</div>
     <h1>Your lawn<br>aftercare guide</h1>
     <p>Your lawn has just been renovated. What you do over the next three weeks decides how thick and green it comes back. Follow this guide and you will be mowing a better lawn within two to three weeks.</p>
@@ -170,7 +173,7 @@
     <div class="cta">
       <div class="t">Need the products<br>or a hand?</div>
       <p>Ask us about the aftercare program and we will put together exactly what your lawn needs, based on the renovation we just did.</p>
-      <span class="btn">perthlawnrenovationservices.com.au</span>
+      <a class="btn" href="https://perthlawnrenovationservices.com.au/quote.html">Get My Free Quote &#8594;</a>
       <div class="ph">0427 206 246</div>
     </div>
   </div>
