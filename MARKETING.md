@@ -170,6 +170,23 @@ browser's screenshot tool) and upload straight to Facebook/Instagram.
 >
 > Perth metro pickup. Book online 👉 perthlawnrenovationservices.com.au
 
+**Ad 5 — Free Spring Guide (lead magnet, builds your contact list)**
+> 🌱 Free guide: The Complete Spring Lawn Rejuvenation Guide.
+>
+> What to fix, what it costs, and how to book before Perth's spring slots
+> fill up. 5 signs your lawn needs it, the recovery timeline, and how to
+> save 10% by bundling the core services.
+>
+> 👉 Get it free: perthlawnrenovationservices.com.au/spring-guide.html
+
+Unlike Ads 1-4 (which send people straight to the quote tool), this one links
+to **`spring-guide.html`**, a dedicated landing page that asks for name, email
+and mobile before unlocking the guide PDF. Every submission lands in your
+Formspree dashboard, so this is the ad to run when you want to **build a
+contact list to follow up with**, not just get an instant quote click. Good
+for a wider top-of-funnel audience (people not ready to book yet but curious
+about their lawn).
+
 ### How to actually run the ads (cheap and effective)
 
 1. **Start with "Boost Post", not the full Ads Manager.** On your Facebook page,

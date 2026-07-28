@@ -411,15 +411,7 @@
       <div style="font-family:'Anton',sans-serif; text-transform:uppercase; color:#F6F2E7; font-size:clamp(18px,2.2vw,25px); line-height:1.05;">The full Perth lawn aftercare guide.</div>
       <p style="margin:6px 0 0; font-size:13.5px; font-weight:600; color:#DCE6D2; line-height:1.5; max-width:520px;">Week by week recovery after vertimowing or coring, plus the aftercare products we use ourselves.</p>
     </div>
-    <sc-if value="{{ guideSent }}" hint-placeholder-val="{{ false }}">
-      <a href="Lawn-Aftercare-Guide.pdf" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:9px; background:#FFB020; color:#241100; font-weight:800; font-size:14px; text-transform:uppercase; letter-spacing:.02em; padding:12px 22px; border-radius:999px; text-decoration:none; white-space:nowrap;" style-hover="background:#FFC24D;">Download the Guide →</a>
-    </sc-if>
-    <sc-if value="{{ guideNotSent }}" hint-placeholder-val="{{ true }}">
-      <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
-        <input type="email" value="{{ guideEmail }}" onChange="{{ onGuideEmailChange }}" placeholder="Enter your email for the full Perth lawn guide" style="background:rgba(163,230,53,.08); border:2px solid rgba(163,230,53,.35); border-radius:999px; color:#F6F2E7; font-family:'Hanken Grotesk',sans-serif; font-size:13.5px; font-weight:600; padding:11px 16px; width:min(280px,58vw); outline:none;">
-        <button onClick="{{ submitGuide }}" style="background:#FFB020; color:#241100; font-weight:800; font-size:14px; text-transform:uppercase; letter-spacing:.02em; padding:12px 20px; border-radius:999px; border:none; cursor:pointer; white-space:nowrap;" style-hover="background:#FFC24D;">{{ guideBtnLabel }}</button>
-      </div>
-    </sc-if>
+    <a href="Lawn-Aftercare-Guide.pdf" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:9px; background:#FFB020; color:#241100; font-weight:800; font-size:14px; text-transform:uppercase; letter-spacing:.02em; padding:12px 22px; border-radius:999px; text-decoration:none; white-space:nowrap;" style-hover="background:#FFC24D;">Download the Guide →</a>
   </div>
 </div>
 
@@ -716,31 +708,8 @@
 </a>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;showPrices&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;dethatchRate&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:8,&quot;min&quot;:1,&quot;max&quot;:30,&quot;step&quot;:0.5,&quot;unit&quot;:&quot;$/m²&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Quote Rates&quot;},&quot;aerateRate&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:1.5,&quot;min&quot;:0.5,&quot;max&quot;:15,&quot;step&quot;:0.25,&quot;unit&quot;:&quot;$/m²&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Quote Rates&quot;},&quot;minJob&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:400,&quot;min&quot;:0,&quot;max&quot;:2000,&quot;step&quot;:50,&quot;unit&quot;:&quot;$&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Quote Rates&quot;}}">
-// Paste a Formspree/Getform/your-API URL here to collect aftercare guide
-// signups as real leads (POSTed as JSON: {email, source, page, ts}).
-// Until it's set, the guide still unlocks for visitors, but signups are
-// not recorded anywhere - see quote.html for the same pattern.
-const GUIDE_LEAD_ENDPOINT = "";
-
 class Component extends DCLogic {
-  state = { sliderPct: 58, openFaq: 0, area: 150, dethatch: true, aerate: false, isMobile: false, mobileMenuOpen: false, guideEmail: '', guideSending: false, guideSent: false };
-
-  onGuideEmailChange = (e) => this.setState({ guideEmail: e.target.value });
-  submitGuide = async () => {
-    const email = this.state.guideEmail.trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
-    this.setState({ guideSending: true });
-    if (GUIDE_LEAD_ENDPOINT) {
-      try {
-        await fetch(GUIDE_LEAD_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, source: 'aftercare-guide', page: location.href, ts: new Date().toISOString() }),
-        });
-      } catch (err) { /* still unlock the guide below, don't block on network errors */ }
-    }
-    this.setState({ guideSending: false, guideSent: true });
-  };
+  state = { sliderPct: 58, openFaq: 0, area: 150, dethatch: true, aerate: false, isMobile: false, mobileMenuOpen: false };
 
   toggleMobileMenu = () => this.setState(s => ({ mobileMenuOpen: !s.mobileMenuOpen }));
   closeMobileMenu = () => this.setState({ mobileMenuOpen: false });
@@ -907,12 +876,6 @@ class Component extends DCLogic {
       sliderRef: this.sliderRef,
       bannerRef: this.bannerRef,
       heroRef: this.heroRef,
-      guideEmail: this.state.guideEmail,
-      onGuideEmailChange: this.onGuideEmailChange,
-      submitGuide: this.submitGuide,
-      guideSent: this.state.guideSent,
-      guideNotSent: !this.state.guideSent,
-      guideBtnLabel: this.state.guideSending ? 'Sending…' : 'Get My Guide →',
       showPrices: this.props.showPrices ?? true,
       isMobile: this.state.isMobile,
       notMobile: !this.state.isMobile,
