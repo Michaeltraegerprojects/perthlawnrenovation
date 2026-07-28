@@ -18,7 +18,7 @@
 <meta name="twitter:image" content="https://perthlawnrenovationservices.com.au/assets/plr-banner-opt.jpg">
 <meta name="theme-color" content="#0a1a0e">
 <link rel="icon" type="image/png" href="assets/sprout-transparent.png">
-<link rel="apple-touch-icon" href="assets/sprout-transparent.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <!--
   ============================================================
   PERTH LAWN RENOVATION SERVICES: INSTANT QUOTE WIDGET
@@ -74,6 +74,35 @@
   }
 
   .wrap{ max-width:1080px; margin:0 auto; padding:40px 20px 120px; }
+
+  /* ---------- site nav ---------- */
+  .sitenav{
+    max-width:1080px; margin:0 auto; padding:18px 20px 0;
+    display:flex; align-items:center; gap:10px 20px; flex-wrap:wrap;
+  }
+  .sitenav .brand{
+    display:inline-flex; align-items:center; gap:10px;
+    font-weight:850; font-size:14px; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--ink); text-decoration:none;
+  }
+  .sitenav .brand img{
+    width:34px; height:34px; flex:0 0 auto; border-radius:50%;
+    object-fit:contain; background:var(--card); border:1px solid var(--line); padding:3px;
+  }
+  .sitenav nav{ margin-left:auto; display:flex; gap:8px 18px; flex-wrap:wrap; }
+  .sitenav nav a{
+    font-size:14px; font-weight:700; color:var(--ink-soft); text-decoration:none;
+  }
+  .sitenav nav a:hover{ color:var(--grass-dk); }
+
+  /* ---------- site footer ---------- */
+  .sitefoot{
+    max-width:1080px; margin:0 auto; padding:0 20px 60px;
+    border-top:1px solid var(--line); padding-top:26px;
+    font-size:14px; color:var(--ink-soft);
+  }
+  .sitefoot .links{ display:flex; gap:10px 20px; flex-wrap:wrap; margin-bottom:12px; }
+  .sitefoot a{ color:var(--grass-dk); font-weight:700; text-decoration:none; }
 
   /* ---------- header ---------- */
   .eyebrow{
@@ -377,6 +406,19 @@
 </style>
 </head>
 <body>
+
+<div class="sitenav">
+  <a class="brand" href="/">
+    <img src="assets/sprout-transparent.png" alt="Perth Lawn Renovation Services logo">
+    Perth Lawn Renovation Services
+  </a>
+  <nav aria-label="Services">
+    <a href="/">Home</a>
+    <a href="aeration.html">Lawn Aeration</a>
+    <a href="top-dressing.html">Top Dressing</a>
+    <a href="hire.html">Equipment Hire</a>
+  </nav>
+</div>
 
 <div class="wrap">
   <span class="eyebrow">Perth Lawn Renovation Services</span>
@@ -1051,5 +1093,19 @@ setMode("reno");
   refresh();
 })();
 </script>
+
+<div class="sitefoot">
+  <div class="links">
+    <a href="/">Home</a>
+    <a href="aeration.html">Lawn Aeration &amp; Coring</a>
+    <a href="top-dressing.html">Top Dressing &amp; Levelling</a>
+    <a href="hire.html">Equipment Hire</a>
+  </div>
+  <div>Perth Lawn Renovation Services &middot; ABN 29 942 711 312 &middot;
+    <a href="tel:0427206246">0427 206 246</a> &middot;
+    <a href="mailto:perthlawnrenovationservices@outlook.com">perthlawnrenovationservices@outlook.com</a>
+  </div>
+</div>
+
 </body>
 </html>

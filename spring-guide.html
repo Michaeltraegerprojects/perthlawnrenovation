@@ -13,6 +13,7 @@
 <meta property="og:image" content="https://perthlawnrenovationservices.com.au/assets/plr-banner-opt.jpg">
 <meta name="theme-color" content="#0a1a0e">
 <link rel="icon" type="image/png" href="assets/sprout-transparent.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -25,7 +26,7 @@
   .wrap{ max-width:1100px; margin:0 auto; padding:0 clamp(20px,5vw,60px); }
 
   .top{ padding:22px 0 0; display:flex; align-items:center; gap:12px; }
-  .top img{ width:38px; height:38px; border-radius:50%; border:2px solid rgba(163,230,53,.5); }
+  .top img{ width:38px; height:38px; flex:0 0 auto; border-radius:50%; border:2px solid rgba(163,230,53,.5); object-fit:contain; background:rgba(163,230,53,.08); padding:4px; }
   .top span{ font-family:'Anton',sans-serif; font-size:15px; letter-spacing:.05em; text-transform:uppercase; }
 
   .hero{ display:grid; grid-template-columns:1.15fr 1fr; gap:clamp(30px,4vw,60px); align-items:center; padding:clamp(40px,6vw,72px) 0 clamp(50px,6vw,80px); }
@@ -134,7 +135,13 @@
     </div>
   </div>
 
-  <div class="foot">
+  <div class="foot" style="justify-content:flex-start; gap:10px 18px;">
+    <a href="/" style="color:#A3E635; font-weight:700; text-decoration:none;">Home</a>
+    <a href="aeration.html" style="color:#A3E635; font-weight:700; text-decoration:none;">Lawn Aeration &amp; Coring</a>
+    <a href="top-dressing.html" style="color:#A3E635; font-weight:700; text-decoration:none;">Top Dressing &amp; Levelling</a>
+    <a href="hire.html" style="color:#A3E635; font-weight:700; text-decoration:none;">Equipment Hire</a>
+  </div>
+  <div class="foot" style="border-top:none; margin-top:0; padding-top:0;">
     <span>Perth Lawn Renovation Services &middot; All Perth Metro &middot; 15+ Years</span>
     <span>0427 206 246 &middot; perthlawnrenovationservices@outlook.com</span>
   </div>
