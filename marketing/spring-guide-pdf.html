@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Complete Spring Lawn Rejuvenation Guide - Perth Lawn Renovation Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { size:A4; margin:0; }
+  :root{ --ink:#0a1a0e; --deep:#0f2515; --lime:#A3E635; --gold:#FFB020; --cream:#F6F2E7; --soft:#DCE6D2; --paper:#ffffff; --text:#1a2b1f; --muted:#5d6b60; }
+  *{ margin:0; box-sizing:border-box; }
+  body{ font-family:'Hanken Grotesk',sans-serif; color:var(--text); background:var(--paper); }
+  .page{ width:210mm; height:297mm; overflow:hidden; padding:0 0 14mm; page-break-after:always; position:relative; }
+  .page:last-child{ page-break-after:auto; }
+
+  .hdr{ background:var(--ink); color:var(--cream); padding:10mm 15mm 7mm; position:relative; overflow:hidden; }
+  .hdr .kick{ font-size:10pt; font-weight:800; letter-spacing:.26em; text-transform:uppercase; color:var(--lime); }
+  .hdr h1{ font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase; font-size:23pt; line-height:.94; margin-top:3mm; }
+  .hdr h1 em{ font-style:normal; color:var(--gold); }
+  .hdr p{ margin-top:2.5mm; font-size:9pt; font-weight:600; color:var(--soft); max-width:140mm; line-height:1.5; }
+  .hdr .strip{ position:absolute; left:0; right:0; bottom:0; height:3mm; background:var(--gold); }
+  .stats{ display:flex; gap:8mm; margin-top:4mm; }
+  .stats .s b{ display:block; font-family:'Anton',sans-serif; font-size:16pt; color:var(--gold); line-height:1; }
+  .stats .s span{ font-size:8pt; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:rgba(246,242,231,.65); }
+
+  .body{ padding:6mm 15mm 0; }
+  h2{ font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase; font-size:12.5pt; color:var(--deep); margin-bottom:2mm; padding-bottom:1.5mm; border-bottom:2px solid var(--gold); }
+  h2 .n{ color:var(--gold); margin-right:3mm; }
+  .lead{ font-size:8.5pt; color:var(--muted); line-height:1.45; margin-bottom:3mm; }
+
+  .signs{ display:flex; flex-direction:column; gap:1.5mm; margin-bottom:4mm; }
+  .signs .row{ display:flex; align-items:flex-start; gap:3.5mm; border:1.5px solid #dfe6da; border-radius:3mm; padding:2.2mm 4mm; }
+  .signs .row .ico{ flex:0 0 auto; width:6mm; height:6mm; border-radius:50%; background:var(--gold); color:#241100; font-weight:800; font-size:9pt; display:flex; align-items:center; justify-content:center; }
+  .signs .row .txt{ font-size:8.5pt; line-height:1.35; }
+  .signs .row .txt b{ color:var(--deep); }
+
+  .pkg{ background:var(--deep); color:var(--cream); border-radius:5mm; padding:4.5mm 6mm; margin-bottom:4mm; }
+  .pkg .tag{ font-size:9pt; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); }
+  .pkg .t{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:14pt; margin-top:1.5mm; line-height:1.02; }
+  .pkg .rows{ display:flex; flex-direction:column; gap:1.5mm; margin-top:3mm; }
+  .pkg .r{ display:flex; justify-content:space-between; align-items:baseline; font-size:8.5pt; border-bottom:1px solid rgba(163,230,53,.18); padding-bottom:1.5mm; }
+  .pkg .r b{ color:var(--lime); font-weight:800; }
+  .pkg .save{ margin-top:3mm; background:rgba(163,230,53,.14); border:1.5px solid rgba(163,230,53,.5); border-radius:3mm; padding:2.5mm 4mm; font-size:8.5pt; font-weight:700; color:var(--lime); line-height:1.35; }
+
+  .cols{ display:flex; gap:5mm; margin-bottom:4mm; }
+  .card{ flex:1; border:1.5px solid #dfe6da; border-radius:4mm; padding:3.5mm 4.5mm; }
+  .card h3{ font-size:10.5pt; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--deep); margin-bottom:2.5mm; }
+  .card p{ font-size:8pt; line-height:1.4; color:var(--muted); }
+
+  .quote{ background:#f4f7f1; border-left:3mm solid var(--gold); border-radius:2mm; padding:3mm 4.5mm; font-size:8.5pt; line-height:1.4; font-style:italic; color:var(--text); margin-bottom:3mm; }
+  .quote b{ display:block; font-style:normal; font-size:8.5pt; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--deep); margin-top:2mm; }
+
+  .cta{ background:linear-gradient(120deg,#0f2515,#16391f); color:var(--cream); border-radius:5mm; padding:5.5mm 7mm; text-align:center; margin-bottom:18mm; border:1.5px solid rgba(163,230,53,.3); }
+  .cta .t{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:14.5pt; line-height:1.03; }
+  .cta p{ font-size:8.5pt; color:var(--soft); margin-top:2mm; line-height:1.4; }
+  .cta .btn{ display:inline-block; margin-top:4mm; background:var(--gold); color:#241100; font-weight:800; font-size:11pt; padding:3.5mm 8mm; border-radius:99mm; text-transform:uppercase; letter-spacing:.04em; }
+  .cta .ph{ font-family:'Anton',sans-serif; font-size:15pt; color:var(--lime); margin-top:3mm; letter-spacing:.03em; }
+  .cta .urgent{ margin-top:3mm; font-size:8.5pt; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:.08em; }
+
+  .foot{ position:absolute; left:15mm; right:15mm; bottom:7mm; display:flex; justify-content:space-between; font-size:8.5pt; color:var(--muted); border-top:1px solid #e3e9de; padding-top:3mm; }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 ============ -->
+<div class="page">
+  <div class="hdr">
+    <div class="kick">Perth Lawn Renovation Services</div>
+    <h1>The complete<br><em>spring rejuvenation</em><br>guide</h1>
+    <p>Everything a Perth homeowner needs to know before booking a spring lawn renovation, what it fixes, what it costs, and how to get the best result from the growing season.</p>
+    <div class="stats">
+      <div class="s"><b>15+</b><span>Years Experience</span></div>
+      <div class="s"><b>200+</b><span>Lawns Renovated</span></div>
+      <div class="s"><b>42+</b><span>Perth Suburbs</span></div>
+    </div>
+    <div class="strip"></div>
+  </div>
+
+  <div class="body">
+    <h2><span class="n">1</span>Why spring is the window</h2>
+    <p class="lead">Perth's warm season lawns (couch, kikuyu, buffalo) do almost all of their recovery growth between September and April. Renovate in spring and your lawn has the whole season to thicken up before summer heat arrives. Wait until summer and you're asking a stressed lawn to repair itself in the worst conditions of the year.</p>
+
+    <h2><span class="n">2</span>Five signs your lawn needs it</h2>
+    <div class="signs">
+      <div class="row"><span class="ico">1</span><span class="txt"><b>It feels spongy underfoot.</b> That's thatch, a dead layer of runners choking the surface.</span></div>
+      <div class="row"><span class="ico">2</span><span class="txt"><b>Water sits on top instead of soaking in.</b> Compacted, hydrophobic soil needs aeration.</span></div>
+      <div class="row"><span class="ico">3</span><span class="txt"><b>Yellow or bare patches that don't green up.</b> Roots aren't reaching air, water or nutrients.</span></div>
+      <div class="row"><span class="ico">4</span><span class="txt"><b>It's been more than 2 years since a proper renovation.</b> Thatch rebuilds every season.</span></div>
+      <div class="row"><span class="ico">5</span><span class="txt"><b>Your water bill is climbing but the lawn still looks thirsty.</b> The water isn't reaching the roots.</span></div>
+    </div>
+
+    <div class="pkg">
+      <div class="tag">The Complete Lawn Rejuvenation Package</div>
+      <div class="t">One booking. Total reset.</div>
+      <div class="rows">
+        <div class="r"><span>Verti-mowing / dethatching</span><b>From $8/m²</b></div>
+        <div class="r"><span>Lawn aeration</span><b>From $1.50/m²</b></div>
+        <div class="r"><span>Top dressing</span><b>From $5/m²</b></div>
+        <div class="r" style="border-bottom:none;"><span>Fertiliser, wetting agent &amp; reticulation check</span><b>Included</b></div>
+      </div>
+      <div class="save">Book all three core services together and save 10% off the combined price, worked out instantly in our online calculator.</div>
+    </div>
+
+    <div class="quote">"Booked online, they came out the next week. Lawn was scalped back hard and I was nervous. Three weeks later it's the best it's looked in years. Worth every cent."<b>Jason M. · Canning Vale</b></div>
+  </div>
+
+  <div class="foot">
+    <span>Perth Lawn Renovation Services · ABN 29 942 711 312</span>
+    <span>perthlawnrenovationservices.com.au · 0427 206 246</span>
+  </div>
+</div>
+
+<!-- ============ PAGE 2 ============ -->
+<div class="page">
+  <div class="body" style="padding-top:10mm;">
+    <h2><span class="n">3</span>What actually happens on the day</h2>
+    <div class="cols">
+      <div class="card">
+        <h3>Dethatch</h3>
+        <p>Vertical blades strip out the dead runner layer choking your lawn, the single biggest reset a tired lawn can get. It will look scalped for a week or two, that's normal.</p>
+      </div>
+      <div class="card">
+        <h3>Aerate</h3>
+        <p>Coring relieves compaction and opens the soil profile so water and nutrients reach the roots instead of running off the surface.</p>
+      </div>
+      <div class="card">
+        <h3>Top dress</h3>
+        <p>A levelling layer of soil goes down over the aerated surface, improving structure and giving new growth the best possible start.</p>
+      </div>
+    </div>
+
+    <h2><span class="n">4</span>Optional add-ons, priced honestly</h2>
+    <div class="signs">
+      <div class="row"><span class="ico">+</span><span class="txt"><b>Lawn health treatments, from $75.</b> Wetting agent and soil additives at the base rate, weed spraying and insecticide added at your free assessment.</span></div>
+      <div class="row"><span class="ico">+</span><span class="txt"><b>Reticulation audit, from $99.</b> A full system check for coverage, pressure and broken heads, with a written report.</span></div>
+      <div class="row"><span class="ico">+</span><span class="txt"><b>DIY equipment dry hire.</b> Rather do it yourself? We hire out the same scarifier, verti-mower and aerator we use on our own jobs.</span></div>
+    </div>
+
+    <h2><span class="n">5</span>Your recovery timeline</h2>
+    <p class="lead">Days 1 to 7: water deeply, twice a day, don't panic at the scalped look. Week 2: feed it, fresh green shoots fill the gaps. Weeks 2 to 3: first mow, high setting only. Week 4 onward: back to normal, keep a wetting agent going through summer.</p>
+
+    <div class="cta">
+      <div class="t">Spring slots fill fast.<br>Get your price today.</div>
+      <p>Free instant online quote, no site visit needed. Confirm the same day and lock in your spot before the season books out.</p>
+      <span class="btn">perthlawnrenovationservices.com.au</span>
+      <div class="ph">0427 206 246</div>
+      <div class="urgent">Limited spring bookings across Perth metro</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Perth Lawn Renovation Services · 15+ years · All Perth metro</span>
+    <span>perthlawnrenovationservices@outlook.com</span>
+  </div>
+</div>
+
+</body>
+</html>
