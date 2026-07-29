@@ -1,7 +1,7 @@
-# Perth Lawn Renovation Services — Website
+# Perth Lawn Renovation Services: Website
 
 One-page animated site for Perth Lawn Renovation Services.
-Vertimowing · Lawn Aeration · Weed Spraying · Complete Rejuvenation — All Perth Metro.
+Vertimowing · Lawn Aeration · Weed Spraying · Complete Rejuvenation. All Perth Metro.
 
 ## What's in here
 
@@ -17,14 +17,14 @@ site/
 ### About quote.html
 
 A dedicated, self-contained calculator with two modes:
-1. **Lawn renovation quote** — dethatching ($7/m²) and aeration ($1.50/m²) priced instantly by
+1. **Lawn renovation quote**: dethatching ($8/m²) and aeration ($1.50/m²) priced instantly by
    lawn size, plus the rejuvenation package and assessment-priced extras (fertiliser, reticulation).
-2. **DIY equipment dry hire** — scarifier / vertimower / aerator by the day, 3-day or weekly rate,
+2. **DIY equipment dry hire**: scarifier / vertimower / aerator by the day, 3-day or weekly rate,
    with automatic 3-machine package pricing and the full trailer package.
 
 It's linked from the main site's nav ("Full Calculator") and from the on-page quote section.
 Every submission opens the customer's email app pre-filled to `perthlawnrenovationservices@outlook.com`
-with all details — or set `CONFIG.leadEndpoint` inside `quote.html` to a Formspree/Getform URL to
+with all details, or set `CONFIG.leadEndpoint` inside `quote.html` to a Formspree/Getform URL to
 receive leads as JSON instead of via email.
 
 ## Deploy to GitHub Pages (free hosting)
@@ -38,15 +38,15 @@ receive leads as JSON instead of via email.
 ### Custom domain later
 Buy the domain (e.g. perthlawnrenovationservices.com.au), then in **Settings → Pages → Custom domain**
 enter it and follow GitHub's DNS instructions. The SEO tags in `index.html` already point to
-`https://perthlawnrenovationservices.com.au/` — update those URLs if you use a different domain.
+`https://perthlawnrenovationservices.com.au/`. Update those URLs if you use a different domain.
 
-## Before going live — IMPORTANT
+## Before going live: IMPORTANT
 
 - **Replace the three reviews** in the "What Perth homeowners say" section with REAL customer
   quotes and names. The current three (Jason M., Sarah K., Mark T.) are sample copy from the
   build docs, not real customers. Publishing invented reviews as real breaches Australian
-  Consumer Law. Text your last three happy customers — one sentence each is enough.
-- Check the quote calculator rates ($7/m² dethatch, $1.50/m² aeration) are current.
+  Consumer Law. Text your last three happy customers, one sentence each is enough.
+- Check the quote calculator rates ($8/m² dethatch, $1.50/m² aeration) are current.
 - The WhatsApp button assumes 0427 206 246 is WhatsApp-enabled. If not, remove that button.
 
 ## Contact points wired in
@@ -59,6 +59,6 @@ enter it and follow GitHub's DNS instructions. The SEO tags in `index.html` alre
 
 ## Editing basics
 
-Everything is inline in `index.html` — search for the text you want to change.
+Everything is inline in `index.html`. Search for the text you want to change.
 Quote rates: search `dethatchRate` / `aerateRate` defaults (also editable via the
 `data-props` JSON on the script tag at the bottom of the file).

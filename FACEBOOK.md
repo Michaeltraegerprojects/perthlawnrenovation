@@ -1,4 +1,4 @@
-# Facebook Page Makeover — Perth Lawn Renovation Services
+# Facebook Page Makeover: Perth Lawn Renovation Services
 
 Everything to paste in, in order. Tick each off. All copy is written and ready.
 
@@ -6,7 +6,7 @@ Everything to paste in, in order. Tick each off. All copy is written and ready.
 - [x] Cover image (4K hero) uploaded
 - [x] Profile logo (clean circular version) uploaded
 
-## 1. The big miss — add your website + button
+## 1. The big miss: add your website + button
 - [ ] **Edit → Contact info → Website:** `perthlawnrenovationservices.com.au`
 - [ ] Set the **action button** (blue area under cover) → **"Book now"** → link the website
 - [ ] Location: Perth, WA · Service area: all Perth metro
@@ -16,7 +16,7 @@ Everything to paste in, in order. Tick each off. All copy is written and ready.
 ```
 Perth's lawn renovation specialists. Vertimowing to full rejuvenation. Free instant online quotes.
 ```
-**About / description** (paste — fixes the current typo):
+**About / description** (paste, fixes the current typo):
 ```
 Perth Lawn Renovation Services are your lawn renovation specialists. With 15+ years in the turf industry, we bring tired lawns back to life with vertimowing, aeration, topdressing, fertilising and complete rejuvenation, for residential and commercial properties across all Perth metro suburbs. Free instant online quotes, no site visit needed. EFTPOS on the day. Call 0427 206 246.
 ```
@@ -25,8 +25,8 @@ Perth Lawn Renovation Services are your lawn renovation specialists. With 15+ ye
 - [ ] **Username:** claim `@PerthLawnRenovation` (match your Instagram)
 - [ ] **Categories:** Landscape Company + Lawn Care Service + Gardener
 - [ ] **Services** (Edit → Services):
-  - Vertimowing / Dethatching — From $8/m²
-  - Lawn Aeration — From $1.50/m²
+  - Vertimowing / Dethatching, from $8/m²
+  - Lawn Aeration, from $1.50/m²
   - Complete Rejuvenation Package
   - Weed Spraying (licensed technician)
   - Equipment Dry Hire (scarifier, verti-mower, corer)
@@ -69,7 +69,7 @@ Spring slots are limited, so book early for a thick, green lawn all summer.
 ```
 
 ## 7. Settings to switch on
-- [ ] **Hours:** Mon–Sat 7am–5pm
+- [ ] **Hours:** Mon-Sat 7am-5pm
 - [ ] **Messaging instant reply:** "Thanks for messaging! Send your suburb + a few lawn photos and we'll price it up fast."
 - [ ] **Reviews / Recommendations:** turn ON
 - [ ] Cross-post the cover, logo and posts to **Instagram (@perthlawn)** too
