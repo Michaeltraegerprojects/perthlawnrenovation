@@ -22,6 +22,10 @@ Do them in this order.
 
 This is free and it is the single most important thing for a Perth lawn business.
 
+> **See `GOOGLE-BUSINESS.md`** for the full tab-by-tab walkthrough: every field
+> written out ready to paste, the category fix, service areas, hours, attributes,
+> your 7 services with prices, and the Q&A to seed.
+
 1. Go to **google.com/business** and sign in with a Google account.
 2. Business name: **Perth Lawn Renovation Services** (exactly as on the website).
 3. Category: primary = **Lawn care service**. Add secondary categories:
