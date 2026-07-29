@@ -130,11 +130,14 @@
   .svcPanel { position:absolute; top:100%; left:50%; transform:translate(-50%,10px); padding-top:20px; opacity:0; visibility:hidden; pointer-events:none; transition:opacity .22s ease, transform .3s cubic-bezier(.16,1,.3,1); }
   .svcWrap:hover .svcPanel, .svcWrap:focus-within .svcPanel { opacity:1; visibility:visible; pointer-events:auto; transform:translate(-50%,0); }
   .svcCard { width:340px; background:#0f2515; border:2px solid rgba(163,230,53,.32); border-radius:18px; padding:8px; box-shadow:0 26px 64px rgba(0,0,0,.58); }
-  .svcItem { display:block; padding:13px 15px; border-radius:12px; text-decoration:none; transition:background .2s ease; }
-  .svcItem:hover { background:rgba(163,230,53,.11); }
-  .svcItem b { display:block; font-size:15.5px; font-weight:800; color:#F6F2E7; }
-  .svcItem span { display:block; margin-top:4px; font-size:13px; font-weight:600; color:rgba(220,230,210,.72); line-height:1.45; }
-  .svcItem i { font-style:normal; font-weight:800; color:#A3E635; }
+  .svcItem { display:flex; align-items:center; gap:6px; border-radius:12px; transition:background .2s ease; }
+  .svcItem:hover { background:rgba(163,230,53,.09); }
+  .svcLink { flex:1; min-width:0; display:block; padding:13px 4px 13px 15px; border-radius:12px; text-decoration:none; }
+  .svcLink b { display:block; font-size:15.5px; font-weight:800; color:#F6F2E7; }
+  .svcLink span { display:block; margin-top:4px; font-size:13px; font-weight:600; color:rgba(220,230,210,.72); line-height:1.45; }
+  .svcLink i { font-style:normal; font-weight:800; color:#A3E635; }
+  .svcBtn { flex:0 0 auto; display:inline-flex; align-items:center; gap:4px; background:rgba(163,230,53,.14); border:1.5px solid rgba(163,230,53,.45); color:#A3E635; font-weight:800; font-size:12.5px; padding:9px 13px; border-radius:999px; text-decoration:none; white-space:nowrap; margin-right:9px; transition:background .2s ease, color .2s ease; }
+  .svcBtn:hover { background:#A3E635; color:#0f2515; }
   .svcFoot { display:block; margin:6px 4px 2px; padding:13px 15px; border-radius:12px; background:#A3E635; color:#0f2515; text-decoration:none; font-weight:800; font-size:14.5px; text-align:center; transition:background .2s ease; }
   .svcFoot:hover { background:#b8f045; }
 </style>
@@ -163,9 +166,18 @@
         <a class="svcTop" href="#services">Services <span class="svcCaret">▼</span></a>
         <div class="svcPanel">
           <div class="svcCard">
-            <a class="svcItem" href="aeration.html"><b>Lawn Aeration &amp; Coring</b><span>Water running off instead of soaking in? This fixes it. <i>From $1.50/m²</i></span></a>
-            <a class="svcItem" href="top-dressing.html"><b>Top Dressing &amp; Levelling</b><span>Smooth out the bumps and hollows, thicken the turf.</span></a>
-            <a class="svcItem" href="hire.html"><b>Equipment Hire</b><span>Rather do it yourself? Dry-hire our machines.</span></a>
+            <div class="svcItem">
+              <a class="svcLink" href="aeration.html"><b>Lawn Aeration &amp; Coring</b><span>Water running off instead of soaking in? This fixes it. <i>From $1.50/m²</i></span></a>
+              <a class="svcBtn" href="quote.html">Quote →</a>
+            </div>
+            <div class="svcItem">
+              <a class="svcLink" href="top-dressing.html"><b>Top Dressing &amp; Levelling</b><span>Smooth out the bumps and hollows, thicken the turf.</span></a>
+              <a class="svcBtn" href="quote.html">Quote →</a>
+            </div>
+            <div class="svcItem">
+              <a class="svcLink" href="hire.html"><b>Equipment Hire</b><span>Rather do it yourself? Dry-hire our machines.</span></a>
+              <a class="svcBtn" href="quote.html">Quote →</a>
+            </div>
             <a class="svcFoot" href="quote.html">Not sure what you need? Free quote →</a>
           </div>
         </div>
@@ -181,9 +193,18 @@
     <a onClick="{{ closeMobileMenu }}" href="#story" style="color:#F6F2E7; text-decoration:none; font-weight:700; font-size:17px; padding:14px 12px; border-radius:10px;">Our Story</a>
     <a onClick="{{ closeMobileMenu }}" href="#results" style="color:#F6F2E7; text-decoration:none; font-weight:700; font-size:17px; padding:14px 12px; border-radius:10px;">Results</a>
     <a onClick="{{ closeMobileMenu }}" href="#services" style="color:#F6F2E7; text-decoration:none; font-weight:700; font-size:17px; padding:14px 12px; border-radius:10px;">Services</a>
-    <a onClick="{{ closeMobileMenu }}" href="aeration.html" style="color:#DCE6D2; text-decoration:none; font-weight:700; font-size:15px; padding:14px 12px 14px 20px; margin-left:12px; border-left:2px solid rgba(163,230,53,.32); border-radius:0 10px 10px 0;">Lawn Aeration &amp; Coring</a>
-    <a onClick="{{ closeMobileMenu }}" href="top-dressing.html" style="color:#DCE6D2; text-decoration:none; font-weight:700; font-size:15px; padding:14px 12px 14px 20px; margin-left:12px; border-left:2px solid rgba(163,230,53,.32); border-radius:0 10px 10px 0;">Top Dressing &amp; Levelling</a>
-    <a onClick="{{ closeMobileMenu }}" href="hire.html" style="color:#DCE6D2; text-decoration:none; font-weight:700; font-size:15px; padding:14px 12px 14px 20px; margin-left:12px; border-left:2px solid rgba(163,230,53,.32); border-radius:0 10px 10px 0;">Equipment Hire</a>
+    <div style="display:flex; align-items:center; gap:6px; margin-left:12px; border-left:2px solid rgba(163,230,53,.32); border-radius:0 10px 10px 0;">
+      <a onClick="{{ closeMobileMenu }}" href="aeration.html" style="flex:1; min-width:0; color:#DCE6D2; text-decoration:none; font-weight:700; font-size:15px; padding:14px 4px 14px 20px;">Lawn Aeration &amp; Coring</a>
+      <a onClick="{{ closeMobileMenu }}" href="quote.html" style="flex:0 0 auto; display:inline-flex; align-items:center; background:rgba(163,230,53,.14); border:1.5px solid rgba(163,230,53,.45); color:#A3E635; font-weight:800; font-size:12px; padding:8px 11px; border-radius:999px; text-decoration:none; white-space:nowrap; margin-right:9px;">Quote →</a>
+    </div>
+    <div style="display:flex; align-items:center; gap:6px; margin-left:12px; border-left:2px solid rgba(163,230,53,.32); border-radius:0 10px 10px 0;">
+      <a onClick="{{ closeMobileMenu }}" href="top-dressing.html" style="flex:1; min-width:0; color:#DCE6D2; text-decoration:none; font-weight:700; font-size:15px; padding:14px 4px 14px 20px;">Top Dressing &amp; Levelling</a>
+      <a onClick="{{ closeMobileMenu }}" href="quote.html" style="flex:0 0 auto; display:inline-flex; align-items:center; background:rgba(163,230,53,.14); border:1.5px solid rgba(163,230,53,.45); color:#A3E635; font-weight:800; font-size:12px; padding:8px 11px; border-radius:999px; text-decoration:none; white-space:nowrap; margin-right:9px;">Quote →</a>
+    </div>
+    <div style="display:flex; align-items:center; gap:6px; margin-left:12px; border-left:2px solid rgba(163,230,53,.32); border-radius:0 10px 10px 0;">
+      <a onClick="{{ closeMobileMenu }}" href="hire.html" style="flex:1; min-width:0; color:#DCE6D2; text-decoration:none; font-weight:700; font-size:15px; padding:14px 4px 14px 20px;">Equipment Hire</a>
+      <a onClick="{{ closeMobileMenu }}" href="quote.html" style="flex:0 0 auto; display:inline-flex; align-items:center; background:rgba(163,230,53,.14); border:1.5px solid rgba(163,230,53,.45); color:#A3E635; font-weight:800; font-size:12px; padding:8px 11px; border-radius:999px; text-decoration:none; white-space:nowrap; margin-right:9px;">Quote →</a>
+    </div>
     <a onClick="{{ closeMobileMenu }}" href="#quote" style="color:#A3E635; text-decoration:none; font-weight:800; font-size:17px; padding:14px 12px; border-radius:10px;">Instant Quote</a>
     <a onClick="{{ closeMobileMenu }}" href="quote.html" style="color:#FFB020; text-decoration:none; font-weight:800; font-size:17px; padding:14px 12px; border-radius:10px;">Full Calculator ↗</a>
   </div>
