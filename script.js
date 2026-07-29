@@ -1,5 +1,5 @@
 /* ============================================================
-   Perth Lawn Renovation Services — vanilla JS
+   Perth Lawn Renovation Services: vanilla JS
    Replaces the original React/DCLogic component with plain,
    dependency-free interactivity so the page has no framework
    requirement at all.
@@ -203,7 +203,7 @@
       const services = [dethatch ? 'Verti-Mowing / Dethatching' : null, aerate ? 'Lawn Aeration' : null]
         .filter(Boolean)
         .join(' + ') || 'Lawn renovation (not sure yet)';
-      const subject = encodeURIComponent('Free quote request — ' + services);
+      const subject = encodeURIComponent('Free quote request: ' + services);
       const body = encodeURIComponent(
         'Hi Perth Lawn Renovation,\n\nI used the instant quote tool on your website.\n\n' +
         'Lawn size: ' + area + ' m2\nServices: ' + services + '\n' +
@@ -231,15 +231,15 @@
       const isMinJob = rawTotal > 0 && rawTotal < CONFIG.minJob;
       const total = isMinJob ? CONFIG.minJob : rawTotal;
 
-      dSub.textContent = dethatch ? fmt(dCost) : '—';
-      aSub.textContent = aerate ? fmt(aCost) : '—';
+      dSub.textContent = dethatch ? fmt(dCost) : '-';
+      aSub.textContent = aerate ? fmt(aCost) : '-';
       totalLabel.textContent = total > 0 ? 'From ' + fmt(total) : '$0';
       noteText.textContent =
         total === 0
           ? 'Select at least one service above.'
           : isMinJob
-          ? 'Minimum job charge of ' + fmt(CONFIG.minJob) + ' applies — indicative only, final quote confirmed free.'
-          : 'Indicative only — final quote confirmed free.';
+          ? 'Minimum job charge of ' + fmt(CONFIG.minJob) + ' applies, indicative only, final quote confirmed free.'
+          : 'Indicative only, final quote confirmed free.';
 
       toggleDethatch.classList.toggle('is-on', dethatch);
       toggleDethatch.setAttribute('aria-pressed', String(dethatch));
