@@ -11,6 +11,13 @@
 <meta property="og:title" content="Free Spring Lawn Rejuvenation Guide | Perth Lawn Renovation Services">
 <meta property="og:description" content="What to renovate, what it costs, and how to book before spring slots fill up. Free guide for Perth homeowners.">
 <meta property="og:image" content="https://perthlawnrenovationservices.com.au/assets/plr-banner-opt.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="600">
+<meta property="og:url" content="https://perthlawnrenovationservices.com.au/spring-guide.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Spring Lawn Rejuvenation Guide | Perth Lawn Renovation Services">
+<meta name="twitter:description" content="What to renovate, what it costs, and how to book before spring slots fill up. Free guide for Perth homeowners.">
+<meta name="twitter:image" content="https://perthlawnrenovationservices.com.au/assets/plr-banner-opt.jpg">
 <meta name="theme-color" content="#0a1a0e">
 <link rel="icon" type="image/png" href="assets/sprout-transparent.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
@@ -124,10 +131,6 @@
           <label for="fEmail">Email</label>
           <input type="email" id="fEmail" autocomplete="email" placeholder="you@email.com">
         </div>
-        <div class="field">
-          <label for="fPhone">Mobile</label>
-          <input type="tel" id="fPhone" autocomplete="tel" inputmode="tel" placeholder="04xx xxx xxx">
-        </div>
         <div id="formErr" class="err"></div>
         <button id="sendBtn" type="button">Get My Free Guide &#8594;</button>
         <div class="fineprint">No spam. Unsubscribe any time. Perth Lawn Renovation Services, ABN 29 942 711 312.</div>
@@ -179,11 +182,9 @@
     clearErr();
     var name = document.getElementById('fName').value.trim();
     var email = document.getElementById('fEmail').value.trim();
-    var phone = document.getElementById('fPhone').value.trim();
 
     if (!name){ showErr('Please enter your name.'); return; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ showErr('Please enter a valid email address.'); return; }
-    if (!phone){ showErr('Please enter your mobile number.'); return; }
 
     sendBtn.disabled = true;
     sendBtn.textContent = 'Sending…';
@@ -192,7 +193,7 @@
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
-        name: name, email: email, phone: phone,
+        name: name, email: email,
         source: 'spring-guide-landing', page: location.href, ts: new Date().toISOString()
       })
     }).then(function () {
