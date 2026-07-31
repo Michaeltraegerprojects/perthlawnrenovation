@@ -708,24 +708,31 @@ const CONFIG = {
   leadEndpoint: "https://formspree.io/f/mlgqkwan",
 
   /* ---------- PROMO CODE ----------
-     Launch offer to match the "20% off first 30 lawns" ad.
+     September special: first 10 bookings get 10% off, to mark the website
+     launch.
 
-     IMPORTANT: this is a static site with no database, so it cannot count
-     how many people have used the code. The 30-lawn limit is yours to track.
-     When you have booked your 30, set active:false below and the code stops
-     working straight away (the whole promo box disappears too).
+     IMPORTANT: this is a static site with no database, so it CANNOT count
+     redemptions. The "first 10" limit is yours to track. Once you have your
+     10, set active:false below and the code stops working immediately (the
+     whole promo box disappears with it).
+
+     endsOn is a safety net so the code cannot still be floating around in
+     November. It stops working after that date whatever active is set to.
+     Clear it to "" to remove the expiry. Dates read the customer's device
+     clock, which for Perth customers is Perth time.
 
      The discount comes off the total AFTER the 3-service bundle discount,
-     so someone taking the full package gets both. Set stacksWithBundle to
-     false if you would rather they get one or the other.
+     so someone taking the full package gets both (10% + 10%). Set
+     stacksWithBundle to false if you would rather they get one or the other.
   */
   promo: {
     active: true,
-    code: "FIRST30",
-    percentOff: 20,
-    renoOnly: true,          // ad says "lawns", so not equipment hire
+    code: "SEPT10",
+    percentOff: 10,
+    endsOn: "2026-09-30",    // inclusive, so it works all through 30 September
+    renoOnly: true,          // lawns, not equipment hire
     stacksWithBundle: true,
-    blurb: "First 30 lawns. Renovation work only.",
+    blurb: "First 10 September bookings. Renovation work only.",
   },
 
   /* ---------- RENOVATION ---------- */
@@ -907,11 +914,25 @@ function effectiveSqm(){
   return preset ? preset.sqm : 130;
 }
 
-// Returns the promo config only when it is switched on, the entered code
-// matches, and it applies to the tab the customer is currently on.
+// True while the promo is switched on and not past its end date.
+// Checked separately from activePromo() so the promo box can be hidden
+// outright once the offer is over, rather than sitting there rejecting codes.
+function promoLive(){
+  const P = CONFIG.promo;
+  if (!P || !P.active) return false;
+  if (P.endsOn){
+    // End of the last day, so the code works right through that date
+    const end = new Date(P.endsOn + "T23:59:59");
+    if (!isNaN(end) && Date.now() > end.getTime()) return false;
+  }
+  return true;
+}
+
+// Returns the promo config only when it is live, the entered code matches,
+// and it applies to the tab the customer is currently on.
 function activePromo(){
   const P = CONFIG.promo;
-  if (!P || !P.active) return null;
+  if (!promoLive()) return null;
   if (state.promo !== P.code) return null;
   if (P.renoOnly && state.mode !== "reno") return null;
   return P;
@@ -1024,10 +1045,10 @@ function calcHire(){
 
 /* ---------- render ---------- */
 // Keeps the promo box message in step with the current tab, so switching to
-// equipment hire with FIRST30 applied explains why the discount vanished.
+// equipment hire with the code applied explains why the discount vanished.
 function syncPromoUI(){
   const P = CONFIG.promo, wrap = $("promoWrap");
-  if (!wrap || !P || !P.active) return;
+  if (!wrap || !promoLive()) return;
   const msg = $("promoMsg");
   wrap.classList.remove("is-ok", "is-bad");
   if (state.promo !== P.code) return;
@@ -1328,8 +1349,9 @@ function showSuccess(lead, mailtoHref){
   const wrap = $("promoWrap"), input = $("promoCode"), btn = $("promoBtn"), msg = $("promoMsg");
   if (!wrap) return;
 
-  // Promo switched off: hide the box entirely rather than leaving a dead field.
-  if (!P || !P.active){ wrap.remove(); return; }
+  // Switched off or past its end date: hide the box entirely rather than
+  // leaving a dead field that rejects every code someone types into it.
+  if (!promoLive()){ wrap.remove(); return; }
 
   function apply(){
     const entered = input.value.trim().toUpperCase();
