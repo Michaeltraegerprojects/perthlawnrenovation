@@ -292,6 +292,84 @@
   .submit:focus-visible{ outline:3px solid var(--ink); outline-offset:2px; }
   .privacy{ font-size:12.5px; color:var(--ink-soft); text-align:center; margin-top:10px; }
 
+  /* promo code */
+  .promo{ margin-top:18px; padding-top:16px; border-top:1px dashed var(--line); }
+  .promo-lab{ display:block; font-size:13.5px; font-weight:700; margin-bottom:6px; }
+  .promo-lab .opt{ font-weight:500; color:var(--ink-soft); }
+  .promo-row{ display:flex; gap:8px; }
+  .promo-row input{
+    flex:1; min-width:0; padding:12px 14px;
+    border:1.5px solid var(--line); border-radius:10px;
+    font:inherit; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--ink); background:var(--card);
+  }
+  .promo-row input::placeholder{ font-weight:500; letter-spacing:normal; text-transform:none; }
+  .promo-row input:focus-visible{ outline:3px solid var(--grass); outline-offset:1px; border-color:var(--grass-dk); }
+  .promo-row button{
+    flex:0 0 auto; background:var(--ink); color:#fff;
+    border:0; border-radius:10px;
+    font:inherit; font-weight:800; font-size:14.5px;
+    padding:0 22px; cursor:pointer; transition:background .15s;
+  }
+  .promo-row button:hover{ background:var(--panel); }
+  .promo-row button:focus-visible{ outline:3px solid var(--grass); outline-offset:2px; }
+  .promo-msg{ font-size:13px; font-weight:600; margin-top:8px; display:none; }
+  .promo.is-ok .promo-msg{ display:block; color:var(--grass-dk); }
+  .promo.is-bad .promo-msg{ display:block; color:#B03A22; }
+  .promo.is-ok .promo-row input{ border-color:var(--grass-dk); background:#F1F8EC; }
+  .promo.is-bad .promo-row input{ border-color:#C6472E; }
+
+  /* ---------- success popup ----------
+     Deliberately not <dialog>: showModal() is unsupported on iOS Safari
+     before 15.4, and this has to work on older phones. Plain fixed
+     positioning behaves identically everywhere. */
+  .modal-back{
+    position:fixed; inset:0; z-index:200;
+    background:rgba(10,26,14,.62);
+    -webkit-backdrop-filter:blur(3px); backdrop-filter:blur(3px);
+    display:flex; align-items:center; justify-content:center;
+    padding:20px calc(20px + env(safe-area-inset-right)) calc(20px + env(safe-area-inset-bottom)) calc(20px + env(safe-area-inset-left));
+    opacity:0; visibility:hidden; transition:opacity .2s ease, visibility .2s;
+  }
+  .modal-back.open{ opacity:1; visibility:visible; }
+  .modal{
+    background:var(--card); border-radius:18px;
+    width:min(440px,100%); max-height:calc(100vh - 40px); overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    padding:32px 28px 26px; text-align:center;
+    box-shadow:0 24px 70px rgba(20,57,42,.4);
+    transform:translateY(12px) scale(.98); transition:transform .22s ease;
+  }
+  .modal-back.open .modal{ transform:none; }
+  .modal .tick-ring{
+    width:64px; height:64px; margin:0 auto 18px; border-radius:50%;
+    background:#EAF7E1; display:flex; align-items:center; justify-content:center;
+  }
+  .modal h3{ font-size:23px; font-weight:900; margin-bottom:10px; color:var(--ink); }
+  .modal p{ font-size:15px; color:var(--ink-soft); line-height:1.6; }
+  .modal .recap{
+    margin-top:18px; background:var(--sand); border:1px solid var(--line);
+    border-radius:12px; padding:14px 16px; text-align:left;
+  }
+  .modal .recap div{ display:flex; justify-content:space-between; gap:14px; font-size:14px; padding:3px 0; }
+  .modal .recap .rk{ color:var(--ink-soft); }
+  .modal .recap .rv{ font-weight:800; color:var(--ink); text-align:right; }
+  .modal .recap .rv.save{ color:#C77400; }
+  .modal-acts{ display:grid; gap:9px; margin-top:20px; }
+  .modal-acts a, .modal-acts button{
+    display:block; width:100%; border:0; border-radius:12px;
+    font:inherit; font-weight:800; font-size:16px; padding:15px 18px;
+    cursor:pointer; text-decoration:none; text-align:center;
+  }
+  .modal-acts .call{ background:var(--grass-dk); color:#fff; }
+  .modal-acts .call:hover{ background:#357A28; }
+  .modal-acts .close{ background:transparent; color:var(--ink-soft); font-weight:700; font-size:15px; padding:10px; }
+  .modal-acts .close:hover{ color:var(--ink); }
+  .modal-acts a:focus-visible, .modal-acts button:focus-visible{ outline:3px solid var(--grass); outline-offset:2px; }
+  @media (prefers-reduced-motion: reduce){
+    .modal-back, .modal{ transition:none; }
+  }
+
   /* ---------- quote board ---------- */
   .board{
     position:sticky; top:20px;
@@ -322,6 +400,29 @@
     color:var(--grass);
     font-variant-numeric:tabular-nums;
   }
+  /* Discount cues. Retail pricing research is consistent on two things:
+     an anchor price shown struck through raises perceived value more than
+     the discount figure alone, and a warm amber/gold reads as "saving"
+     while staying friendly. True red is the other common sale cue but it
+     reads as alarm against this dark green panel, so amber it is. */
+  .was{
+    font-size:20px; font-weight:700; color:#8FB98C;
+    text-decoration:line-through; text-decoration-thickness:2px;
+    font-variant-numeric:tabular-nums;
+  }
+  .was[hidden]{ display:none; }
+  .save-pill{
+    display:inline-flex; align-items:center; gap:7px;
+    margin-top:12px; padding:7px 15px; border-radius:999px;
+    background:linear-gradient(180deg,#FFC24D,#FF9E2C);
+    color:#3A2000; font-weight:900; font-size:13.5px; letter-spacing:.01em;
+    box-shadow:0 4px 14px rgba(255,158,44,.34);
+  }
+  .save-pill[hidden]{ display:none; }
+  .save-pill .amt{ font-variant-numeric:tabular-nums; }
+  .m-save{ color:#FF9E2C; font-weight:800; font-size:12.5px; }
+  .m-save[hidden]{ display:none; }
+
   .price.tick{ animation:tick .28s ease-out; }
   @keyframes tick{
     0%{ transform:translateY(4px); opacity:.35; }
@@ -527,6 +628,14 @@
             <input type="email" id="email" name="email" autocomplete="email">
           </div>
         </div>
+        <div class="promo" id="promoWrap">
+          <label class="promo-lab" for="promoCode">Promo code <span class="opt">(optional)</span></label>
+          <div class="promo-row">
+            <input type="text" id="promoCode" name="promoCode" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Enter your code" aria-describedby="promoMsg">
+            <button type="button" id="promoBtn">Apply</button>
+          </div>
+          <p class="promo-msg" id="promoMsg" role="status" aria-live="polite"></p>
+        </div>
         <button class="submit" type="submit" id="submitBtn">Get my free quote</button>
         <p class="privacy">No spam, no lock-in. We only use your details to confirm this quote.</p>
       </fieldset>
@@ -538,9 +647,11 @@
         <div class="label" id="boardLabel">Your renovation estimate</div>
         <div class="price-line">
           <span class="from" id="fromTag">from</span>
+          <span class="was" id="wasOut" hidden></span>
           <span class="price" id="priceOut">-</span>
           <span class="per" id="perOut"></span>
         </div>
+        <div class="save-pill" id="saveOut" hidden></div>
         <p class="empty" id="emptyMsg">Select at least one service to see a price.</p>
         <div class="breakdown" id="breakdown"></div>
         <div class="success" id="successMsg"></div>
@@ -552,11 +663,30 @@
   <p class="foot" id="footLine"></p>
 </div>
 
+<!-- Success popup -->
+<div class="modal-back" id="successModal" role="dialog" aria-modal="true" aria-labelledby="successTitle" hidden>
+  <div class="modal">
+    <div class="tick-ring">
+      <svg width="30" height="24" viewBox="0 0 13 11" fill="none" aria-hidden="true">
+        <path d="M1.5 5.5L4.8 8.8L11.5 1.8" stroke="#3E8E2F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h3 id="successTitle">Quote sent</h3>
+    <p id="successBody"></p>
+    <div class="recap" id="successRecap"></div>
+    <div class="modal-acts">
+      <a class="call" id="successCall" href="#">Call us now</a>
+      <button type="button" class="close" id="successClose">Close</button>
+    </div>
+  </div>
+</div>
+
 <!-- Mobile sticky price bar -->
 <div class="mobile-bar" id="mobileBar">
   <div>
     <div class="m-label" id="mLabel">Your estimate</div>
     <div class="m-price" id="mPrice">-</div>
+    <div class="m-save" id="mSave" hidden></div>
   </div>
   <a href="#quoteForm">Get quote</a>
 </div>
@@ -573,9 +703,30 @@ const CONFIG = {
     email: "perthlawnrenovationservices@outlook.com",
   },
 
-  // Optional: paste a form endpoint (Formspree / Getform / your API)
-  // and leads POST there as JSON instead of opening the email app.
-  leadEndpoint: "",
+  // Form endpoint. Leads POST here as JSON instead of opening the email app.
+  // Blank this out to fall back to the mailto flow.
+  leadEndpoint: "https://formspree.io/f/mlgqkwan",
+
+  /* ---------- PROMO CODE ----------
+     Launch offer to match the "20% off first 30 lawns" ad.
+
+     IMPORTANT: this is a static site with no database, so it cannot count
+     how many people have used the code. The 30-lawn limit is yours to track.
+     When you have booked your 30, set active:false below and the code stops
+     working straight away (the whole promo box disappears too).
+
+     The discount comes off the total AFTER the 3-service bundle discount,
+     so someone taking the full package gets both. Set stacksWithBundle to
+     false if you would rather they get one or the other.
+  */
+  promo: {
+    active: true,
+    code: "FIRST30",
+    percentOff: 20,
+    renoOnly: true,          // ad says "lawns", so not equipment hire
+    stacksWithBundle: true,
+    blurb: "First 30 lawns. Renovation work only.",
+  },
 
   /* ---------- RENOVATION ---------- */
   reno: {
@@ -647,6 +798,7 @@ const fmt = (n) => "$" + Math.round(n).toLocaleString("en-AU");
 
 const state = {
   mode: "reno",
+  promo: null,                     // holds the code string once applied
   reno: {
     size: "medium",
     customSqm: null,
@@ -755,6 +907,16 @@ function effectiveSqm(){
   return preset ? preset.sqm : 130;
 }
 
+// Returns the promo config only when it is switched on, the entered code
+// matches, and it applies to the tab the customer is currently on.
+function activePromo(){
+  const P = CONFIG.promo;
+  if (!P || !P.active) return null;
+  if (state.promo !== P.code) return null;
+  if (P.renoOnly && state.mode !== "reno") return null;
+  return P;
+}
+
 function calcReno(){
   const R = CONFIG.reno, sel = state.reno.services;
   if (sel.size === 0) return null;
@@ -792,10 +954,22 @@ function calcReno(){
     }
   }
 
+  let gotBundle = false;
+  let saved = 0;                   // running total of every discount applied
   if (sel.has("dethatch") && sel.has("aeration") && sel.has("topdress")){
     const disc = Math.round(bundleSub * 0.10);
     total -= disc;
+    saved += disc;
+    gotBundle = true;
     lines.push({ k:"3-service bundle (10% off)", v:"-" + fmt(disc), cls:"bundle-hit" });
+  }
+
+  const promo = activePromo();
+  if (promo && total > 0 && !(gotBundle && !promo.stacksWithBundle)){
+    const off = Math.round(total * promo.percentOff / 100);
+    total -= off;
+    saved += off;
+    lines.push({ k:`${promo.code} (${promo.percentOff}% off)`, v:"-" + fmt(off), cls:"bundle-hit" });
   }
 
   if (total > 0 && R.minJob > 0 && total < R.minJob){
@@ -804,7 +978,8 @@ function calcReno(){
   }
 
   const timing = R.timing.find(t => t.id === state.reno.timing);
-  return { total, lines, hasPOA, hasPackage, timing,
+  return { total, lines, hasPOA, hasPackage, timing, saved,
+    was: saved > 0 ? total + saved : 0,
     headline: total > 0 ? fmt(total) : "POA",
     from: total > 0,
     per: total > 0 ? "quoted online, no site visit" : "free assessment" };
@@ -848,11 +1023,30 @@ function calcHire(){
 }
 
 /* ---------- render ---------- */
+// Keeps the promo box message in step with the current tab, so switching to
+// equipment hire with FIRST30 applied explains why the discount vanished.
+function syncPromoUI(){
+  const P = CONFIG.promo, wrap = $("promoWrap");
+  if (!wrap || !P || !P.active) return;
+  const msg = $("promoMsg");
+  wrap.classList.remove("is-ok", "is-bad");
+  if (state.promo !== P.code) return;
+  if (P.renoOnly && state.mode !== "reno"){
+    wrap.classList.add("is-bad");
+    msg.textContent = `${P.code} applies to lawn renovation work, not equipment hire.`;
+  } else {
+    wrap.classList.add("is-ok");
+    msg.textContent = `${P.code} applied, ${P.percentOff}% off. ${P.blurb}`;
+  }
+}
+
 function render(){
+  syncPromoUI();
   const q = state.mode === "reno" ? calcReno() : calcHire();
   const price = $("priceOut"), per = $("perOut"), fromTag = $("fromTag"),
         empty = $("emptyMsg"), bd = $("breakdown"), mp = $("mPrice"),
-        fine = $("fineText"), nudgeBox = $("pkgNudge");
+        fine = $("fineText"), nudgeBox = $("pkgNudge"),
+        wasOut = $("wasOut"), saveOut = $("saveOut"), mSave = $("mSave");
 
   // fine print per mode
   fine.textContent = state.mode === "reno"
@@ -869,6 +1063,7 @@ function render(){
 
   if (!q){
     price.textContent = "-"; per.textContent = ""; fromTag.style.display = "none";
+    wasOut.hidden = true; saveOut.hidden = true; mSave.hidden = true;
     empty.style.display = "block";
     empty.textContent = state.mode === "reno"
       ? "Select at least one service to see a price."
@@ -882,6 +1077,15 @@ function render(){
   price.textContent = q.headline;
   per.textContent = q.per;
   mp.textContent = (q.from ? "from " : "") + q.headline;
+
+  // Anchor price and savings pill, shown only when something was discounted
+  const saved = q.saved || 0;
+  wasOut.hidden = !(saved > 0 && q.was);
+  if (!wasOut.hidden) wasOut.textContent = fmt(q.was);
+  saveOut.hidden = !(saved > 0);
+  if (!saveOut.hidden) saveOut.innerHTML = `You save <span class="amt">${fmt(saved)}</span>`;
+  mSave.hidden = !(saved > 0);
+  if (!mSave.hidden) mSave.textContent = `You save ${fmt(saved)}`;
 
   bd.innerHTML = q.lines.map(l =>
     `<div class="row${l.cls ? " " + l.cls : ""}"><span class="k">${l.k}</span><span class="v">${l.v}</span></div>`).join("");
@@ -966,6 +1170,9 @@ function leadPayload(q){
     submittedAt: new Date().toLocaleString("en-AU", { timeZone:"Australia/Perth" }),
   };
 
+  const p = activePromo();
+  if (p) base.promoCode = `${p.code} (${p.percentOff}% off applied)`;
+
   if (state.mode === "reno"){
     return { ...base,
       enquiryType: "Lawn renovation",
@@ -985,6 +1192,23 @@ function leadPayload(q){
   };
 }
 
+// Shapes the lead for the form endpoint.
+// Formspree specifics: _subject sets the notification email subject, and the
+// email field becomes reply-to. An empty email fails Formspree's format check,
+// so drop the key entirely rather than sending "". Arrays are flattened so the
+// notification email reads as a sentence instead of a JSON list.
+function formPayload(lead){
+  const out = {};
+  for (const [k, v] of Object.entries(lead)){
+    if (Array.isArray(v)) out[k] = v.join(", ");
+    else out[k] = v;
+  }
+  if (!out.email) delete out.email;
+  const who = [out.name, out.suburb].filter(Boolean).join(", ");
+  out._subject = `${out.enquiryType}: ${who} (${out.estimate})`;
+  return out;
+}
+
 $("quoteForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   const q = state.mode === "reno" ? calcReno() : calcHire();
@@ -1000,11 +1224,15 @@ $("quoteForm").addEventListener("submit", async (e) => {
   if (CONFIG.leadEndpoint){
     btn.disabled = true; btn.textContent = "Sending…";
     try{
-      await fetch(CONFIG.leadEndpoint, {
+      const res = await fetch(CONFIG.leadEndpoint, {
         method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        body: JSON.stringify(lead),
+        headers:{ "Content-Type":"application/json", "Accept":"application/json" },
+        body: JSON.stringify(formPayload(lead)),
       });
+      // Formspree answers 200 on success and 4xx on a rejected submission
+      // (form paused, spam blocked, over quota). Without this check a
+      // rejected lead would still show the customer a success message.
+      if (!res.ok) throw new Error("Form endpoint returned " + res.status);
       showSuccess(lead);
     }catch(err){
       alert("Couldn't send just now, please call " + CONFIG.business.phone + " and we'll sort it.");
@@ -1023,20 +1251,112 @@ $("quoteForm").addEventListener("submit", async (e) => {
   }
 });
 
-function showSuccess(lead, mailtoHref){
-  const successEl = $("successMsg");
-  const firstName = lead.name.split(" ")[0];
-  if (mailtoHref){
-    successEl.innerHTML =
-      `Thanks ${firstName}, locked in at ${lead.estimate}. Click below to open this quote in your email app and send it to us. We'll confirm on ${lead.phone} shortly.` +
-      `<a class="mailto-btn" href="${mailtoHref}">Open in your email app →</a>`;
-  } else {
-    successEl.textContent =
-      `Thanks ${firstName}, locked in at ${lead.estimate}. We'll confirm on ${lead.phone} shortly.`;
-  }
-  $("board").classList.add("sent");
-  $("board").scrollIntoView({ behavior:"smooth", block:"nearest" });
+let lastFocused = null;
+
+function closeSuccess(){
+  const back = $("successModal");
+  back.classList.remove("open");
+  document.body.style.overflow = "";
+  setTimeout(() => { back.hidden = true; }, 200);
+  if (lastFocused && lastFocused.focus) lastFocused.focus();
 }
+
+function showSuccess(lead, mailtoHref){
+  const firstName = lead.name.split(" ")[0];
+  const phoneDigits = CONFIG.business.phone.replace(/\s/g, "");
+
+  // Inline board message stays as a fallback for anyone who dismisses the popup
+  $("successMsg").textContent =
+    `Thanks ${firstName}, locked in at ${lead.estimate}. We'll confirm on ${lead.phone} shortly.`;
+  $("board").classList.add("sent");
+
+  $("successBody").textContent =
+    `Thanks ${firstName}, we've got your details. We'll confirm on ${lead.phone}, usually the same day.`;
+
+  const rows = [
+    ["Service", lead.enquiryType],
+    [lead.lawnSize ? "Lawn size" : "Hire", lead.lawnSize || lead.hire],
+    ["Your estimate", lead.estimate],
+  ];
+  if (lead.promoCode) rows.push(["Promo", lead.promoCode]);
+  $("successRecap").innerHTML = rows
+    .filter(([, v]) => v)
+    .map(([k, v]) =>
+      `<div><span class="rk">${k}</span><span class="rv${k === "Promo" ? " save" : ""}">${v}</span></div>`)
+    .join("");
+
+  // Optional extra action when running the no-endpoint mailto fallback
+  const acts = $("successCall").parentNode;
+  const old = acts.querySelector(".mailto-btn");
+  if (old) old.remove();
+  if (mailtoHref){
+    const a = document.createElement("a");
+    a.className = "call mailto-btn";
+    a.href = mailtoHref;
+    a.textContent = "Also send it by email";
+    acts.insertBefore(a, $("successCall").nextSibling);
+  }
+
+  $("successCall").href = "tel:" + phoneDigits;
+  $("successCall").textContent = "Call " + CONFIG.business.phone;
+
+  lastFocused = document.activeElement;
+  const back = $("successModal");
+  back.hidden = false;
+  document.body.style.overflow = "hidden";
+  requestAnimationFrame(() => {
+    back.classList.add("open");
+    $("successClose").focus();
+  });
+}
+
+/* ---------- success popup wiring ---------- */
+(function(){
+  const back = $("successModal");
+  if (!back) return;
+  $("successClose").addEventListener("click", closeSuccess);
+  // Tapping the dark area closes, tapping the card itself does not
+  back.addEventListener("click", (e) => { if (e.target === back) closeSuccess(); });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && back.classList.contains("open")) closeSuccess();
+  });
+})();
+
+/* ---------- promo code ---------- */
+(function(){
+  const P = CONFIG.promo;
+  const wrap = $("promoWrap"), input = $("promoCode"), btn = $("promoBtn"), msg = $("promoMsg");
+  if (!wrap) return;
+
+  // Promo switched off: hide the box entirely rather than leaving a dead field.
+  if (!P || !P.active){ wrap.remove(); return; }
+
+  function apply(){
+    const entered = input.value.trim().toUpperCase();
+    if (!entered){
+      state.promo = null;
+      wrap.classList.remove("is-ok", "is-bad");
+      render();
+      return;
+    }
+    if (entered !== P.code){
+      state.promo = null;
+      wrap.classList.remove("is-ok");
+      wrap.classList.add("is-bad");
+      msg.textContent = "That code is not valid. Check the spelling and try again.";
+      render();
+      return;
+    }
+    state.promo = P.code;
+    input.value = P.code;
+    render();          // render calls syncPromoUI, which sets the success message
+  }
+
+  btn.addEventListener("click", apply);
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter"){ e.preventDefault(); apply(); }
+  });
+})();
 
 /* ---------- go ---------- */
 build();
