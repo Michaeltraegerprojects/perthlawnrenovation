@@ -42,10 +42,11 @@ enter it and follow GitHub's DNS instructions. The SEO tags in `index.html` alre
 
 ## Before going live: IMPORTANT
 
-- **Replace the three reviews** in the "What Perth homeowners say" section with REAL customer
-  quotes and names. The current three (Jason M., Sarah K., Mark T.) are sample copy from the
-  build docs, not real customers. Publishing invented reviews as real breaches Australian
-  Consumer Law. Text your last three happy customers, one sentence each is enough.
+- **Replace the two remaining placeholder reviews** in the "What Perth homeowners say"
+  section with REAL customer quotes and names. The first card is now a genuine 5-star
+  Google review (Nash Hood). The other two (Sarah K., Mark T.) are still sample copy from
+  the build docs, not real customers. Publishing invented reviews as real breaches
+  Australian Consumer Law. Text your last two happy customers, one sentence each is enough.
 - Check the quote calculator rates ($8/m² dethatch, $1.50/m² aeration) are current.
 - The WhatsApp button assumes 0427 206 246 is WhatsApp-enabled. If not, remove that button.
 
