@@ -57,9 +57,10 @@ A competitor with 40 reviews will beat a better business with 3. So:
 - ⚠️ Never buy or fake reviews: Google removes them and can suspend the profile,
   and fake reviews breach Australian Consumer Law.
 
-> Reminder from your README: the three sample reviews on the website (Jason M.,
-> Sarah K., Mark T.) are placeholder copy. Swap them for real customer quotes
-> before pointing ads at the site.
+> Reminder from your README: the first review card on the website is now a real
+> 5-star Google review (Nash Hood). The other two (Sarah K., Mark T.) are still
+> placeholder copy. Swap them for real customer quotes before pointing ads at the
+> site.
 
 ### 3. Local citations (NAP consistency)
 
@@ -225,6 +226,6 @@ suburb: neighbours can literally see your work.
 - [ ] Text every past + future customer for a review
 - [ ] Set up Search Console + submit the sitemap
 - [ ] List on 5 free directories (same name + 0427 206 246 everywhere)
-- [ ] Replace the 3 placeholder reviews on the website with real ones
+- [ ] Replace the 2 remaining placeholder reviews on the website with real ones
 - [ ] Boost Ad 1 on Facebook, $5/day, Perth + gardening interest
 - [ ] Print the A5 flyer, drop it after each job
