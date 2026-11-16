@@ -11,9 +11,9 @@
 
     // Seasonal banner at the top of every page. Hides itself after `expires`.
     banner: {
-      text: 'Water beading off your lawn? Wetting agent treatments from $75. Renovation season runs to mid-April.',
-      textShort: 'Water beading off the lawn? Treatments from $75',
-      href: '/#quote',
+      text: '\uD83D\uDD25 Summer is here. Water beading off instead of soaking in? Wetting agent treatments from $75.',
+      textShort: '\uD83D\uDD25 Summer: lawn treatments from $75',
+      href: '/#summer',
       expires: '2027-02-28'          // last day it shows (Perth date on the visitor's device)
     },
 
