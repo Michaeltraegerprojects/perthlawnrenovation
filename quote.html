@@ -16,7 +16,6 @@
 <meta property="og:locale" content="en_AU">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://perthlawnrenovationservices.com.au/assets/plr-banner-opt.jpg">
-<meta name="theme-color" content="#0a1a0e">
 <link rel="icon" type="image/png" href="assets/sprout-transparent.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="167x167" href="assets/apple-touch-icon-167.png">
@@ -48,9 +47,11 @@
      URL into CONFIG.leadEndpoint to POST leads as JSON instead.
   ============================================================
 -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#0a1a0e">
+<link rel="preload" href="assets/fonts/anton.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/site.css">
+<script src="js/site.js" defer></script>
 <style>
   :root{
     --ink:      #14392A;
@@ -515,23 +516,45 @@
   .bundle-floater .bf-btn{ flex-shrink:0; background:#241100; color:#FFB020; font-weight:800; font-size:13px; padding:10px 16px; border-radius:999px; white-space:nowrap; }
   @keyframes bfPulse{ 0%,100%{ box-shadow:0 16px 44px rgba(0,0,0,.28), 0 0 0 3px rgba(255,122,0,.2); } 50%{ box-shadow:0 16px 52px rgba(0,0,0,.32), 0 0 0 7px rgba(255,122,0,.5); } }
   @media (prefers-reduced-motion: reduce){ .bundle-floater{ animation:none; } }
+
+  /* ---- shared design system overrides (see css/site.css) ---- */
+  :root{
+    --ink:#122015; --ink-soft:#445240; --grass:#a3e635; --grass-dk:#2b6411;
+    --sand:#f6f2e7; --line:#ddd5c0; --panel:#0a1a0e; --panel-2:#0f2515;
+    --font:"Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  body{ padding-top:116px; }
+  .wrap > h1{ font-family:"Anton","Arial Narrow",Impact,sans-serif; font-weight:400; text-transform:uppercase; line-height:1; letter-spacing:.005em; }
+  .form-card :focus-visible, .form-card :has(input:focus-visible), .tab:focus-visible{ outline-color:var(--grass-dk) !important; }
+  /* no looping attention effects */
+  .bundle-banner, .bundle-banner .bb-spark, .bundle-banner.bb-flash, .bundle-floater{ animation-iteration-count:1 !important; }
+  @media (max-width:560px){ .svc{ flex-direction:column; align-items:flex-start; gap:6px; } .svc .price{ padding-left:34px; text-align:left; white-space:normal; } }
+  .svc .desc{ font-size:13.5px; }
+  .ftr{ margin-top:48px; }
+  @media (max-width:880px){ .ftr{ padding-bottom:120px; } }
 </style>
 </head>
 <body>
 
-<div class="sitenav">
-  <a class="brand" href="/">
-    <img src="assets/sprout-transparent.png" alt="Perth Lawn Renovation Services logo">
-    Perth Lawn Renovation Services
-  </a>
-  <nav aria-label="Services">
-    <a href="/">Home</a>
-    <a href="vertimowing.html">Verti-Mowing</a>
-    <a href="aeration.html">Lawn Aeration</a>
-    <a href="top-dressing.html">Top Dressing</a>
-    <a href="hire.html">Equipment Hire</a>
+<a class="skip" href="#main">Skip to content</a>
+<header class="hdr hdr--solid" id="hdr">
+  <a class="season" id="season" href="/#quote" hidden></a>
+  <div class="hdr__in">
+    <a class="brand" href="/" aria-label="Perth Lawn Renovation Services, home">
+      <img src="assets/img/logo-96.png" srcset="assets/img/logo-96.png 1x, assets/img/logo-192.png 2x" width="44" height="27" alt="">
+      <span>Perth Lawn Renovation</span>
+    </a>
+    <nav class="nav" aria-label="Main"><a href="vertimowing.html">Verti-mowing</a><a href="aeration.html">Aeration</a><a href="top-dressing.html">Top dressing</a><a href="hire.html">Equipment hire</a><a href="quote.html" aria-current="page">Full calculator</a></nav>
+    <a class="hdr__tel" href="tel:+61427206246">0427 206 246</a>
+    <a class="btn btn--sm hdr__cta" href="#quoteForm">Get a price</a>
+    <a class="btn btn--sm hdr__call" href="tel:+61427206246">Call</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav">Menu</button>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Mobile" hidden>
+    <a href="/">Home</a><a href="vertimowing.html">Verti-mowing<span>From $8/m²</span></a><a href="aeration.html">Aeration<span>From $1.50/m²</span></a><a href="top-dressing.html">Top dressing</a><a href="hire.html">Equipment hire</a><a href="quote.html">Full calculator</a><a href="#quoteForm">Get a price</a>
   </nav>
-</div>
+</header>
+<main id="main">
 
 <div class="wrap">
   <span class="eyebrow">Perth Lawn Renovation Services</span>
@@ -662,6 +685,7 @@
 
   <p class="foot" id="footLine"></p>
 </div>
+</main>
 
 <!-- Success popup -->
 <div class="modal-back" id="successModal" role="dialog" aria-modal="true" aria-labelledby="successTitle" hidden>
@@ -1248,13 +1272,14 @@ $("quoteForm").addEventListener("submit", async (e) => {
       const res = await fetch(CONFIG.leadEndpoint, {
         method:"POST",
         headers:{ "Content-Type":"application/json", "Accept":"application/json" },
-        body: JSON.stringify(formPayload(lead)),
+        body: JSON.stringify(Object.assign({}, formPayload(lead), (window.PLRS && PLRS.attribution) ? PLRS.attribution() : {})),
       });
       // Formspree answers 200 on success and 4xx on a rejected submission
       // (form paused, spam blocked, over quota). Without this check a
       // rejected lead would still show the customer a success message.
       if (!res.ok) throw new Error("Form endpoint returned " + res.status);
       showSuccess(lead);
+      if (window.PLRS && PLRS.track) PLRS.track('Lead', { source:'quote-calculator' });
     }catch(err){
       alert("Couldn't send just now, please call " + CONFIG.business.phone + " and we'll sort it.");
     }finally{
@@ -1448,19 +1473,38 @@ setMode("reno");
 })();
 </script>
 
-<div class="sitefoot">
-  <div class="links">
-    <a href="/">Home</a>
-    <a href="vertimowing.html">Verti-Mowing &amp; Dethatching</a>
-    <a href="aeration.html">Lawn Aeration &amp; Coring</a>
-    <a href="top-dressing.html">Top Dressing &amp; Levelling</a>
-    <a href="hire.html">Equipment Hire</a>
+<footer class="ftr">
+  <div class="w">
+    <div class="ftr__grid">
+      <div>
+        <h2>Perth Lawn Renovation Services</h2>
+        <p>Lawn renovation across the Perth metro, residential and commercial. 15+ years on Perth lawns.</p>
+        <p>ABN 29 942 711 312</p>
+      </div>
+      <nav aria-label="Services">
+        <h2>Services</h2>
+        <ul>
+          <li><a href="vertimowing.html">Verti-mowing and dethatching</a></li>
+          <li><a href="aeration.html">Lawn aeration and coring</a></li>
+          <li><a href="top-dressing.html">Top dressing and levelling</a></li>
+          <li><a href="hire.html">Equipment hire</a></li>
+          <li><a href="quote.html">Full quote calculator</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2>Contact</h2>
+        <ul>
+          <li><a href="tel:+61427206246">Call 0427 206 246</a></li>
+          <li><a href="sms:+61427206246?&amp;body=Hi%2C%20I%27d%20like%20a%20lawn%20renovation%20quote.%20My%20suburb%20is%20">Text 0427 206 246</a></li>
+          <li><a href="https://wa.me/61427206246?text=Hi%2C%20I%27d%20like%20a%20lawn%20renovation%20quote." rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:perthlawnrenovationservices@outlook.com">perthlawnrenovationservices@outlook.com</a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=61579701849078" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="ftr__legal">&copy; Perth Lawn Renovation Services</p>
   </div>
-  <div>Perth Lawn Renovation Services &middot; ABN 29 942 711 312 &middot;
-    <a href="tel:0427206246">0427 206 246</a> &middot;
-    <a href="mailto:perthlawnrenovationservices@outlook.com">perthlawnrenovationservices@outlook.com</a>
-  </div>
-</div>
+</footer>
 
 </body>
 </html>
