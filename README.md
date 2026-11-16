@@ -1,65 +1,58 @@
-# Perth Lawn Renovation Services: Website
+# Perth Lawn Renovation Services: website
 
-One-page animated site for Perth Lawn Renovation Services.
-Vertimowing · Lawn Aeration · Weed Spraying · Complete Rejuvenation. All Perth Metro.
+Static site for perthlawnrenovationservices.com.au, served by GitHub Pages from `main` (repo root). Plain HTML, CSS and JavaScript. No framework and no build step to deploy.
 
-## What's in here
+## Layout
 
 ```
-site/
-├── index.html      ← the whole site (one page)
-├── quote.html      ← standalone full quote calculator (renovation + equipment hire)
-├── support.js      ← runtime index.html needs (keep next to index.html)
-├── LICENSE         ← MIT
-└── assets/         ← photos + logo
+index.html            homepage (instant estimate + quote form)
+vertimowing.html      service pages, each ends with a short quote form
+aeration.html
+top-dressing.html
+hire.html
+quote.html            full calculator (renovation + equipment hire). Its own script and CONFIG.
+spring-guide.html     lead-magnet landing page (noindex)
+css/site.css          shared design system: tokens, components, page styles
+js/site.js            shared script: config, forms, estimate, before/after, tracking
+assets/img/           responsive images (generated, see below)
+assets/fonts/         self-hosted Anton + Hanken Grotesk
+assets/*.jpg, *.png   original photos (ads, flyers and Open Graph tags link to these)
+scripts/build-images.py
+marketing/            ad and flyer source files (not part of the site)
 ```
 
-### About quote.html
+## Things you can change without touching anything else
 
-A dedicated, self-contained calculator with two modes:
-1. **Lawn renovation quote**: dethatching ($8/m²) and aeration ($1.50/m²) priced instantly by
-   lawn size, plus the rejuvenation package and assessment-priced extras (fertiliser, reticulation).
-2. **DIY equipment dry hire**: scarifier / vertimower / aerator by the day, 3-day or weekly rate,
-   with automatic 3-machine package pricing and the full trailer package.
+All in the `SITE` object at the top of `js/site.js`:
 
-It's linked from the main site's nav ("Full Calculator") and from the on-page quote section.
-Every submission opens the customer's email app pre-filled to `perthlawnrenovationservices@outlook.com`
-with all details, or set `CONFIG.leadEndpoint` inside `quote.html` to a Formspree/Getform URL to
-receive leads as JSON instead of via email.
+- `tracking.metaPixelId` / `tracking.ga4Id`: paste an ID to switch tracking on. Blank loads nothing.
+- `banner`: the strip at the top of every page. Set `text`, `textShort` (phones), `href` and `expires` (YYYY-MM-DD). It hides itself after that date.
+- `rates`: per-m² rates and the minimum job used by the homepage estimate.
+- `endpoints`: the Formspree URLs the forms post to.
 
-## Deploy to GitHub Pages (free hosting)
+`quote.html` keeps its own `CONFIG` block (rates, hire pricing, promo code, lead endpoint).
 
-1. Create a new repository on github.com (e.g. `perth-lawn-renovation`), set it **Public**.
-2. Upload everything inside the `site/` folder to the repository **root**
-   (`index.html` and `support.js` at top level, `assets/` folder beside them).
-3. In the repo: **Settings → Pages → Source: Deploy from a branch → Branch: main / (root) → Save**.
-4. Wait ~1 minute. Your site is live at `https://YOUR-USERNAME.github.io/perth-lawn-renovation/`.
+## Images
 
-### Custom domain later
-Buy the domain (e.g. perthlawnrenovationservices.com.au), then in **Settings → Pages → Custom domain**
-enter it and follow GitHub's DNS instructions. The SEO tags in `index.html` already point to
-`https://perthlawnrenovationservices.com.au/`. Update those URLs if you use a different domain.
+Add or replace a photo in `assets/`, list it in `scripts/build-images.py`, then run:
 
-## Before going live: IMPORTANT
+```
+pip install pillow
+python3 scripts/build-images.py
+```
 
-- **Replace the two remaining placeholder reviews** in the "What Perth homeowners say"
-  section with REAL customer quotes and names. The first card is now a genuine 5-star
-  Google review (Nash Hood). The other two (Sarah K., Mark T.) are still sample copy from
-  the build docs, not real customers. Publishing invented reviews as real breaches
-  Australian Consumer Law. Text your last two happy customers, one sentence each is enough.
-- Check the quote calculator rates ($8/m² dethatch, $1.50/m² aeration) are current.
-- The WhatsApp button assumes 0427 206 246 is WhatsApp-enabled. If not, remove that button.
+It writes AVIF, WebP and JPEG copies at several widths into `assets/img/`.
+
+## Reviews
+
+Only real, named customer reviews go on the site, in the customer's own words. Publishing invented reviews breaches Australian Consumer Law.
+
+## Leads
+
+- Quote forms post JSON to Formspree (`mlgqkwan`). Each lead includes the services, lawn size, estimate, the page it came from and any `utm_*`, `fbclid` or `gclid` the visitor arrived with.
+- The aftercare guide and spring guide forms post to Formspree (`xykroepj`).
+- If a send fails, the visitor keeps what they typed and gets prefilled text, WhatsApp and email links.
 
 ## Contact points wired in
 
-- Phone: 0427 206 246 (tel: links)
-- Email: perthlawnrenovationservices@outlook.com (quote tool emails a pre-filled estimate)
-- WhatsApp: wa.me/61427206246 (pre-filled with live estimate)
-- Facebook: https://www.facebook.com/profile.php?id=61579701849078
-- ABN 29 942 711 312 (footer)
-
-## Editing basics
-
-Everything is inline in `index.html`. Search for the text you want to change.
-Quote rates: search `dethatchRate` / `aerateRate` defaults (also editable via the
-`data-props` JSON on the script tag at the bottom of the file).
+Phone and SMS 0427 206 246 · WhatsApp wa.me/61427206246 · perthlawnrenovationservices@outlook.com · ABN 29 942 711 312
